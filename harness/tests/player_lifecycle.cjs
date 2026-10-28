@@ -1,0 +1,22 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const path = require('node:path');
+class Target { constructor(){this.listeners=new Map()} addEventListener(k,f){if(!this.listeners.has(k))this.listeners.set(k,new Set());this.listeners.get(k).add(f)} removeEventListener(k,f){this.listeners.get(k)?.delete(f)} emit(k){this.listeners.get(k)?.forEach(f=>f())} }
+const doc=new Target(),win=new Target(),video=new Target();
+doc.hidden=false;video.paused=false;video.ended=false;video.currentTime=7;
+let plays=0,suspends=0,resumes=0,context='camera:0',active=true,followingLive=true,wallTime=0;
+video.pause=()=>{video.paused=true};video.play=()=>{plays++;video.paused=false;video.emit('play');return Promise.resolve()};
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../verticals/retail/web/control-room/player-lifecycle.js'),'utf8'),{window:win,document:doc});
+const controller=win.PlayerLifecycle.create({video,context:()=>context,isActive:()=>active,onSuspend(){suspends++;followingLive=false},onResume(){resumes++}});
+doc.hidden=true;doc.emit('visibilitychange');assert.equal(video.paused,true);assert.equal(suspends,1);wallTime+=10;
+video.play();assert.equal(video.paused,true,'late play while hidden is paused again');
+doc.hidden=false;doc.emit('visibilitychange');assert.equal(video.paused,false);assert.equal(video.currentTime,7,'return does not seek to advancing room clock');assert.equal(followingLive,false);assert.equal(wallTime,10);
+video.pause();doc.hidden=true;doc.emit('visibilitychange');let before=plays;doc.hidden=false;doc.emit('visibilitychange');assert.equal(plays,before,'paused intention stays paused');
+video.play();doc.hidden=true;doc.emit('visibilitychange');context='other';before=plays;doc.hidden=false;doc.emit('visibilitychange');assert.equal(plays,before,'changed recording cancels resume');
+video.play();doc.hidden=true;doc.emit('visibilitychange');active=false;before=plays;doc.hidden=false;doc.emit('visibilitychange');assert.equal(plays,before,'overview view never resumes hidden camera');
+active=true;video.play();controller.setSuspended(true);assert.equal(video.paused,true,'parent navigation stops decoding');
+doc.hidden=true;doc.emit('visibilitychange');doc.hidden=false;doc.emit('visibilitychange');assert.equal(video.paused,true,'tab visibility cannot override hidden parent');
+before=plays;controller.setSuspended(false);assert.equal(plays,before+1,'return to same parent view preserves intention');
+controller.destroy();before=suspends;doc.hidden=true;doc.emit('visibilitychange');assert.equal(suspends,before);
+console.log('Player lifecycle: hidden stop, late play, retained position, paused intention and changed context passed');

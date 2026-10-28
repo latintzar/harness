@@ -1,0 +1,96 @@
+/* Flat activity rows, with bounded details rather than stacked cards. */
+.tool-trail { color: var(--muted); font-size: var(--font-size-ui, 14px); }
+.tool-trail [hidden] { display: none !important; }
+.tool-trail-group { min-width: 0; border: 0; background: transparent; }
+.tool-trail-group > summary,
+.tool-trail .tool-call > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 24px;
+  padding: 2px 0;
+  color: var(--muted);
+  list-style: none;
+  cursor: pointer;
+  font-size: var(--font-size-ui, 14px);
+}
+.tool-trail-group > summary::-webkit-details-marker { display: none; }
+.tool-trail-group > summary::marker { content: ''; }
+.tool-trail-group > summary > .icon { width: 16px; height: 16px; flex: 0 0 16px; }
+.tool-trail :is(.tool-trail-group, .tool-call) > summary > .icon:last-child {
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+.tool-trail :is(.tool-trail-group, .tool-call) > summary:hover > .icon:last-child,
+.tool-trail :is(.tool-trail-group, .tool-call) > summary:focus-visible > .icon:last-child,
+.tool-trail :is(.tool-trail-group, .tool-call) > summary:focus-within > .icon:last-child,
+.tool-trail :is(.tool-trail-group, .tool-call)[open] > summary > .icon:last-child { opacity: .65; }
+.tool-trail :is(.tool-trail-group, .tool-call)[open] > summary > .icon:last-child { transform: rotate(90deg); }
+.tool-trail .tool-trail-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tool-trail-scroll-wrap { position: relative; margin-top: 4px; }
+.tool-trail-viewport {
+  max-height: 240px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+  padding-right: 8px;
+}
+.tool-trail-viewport::-webkit-scrollbar { width: 4px; }
+.tool-trail-viewport::-webkit-scrollbar-thumb { border-radius: var(--radius-sm); background: var(--border); }
+.tool-trail-scroll-wrap.tool-trail-overflow::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  inset: auto 8px 0 0;
+  height: 36px;
+  background: linear-gradient(transparent, var(--paper));
+}
+.tool-trail-viewport > .tool-call + .tool-call { margin-top: 2px; }
+.tool-trail-viewport .tool-call pre {
+  max-height: none;
+  overflow: visible;
+  font-size: var(--font-size-code, 13px);
+}
+.tool-trail .tool-trail-reference,
+.tool-trail .tool-trail-path {
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+}
+.tool-trail .tool-trail-path { cursor: help; text-decoration-style: dotted; }
+.tool-trail .tool-trail-reference:hover { color: var(--ink); }
+.tool-trail-media {
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  margin: 8px 0 12px 20px;
+  padding: 4px;
+}
+.tool-trail-media-item {
+  flex: 0 0 144px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+}
+.tool-trail-media-item img { display: block; width: 144px; height: 88px; object-fit: cover; border-radius: var(--radius-sm); }
+.tool-trail-media-item > span { display: block; margin-top: 4px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: var(--font-size-code, 13px); }
+@media (prefers-reduced-motion: reduce) {
+  .tool-trail :is(.tool-trail-group, .tool-call) > summary > .icon:last-child { transition: none; }
+}

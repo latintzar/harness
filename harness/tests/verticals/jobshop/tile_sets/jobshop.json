@@ -1,0 +1,20 @@
+{
+  "business_type": "jobshop",
+  "revision": "jobshop-core-test-1",
+  "trackers": [
+    {"key": "backlog", "label": "Backlog",
+     "tracker": {"observes": "Open customer jobs and their promised dates.", "stream": "jobs", "event_types": ["job_opened", "job_finished"]},
+     "processor": {"script": "jobshop_trackers.backlog", "reads": ["jobs"], "summary": "script"},
+     "canvas": {"family": "occurrences"}, "tile": {"family": "metric", "unit": "jobs"}, "requires": ["order_log"]},
+    {"key": "delivery_estimate", "label": "Delivery estimate",
+     "tracker": {"observes": "Working days from an order to its delivery, from the backlog.", "stream": "jobs", "event_types": []},
+     "processor": {"script": "jobshop_trackers.delivery_estimate", "reads": ["jobs"], "summary": "script"},
+     "canvas": {"family": "metric_history"}, "tile": {"family": "metric", "unit": "days"}, "requires": ["order_log"]}
+  ],
+  "needs": {"order_log": "Needs the order log"},
+  "vocabulary": {
+    "job_opened": {"label": "Job opened", "group": "shop_floor", "scope": "job"},
+    "job_finished": {"label": "Job finished", "group": "shop_floor", "scope": "job"},
+    "week_full": {"label": "Week reported full", "group": "office", "scope": "office"}
+  }
+}

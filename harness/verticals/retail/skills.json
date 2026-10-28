@@ -1,0 +1,177 @@
+[
+  {
+    "id": "camera-intake",
+    "name": "Camera intake",
+    "description": "Connect and verify the selected camera through the existing setup conversation.",
+    "instructions_from": [
+      "prompts/intake-common.md",
+      "prompts/cameras.md"
+    ],
+    "required_tools": [
+      "list_cameras",
+      "list_monitoring_profiles",
+      "request_custom_connector_credentials"
+    ]
+  },
+  {
+    "id": "organization-intake",
+    "name": "Organization intake",
+    "description": "Set up location sources and evidence-backed business reporting.",
+    "instructions_from": [
+      "prompts/intake-common.md",
+      "prompts/organization.md"
+    ],
+    "required_tools": [
+      "get_business_profile",
+      "update_business_profile",
+      "get_catalog_setup"
+    ]
+  },
+  {
+    "id": "catalog-onboarding",
+    "name": "Catalog onboarding",
+    "description": "Connect customer product identities to observed item interactions.",
+    "instructions": "Read the current location catalog. Offer the customer's POS or CSV/JSON product list first, preserving SKU and barcode identities. If that source is unavailable, offer clear shelf photos through the private expiring phone-upload link and QR. The host strips photo metadata and stores original-resolution pixels for the normal bounded image inspection service. Camera-derived items remain provisional until exact visible identifiers or review support a catalog match. Keep catalog photos, generated reference artwork and event evidence distinct. Use the normal product service for image/OCR work; a long-running agent is unnecessary. Report the actual import, upload and extraction status returned by the host.",
+    "required_tools": [
+      "get_catalog_setup",
+      "prepare_catalog_photo_upload",
+      "import_catalog_products"
+    ]
+  },
+  {
+    "id": "search-planning",
+    "name": "Search planning",
+    "description": "Turn a question into an evidence search plan.",
+    "instructions": "Read the available business and source context. State the question, source scope, time range and useful alternative visual descriptions. Save the investigation plan, retrieve candidates and refine the visual queries using what the evidence shows. Separate retrieved candidates from inspected evidence and identify the coverage needed for an exhaustive claim.",
+    "required_tools": [
+      "get_business_context",
+      "plan_investigation",
+      "retrieve_investigation"
+    ]
+  },
+  {
+    "id": "source-evidence-inspection",
+    "name": "Source evidence inspection",
+    "description": "Inspect original frames, chronology and neighboring evidence.",
+    "instructions": "Open the selected source clip and original frames. Describe visible actions in temporal order, keeping participant positions consistent across frames. Inspect neighboring times or relevant views when they can resolve uncertainty. Use detailed model viewing when the current question and host budget justify it. Cite the source intervals, distinguish visible details from interpretation, and retain contradictory evidence.",
+    "required_tools": [
+      "inspect_clip",
+      "list_intervals",
+      "related_clips",
+      "cosmos_inspect"
+    ]
+  },
+  {
+    "id": "pattern-overview",
+    "name": "Pattern overview",
+    "description": "Group candidate moments and inspect representatives.",
+    "instructions": "Use full scoped vector scoring and numerical grouping for the question. Inspect varied representatives before naming a group, including counterexamples when useful. Report candidate window and merged interval counts with their scope and score selection method. Distinguish representative inspection from complete coverage and use drilldown to refine a promising pattern.",
+    "required_tools": [
+      "discover_patterns",
+      "inspect_clip"
+    ]
+  },
+  {
+    "id": "source-clip-selects",
+    "name": "Source clip selects",
+    "description": "Select source intervals for a review or edit.",
+    "instructions": "Search for moments suited to the user's brief and inspect the source evidence. Select precise intervals and explain each choice. Preserve asset identity, source timestamps, available source resolution and provenance. Return playable source links and supplied download references so the operator can review the selections.",
+    "required_tools": [
+      "search_video",
+      "inspect_clip",
+      "list_intervals"
+    ]
+  },
+  {
+    "id": "evidence-export-manifest",
+    "name": "Evidence export manifest",
+    "description": "Organize selected evidence with its source and timing records.",
+    "instructions": "Inspect the selected clips and organize a manifest from returned source metadata: clip and source asset identifiers, source intervals, acquisition provenance and checksums when available, plus the rationale for each selection. Include only export or download references returned by the host. Present a requested manifest as structured answer data; file creation and external delivery follow the host's available actions and authorization.",
+    "required_tools": [
+      "inspect_clip",
+      "list_intervals"
+    ]
+  },
+  {
+    "id": "public-business-research",
+    "name": "Public business research",
+    "description": "Research a company's public operations and retain source references.",
+    "instructions": "Use current public pages and official company sources to research the business requested by the user. Record source URLs, public operational facts and explicit assumptions in the business profile. Distinguish the researched company from independently sourced example footage. Explain which facts come from public sources and which require operator context.",
+    "required_tools": [
+      "web_search",
+      "get_business_profile",
+      "update_business_profile"
+    ]
+  },
+  {
+    "id": "shopify-order-context",
+    "name": "Shopify order context",
+    "description": "Relate authorized Shopify order records to video evidence.",
+    "instructions": "Read relevant authorized orders through the connected Shopify reader. Preserve order identifiers, source timestamps, time zones and query scope. Compare them with video candidates and report the evidence supporting each proposed relationship and its uncertainty.",
+    "required_tools": [
+      "read_shopify_orders",
+      "search_video"
+    ],
+    "required_connections": [
+      {
+        "provider": "shopify",
+        "scopes": [
+          "read:orders"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "square-order-context",
+    "name": "Square order context",
+    "description": "Relate authorized Square order records to video evidence.",
+    "instructions": "Read relevant authorized orders through the connected Square reader. Preserve order identifiers, source timestamps, time zones and query scope. Compare them with video candidates and report the evidence supporting each proposed relationship and its uncertainty.",
+    "required_tools": [
+      "read_square_orders",
+      "search_video"
+    ],
+    "required_connections": [
+      {
+        "provider": "square",
+        "scopes": [
+          "read:orders"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gmail-correspondence-context",
+    "name": "Gmail correspondence context",
+    "description": "Use authorized correspondence as reference evidence for an investigation.",
+    "instructions": "Read the correspondence relevant to the user's question through the connected Gmail reader. Preserve message references, authorship and timestamps. Treat message claims as reported information and compare relevant claims with the source evidence. Recipient actions and external replies remain separate host-authorized operations.",
+    "required_tools": [
+      "read_gmail_messages",
+      "search_video"
+    ],
+    "required_connections": [
+      {
+        "provider": "gmail",
+        "scopes": [
+          "read:messages"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "axis-recording-context",
+    "name": "Axis recording context",
+    "description": "Find authorized Axis recording intervals for an investigation.",
+    "instructions": "Use the connected Axis recording reader to discover available source intervals for the requested camera and time range. Preserve device identity, recording timestamps, time zone and retention coverage. Select relevant evidence through the host's authorized source transport and report the actual recording coverage returned by the device.",
+    "required_tools": [
+      "read_axis_recordings"
+    ],
+    "required_connections": [
+      {
+        "provider": "axis",
+        "scopes": [
+          "read:recordings"
+        ]
+      }
+    ]
+  }
+]

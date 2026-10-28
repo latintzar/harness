@@ -1,0 +1,274 @@
+{
+  "schema": "rocoto.vertical.v1",
+  "id": "retail",
+  "host_module": "retail_host",
+  "revision": "retail-pack-2026-10-11.4",
+  "product": {
+    "name": "Rocoto",
+    "capability_name": "Rocoto Real-time",
+    "summary": "Cameras and till data become trackers, tiles and alerts for a shop.",
+    "business": "Retail"
+  },
+  "prompts": {
+    "system": "prompts/system.md",
+    "fixed_chat_common": "prompts/intake-common.md"
+  },
+  "fixed_chats": [
+    {
+      "purpose": "organization",
+      "title": "Organization",
+      "icon": "building",
+      "opens": "chat",
+      "job": "Business setup, locations, catalog and till, required tracker coverage.",
+      "prompt": "prompts/organization.md",
+      "skill": "organization-intake"
+    },
+    {
+      "purpose": "cameras",
+      "title": "Cameras",
+      "icon": "video",
+      "opens": "chat",
+      "job": "Camera connection, privacy, zones, clocks and readiness.",
+      "prompt": "prompts/cameras.md",
+      "skill": "camera-intake"
+    },
+    {
+      "purpose": "messaging",
+      "title": "Messaging",
+      "sidebar_title": "Messaging setup",
+      "icon": "chat",
+      "opens": "member_setup",
+      "job": "Each member's verified phone channel.",
+      "prompt": null
+    }
+  ],
+  "agent_classes": [
+    {
+      "kind": "action",
+      "authority": "granted_effects",
+      "default": true,
+      "label": "Action",
+      "plural": "Action agents",
+      "icon": "skill",
+      "create_label": "New action agent",
+      "empty_label": "Action agents appear here.",
+      "input_kinds": [
+        "tracker_events"
+      ],
+      "starter_prompt": "Help me create an Action Agent that responds to authorized tracker events. Define the approved message to other people or business operation, its scope and review steps."
+    },
+    {
+      "kind": "tracker",
+      "authority": "participant_reach",
+      "label": "Tracker",
+      "plural": "Trackers",
+      "icon": "eye",
+      "create_label": "New tracker",
+      "empty_label": "Trackers appear here.",
+      "input_kinds": [
+        "tracker_events"
+      ],
+      "starter_prompt": "Help me create a Tracker Agent for this location. Define what it should observe, which committed events matter, when it should run, and who gets its alerts on their phone."
+    }
+  ],
+  "event_vocabulary": {
+    "ref": "tile_sets/retail#vocabulary",
+    "groups": [
+      "shopper_journey",
+      "service_maintenance",
+      "other"
+    ]
+  },
+  "skills": "skills.json",
+  "capabilities": "capabilities.json",
+  "tool_families": [
+    "retail_tools:BRIDGE",
+    "monitoring_tools:OBSERVATIONS",
+    "monitoring_tools:TRACKERS",
+    "tracker_scripts",
+    "tracker_presentation",
+    "retail_tools:CATALOG"
+  ],
+  "surfaces": [
+    {
+      "id": "home",
+      "title": "Home",
+      "nav": "primary",
+      "tabs": [
+        {
+          "id": "tiles",
+          "title": "Tiles",
+          "display": "tiles",
+          "content": "tracker_output.tile",
+          "produced_by": "recipes/retail processors and company tracker scripts",
+          "read_with": "list_trackers"
+        },
+        {
+          "id": "canvases",
+          "title": "Canvases",
+          "display": "canvases",
+          "content": "tracker_output.canvas",
+          "produced_by": "the same output revision",
+          "read_with": "get_tracker"
+        },
+        {
+          "id": "camera",
+          "title": "Camera view",
+          "display": "player",
+          "content": "recordings, visits, events",
+          "produced_by": "source admission",
+          "read_with": "list_tracker_events"
+        }
+      ]
+    },
+    {
+      "id": "cameras",
+      "title": "Cameras",
+      "nav": "secondary",
+      "tabs": [
+        {
+          "id": "streams",
+          "title": "Streams",
+          "display": "list",
+          "content": "camera setup records",
+          "produced_by": "the Cameras conversation",
+          "read_with": "list_cameras"
+        },
+        {
+          "id": "recordings",
+          "title": "Recordings",
+          "display": "list",
+          "content": "imported sources",
+          "produced_by": "source intake",
+          "read_with": "list_cameras"
+        }
+      ]
+    }
+  ],
+  "connections_expected": [
+    {
+      "id": "camera",
+      "kind": "custom_connector",
+      "purpose": "RTSP camera or recorder",
+      "skill": "camera-intake"
+    },
+    {
+      "id": "till",
+      "kind": "provider_or_file",
+      "purpose": "POS or catalog export",
+      "skill": "catalog-onboarding"
+    }
+  ],
+  "data_sources": [
+    {
+      "id": "observations",
+      "title": "Committed observations",
+      "read_with": [
+        "list_monitoring_profiles",
+        "list_tracker_events",
+        "get_tracker_event"
+      ]
+    },
+    {
+      "id": "trackers",
+      "title": "Trackers and their outputs",
+      "read_with": [
+        "list_trackers",
+        "get_tracker",
+        "list_tracker_runs"
+      ]
+    },
+    {
+      "id": "catalog",
+      "title": "Products and prices",
+      "read_with": [
+        "get_catalog_setup",
+        "get_product_match"
+      ],
+      "skill": "catalog-onboarding"
+    },
+    {
+      "id": "business",
+      "title": "Business profile and locations",
+      "read_with": [
+        "get_business_profile",
+        "get_business_context"
+      ],
+      "skill": "organization-intake"
+    },
+    {
+      "id": "cameras",
+      "title": "Cameras and their context",
+      "read_with": [
+        "list_cameras",
+        "list_camera_context"
+      ],
+      "skill": "camera-intake"
+    }
+  ],
+  "flow": [
+    {
+      "stage": "observe",
+      "does": "Camera windows become model answers",
+      "attaches": "host"
+    },
+    {
+      "stage": "admit",
+      "does": "Answers become committed events",
+      "attaches": "host"
+    },
+    {
+      "stage": "derive",
+      "does": "Events become items, baskets, sales, queue intervals, shelf states",
+      "attaches": "script"
+    },
+    {
+      "stage": "process",
+      "does": "Each tracker's processor writes one output revision",
+      "attaches": "script"
+    },
+    {
+      "stage": "publish",
+      "does": "Tiles and canvases reach Home",
+      "attaches": "host"
+    },
+    {
+      "stage": "alert",
+      "does": "A Tracker's alert reaches its participants' phones",
+      "attaches": "host"
+    },
+    {
+      "stage": "act",
+      "does": "An agent run reads the events and answers or acts",
+      "attaches": "agent"
+    }
+  ],
+  "demo": null,
+  "builtin_capabilities": {
+    "whatsapp": true,
+    "viber": false,
+    "email": false,
+    "voice": false
+  },
+  "recipes": "recipes/onboarding.json",
+  "sub_agents": "sub_agents.json",
+  "wake_sources": [
+    {
+      "kind": "tracker-script-run",
+      "state": "real",
+      "note": "A published retail tracker script produces one shared signal on failure, on change or every run under its configured policy; its original input and publication lease survive recovery."
+    }
+  ],
+  "tile_sets": [
+    {
+      "id": "retail",
+      "kind": "core_trackers",
+      "path": "core_trackers/retail.json",
+      "revision": "retail-core-v1",
+      "install_tool": "install_core_trackers",
+      "processors": "core_trackers."
+    }
+  ],
+  "ready_agents": "ready_agents.json",
+  "ready_agents_retired": "retired/ready_agents.json"
+}

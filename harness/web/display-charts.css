@@ -1,0 +1,105 @@
+/* Rocoto marks: paint for display-charts.js. Every colour is a theme token; geometry and motion live in the script.
+ * A mark has a neutral core (ink on the page, glass ink on dark glass) and a low light of two colours, warm
+ * at the start and cool at the newest end. That pair is the only colour a mark carries, and it stays inside the
+ * line, the ring and the end point. Type is the product's own --font. */
+.rocoto-chart{
+  --mark-core:var(--display-ink);
+  --mark-warm:var(--display-peach);
+  --mark-cool:color-mix(in srgb,var(--display-glow-cool) 58%,var(--display-foliage));
+  --mark-tint:10%;
+  --mark-fade:.3;
+  --mark-light:var(--chart-glow-paper);
+  --mark-track:color-mix(in srgb,var(--display-ink) 9%,transparent);
+  --mark-rest:color-mix(in srgb,var(--display-ink) 14%,transparent);
+  --mark-soft:color-mix(in srgb,var(--display-ink) 62%,transparent);
+  --mark-ghost:color-mix(in srgb,var(--display-ink) 40%,transparent);
+  --mark-surface:var(--display-paper);
+  --mark-chip:var(--display-ink);
+  --mark-chip-ink:var(--display-paper);
+  --stop-warm:color-mix(in srgb,var(--mark-warm) var(--mark-tint),var(--mark-core));
+  --stop-cool:color-mix(in srgb,var(--mark-cool) var(--mark-tint),var(--mark-core));
+  position:relative;display:block;box-sizing:border-box;width:100%;height:100%;min-width:0;
+  font-family:var(--font);touch-action:pan-y;-webkit-tap-highlight-color:transparent;
+}
+.rocoto-chart[data-surface=glass]{
+  --mark-core:var(--display-glass-ink);
+  --mark-warm:var(--display-glow-warm);
+  --mark-cool:var(--display-glow-cool);
+  --mark-tint:42%;
+  --mark-fade:.46;
+  --mark-light:var(--chart-glow);
+  --mark-track:color-mix(in srgb,var(--display-glass-ink) 15%,transparent);
+  --mark-rest:color-mix(in srgb,var(--display-glass-ink) 24%,transparent);
+  --mark-soft:var(--display-glass-ink-small);
+  --mark-ghost:color-mix(in srgb,var(--display-glass-ink) 46%,transparent);
+  --mark-surface:var(--display-glass);
+  --mark-chip:var(--display-glass-ink);
+  --mark-chip-ink:var(--display-ink);
+}
+.rocoto-chart svg{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible;pointer-events:none}
+.rocoto-chart .rocoto-chart-glow{filter:blur(var(--chart-glow-blur));opacity:calc(var(--mark-light) * var(--mark-reveal,1))}
+.rocoto-chart .rocoto-chart-wash{opacity:var(--mark-reveal,1);-webkit-mask-image:linear-gradient(to right,transparent 0,black 22%,black 84%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,black 22%,black 84%,transparent 100%)}
+.rocoto-chart[data-size=spark] .rocoto-chart-glow{filter:blur(calc(var(--chart-glow-blur) * .6))}
+.rocoto-chart[data-size=large] .rocoto-chart-glow{filter:blur(calc(var(--chart-glow-blur) * 1.5))}
+
+/* gradient stops */
+.rocoto-stop-warm{stop-color:var(--stop-warm)}
+.rocoto-stop-mid{stop-color:color-mix(in srgb,var(--stop-cool) 70%,var(--stop-warm))}
+.rocoto-stop-cool{stop-color:var(--stop-cool)}
+.rocoto-stop-dim{stop-opacity:var(--mark-fade)}
+.rocoto-glow-warm{stop-color:var(--mark-warm)}
+.rocoto-glow-mid{stop-color:color-mix(in srgb,var(--mark-cool) 70%,var(--mark-warm))}
+.rocoto-glow-cool{stop-color:var(--mark-cool)}
+.rocoto-area-top{stop-color:var(--mark-core);stop-opacity:.13}
+.rocoto-area-base{stop-color:var(--mark-core);stop-opacity:0}
+.rocoto-cursor-edge{stop-color:var(--mark-core);stop-opacity:0}
+.rocoto-cursor-body{stop-color:var(--mark-core);stop-opacity:.4}
+
+/* line and spark */
+.rocoto-line-stroke,.rocoto-line-light{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:var(--chart-stroke)}
+.rocoto-line[data-size=large] .rocoto-line-stroke{stroke-width:var(--chart-stroke-large)}
+.rocoto-line-light{stroke-width:calc(var(--chart-stroke) * 3.6)}
+.rocoto-line[data-size=large] .rocoto-line-light{stroke-width:calc(var(--chart-stroke-large) * 3.4)}
+.rocoto-line-bloom{fill:var(--mark-cool)}
+.rocoto-chart[data-surface=paper] .rocoto-line-bloom{opacity:.55}
+.rocoto-line-area{stroke:none}
+.rocoto-line-points circle{fill:var(--mark-core)}
+.rocoto-line-points,.rocoto-line-end{opacity:var(--mark-arrival,1)}
+.rocoto-line-end{fill:var(--mark-core);stroke:color-mix(in srgb,var(--mark-core) 20%,transparent);stroke-width:7px;paint-order:stroke}
+.rocoto-line[data-size=spark] .rocoto-line-end{stroke-width:4px}
+.rocoto-line-marker{fill:var(--mark-surface);stroke:var(--mark-core);stroke-width:2px}
+.rocoto-chart[role=slider]{cursor:crosshair;outline:none;border-radius:var(--radius-sm)}
+.rocoto-chart[role=slider]:focus-visible{outline:2px solid var(--mark-core);outline-offset:6px}
+
+/* the read-out: the number first, then what it belongs to */
+.rocoto-chart-readout{position:absolute;z-index:2;display:flex;align-items:baseline;gap:7px;padding:6px 11px;border-radius:var(--radius-sm);background:var(--mark-chip);color:var(--mark-chip-ink);font:400 13px/18px var(--font);font-variant-numeric:tabular-nums;white-space:nowrap;pointer-events:none;transform:translate(14px,-50%);box-shadow:0 12px 26px -12px color-mix(in srgb,var(--display-night) 62%,transparent)}
+.rocoto-chart-readout[hidden],.rocoto-chart-readout span[hidden]{display:none}
+.rocoto-chart-readout[data-side=left]{transform:translate(calc(-100% - 14px),-50%)}
+.rocoto-chart-readout strong{font-size:15px;line-height:20px;font-weight:600;letter-spacing:-.01em}
+.rocoto-chart-readout span{opacity:.72}
+
+/* ring and arc */
+.rocoto-gauge-track,.rocoto-gauge-value,.rocoto-gauge-light{fill:none;stroke-linecap:round}
+.rocoto-gauge-track{stroke:var(--mark-track)}
+.rocoto-gauge-knob{fill:var(--mark-surface);stroke:var(--mark-core);stroke-width:2px}
+.rocoto-ring[data-zero=true] .rocoto-chart-glow,.rocoto-arc[data-zero=true] .rocoto-chart-glow{opacity:calc(var(--mark-light) * .5)}
+
+/* bars */
+.rocoto-bar{fill:var(--mark-rest)}
+.rocoto-bars[data-size=large] .rocoto-chart-glow{display:none}
+.rocoto-bars[data-size=large] .rocoto-bar.is-lit{fill:var(--mark-core)}
+.rocoto-bars[data-size=large]{cursor:default}
+.rocoto-bars-labels{position:absolute;inset:0;margin:0;padding:0;list-style:none;pointer-events:none;font-variant-numeric:tabular-nums}
+.rocoto-bars-labels[hidden]{display:none}
+.rocoto-bars-labels li{position:absolute;top:0;bottom:0;width:0}
+.rocoto-bars-labels strong,.rocoto-bars-labels span{position:absolute;left:0;transform:translateX(-50%);white-space:nowrap;color:var(--mark-soft)}
+.rocoto-bars-labels strong{top:var(--bar-top);transform:translate(-50%,calc(-100% - 6px));font:500 15px/20px var(--font);letter-spacing:-.01em}
+/* a label keeps to its own column: a long one takes a second line under the baseline */
+.rocoto-bars-labels span{top:calc(100% - 23px);width:var(--bar-column);white-space:normal;text-align:center;text-wrap:balance;font:400 13px/17px var(--font)}
+.rocoto-bars-labels li.is-lit strong{color:var(--mark-core);font-weight:600}
+.rocoto-bars-labels li.is-lit span{color:var(--mark-core)}
+
+/* the mark a waiting measure keeps */
+.rocoto-ghost-path{fill:none;stroke:var(--mark-ghost);stroke-width:2.2px;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:.1 6}
+
+@media (prefers-reduced-motion:reduce){.rocoto-chart,.rocoto-chart *{animation:none!important;transition:none!important}}

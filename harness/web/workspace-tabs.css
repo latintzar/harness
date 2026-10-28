@@ -1,0 +1,2 @@
+.workspace-tab-navigation { display: contents; }
+#workspace-tab-view { min-width: 0; min-height: 0; flex: 1; overflow: auto; }

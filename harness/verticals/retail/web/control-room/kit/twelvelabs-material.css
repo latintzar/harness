@@ -1,0 +1,10 @@
+/* Exact card surface from https://www.twelvelabs.io/ — .framer-JRrzD .framer-3sjvzm.
+ * Retrieved 2026-10-09; layout is owned by Rocoto's viewer.
+ * No border is declared on the source card. */
+.twelvelabs-card-material {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  background-color: color-mix(in srgb, var(--camera-glass) 60.0000%, transparent);
+  border-radius: calc(var(--radius) * 1.66667);
+  box-shadow: inset 8px 8px 15px 7px color-mix(in srgb, var(--camera-glass-inner) 60.0000%, transparent), inset -8px -8px 15px color-mix(in srgb, var(--camera-glass-outer) 60.0000%, transparent);
+}

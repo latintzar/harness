@@ -1,0 +1,47 @@
+/* BaseUI icon-button geometry, consuming the product's shared theme.
+ * This compatibility surface replaces a copied generated theme snapshot.
+ * The remaining player styles own layout; /theme.css owns paint and type. */
+@import url('/theme.css');
+/* The kit's Inter, as the app installs it: Latin 400, 500, 600 and 700. The theme's camera-font names the family. */
+@font-face { font-family: Inter; font-style: normal; font-weight: 400; font-display: swap; src: url("inter-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: Inter; font-style: normal; font-weight: 500; font-display: swap; src: url("inter-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: Inter; font-style: normal; font-weight: 600; font-display: swap; src: url("inter-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: Inter; font-style: normal; font-weight: 700; font-display: swap; src: url("inter-latin-700-normal.woff2") format("woff2"); }
+.rocoto-kit-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+  box-shadow: none;
+  text-decoration: none;
+  appearance: none;
+  transition: background 200ms cubic-bezier(0, 0, 1, 1);
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font: 500 14px/16px var(--font);
+  border-radius: 50%;
+  color: var(--ink);
+  background: transparent;
+  height: 36px;
+  width: 36px;
+}
+.rocoto-kit-icon-button:disabled {
+  cursor: not-allowed;
+  background: var(--chrome);
+  color: color-mix(in srgb, var(--ink) 40%, var(--paper));
+}
+.rocoto-kit-icon-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.rocoto-kit-icon-button svg { width: 24px; height: 24px; flex: none; pointer-events: none; }
+@media (hover: hover) {
+  .rocoto-kit-icon-button:hover { box-shadow: inset 999px 999px 0 rgba(0, 0, 0, 0.04); }
+}
+.rocoto-kit-icon-button:active { box-shadow: inset 999px 999px 0 rgba(0, 0, 0, 0.08); }
+@media (prefers-reduced-motion: reduce) {
+  .rocoto-kit-icon-button { transition-duration: 0ms; }
+}

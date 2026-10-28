@@ -1,0 +1,335 @@
+/* Home · instrument tiles on the live hero.
+ * Paint: every colour is a theme token or a mix of tokens (theme.json, served by /theme.css). The page is the
+ * camera page's own paper with one faint wash behind it; the footage carries the colour. Orange is the one
+ * accent, kept for the product's own acts (View live, New tracker). The warm and cool pair appears only inside
+ * a mark and in the brief edge light of a number that arrives.
+ * Type: the product's own face, the theme's --font that the chats read, for everything; tabular figures for
+ * every number. */
+
+/* ── ground ───────────────────────────────────────────────────────────────────────────────── */
+#locationRoot{overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--camera-scrollbar) transparent}
+.location-view{--home-hair:color-mix(in srgb,var(--camera-ink) 7%,transparent);--home-soft:color-mix(in srgb,var(--camera-ink) 60%,transparent);--home-pane:color-mix(in srgb,var(--paper) 72%,transparent);position:relative;isolation:isolate;min-height:100%;padding:4px var(--home-gutter) 64px;overflow-x:clip;color:var(--camera-ink);font:400 var(--home-text)/1.5 var(--font);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.location-view *,.location-view *::before,.location-view *::after{box-sizing:border-box}
+.location-view h1,.location-view h2,.location-view h3,.location-view p,.location-view ol,.location-view dl,.location-view dd{margin:0}
+.location-view ol{padding:0;list-style:none}
+.location-view button{font:inherit;color:inherit;cursor:pointer}
+.location-view strong{font-weight:500;font-variant-numeric:tabular-nums}
+.location-view em{font-style:normal}
+.home-icon{width:18px;height:18px;flex:none}
+/* one faint wash behind the page: warm under the stage's left, cool under its right */
+.location-view::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:260px;height:760px;pointer-events:none;opacity:var(--home-wash-strength);background:radial-gradient(60% 56% at 14% 46%,color-mix(in srgb,var(--camera-glow-warm) 26%,transparent),transparent 74%),radial-gradient(50% 50% at 92% 62%,color-mix(in srgb,var(--camera-glow-cool) 12%,transparent),transparent 74%)}
+
+/* ── the stage: the shop's own footage ────────────────────────────────────────────────────── */
+.home-stage{position:relative;isolation:isolate;z-index:1;max-width:1552px;min-height:var(--home-stage-height);margin:0 auto;padding:24px;border-radius:var(--home-radius-stage);overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto minmax(72px,1fr) auto;grid-template-areas:"place period" ". ." "tiles tiles";column-gap:24px;background:var(--camera-night);color:var(--camera-glass-ink);box-shadow:0 0 0 1px color-mix(in srgb,var(--camera-ink) 8%,transparent),0 40px 80px -44px color-mix(in srgb,var(--camera-frame-shadow) 44%,transparent),0 16px 32px -22px color-mix(in srgb,var(--camera-frame-shadow) 22%,transparent)}
+.home-footage{position:absolute;inset:0;z-index:-3}
+.home-footage img,.home-footage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 78%}
+.home-stage[data-frame=square] .home-footage video,.home-stage[data-frame=square] .home-footage img{object-position:50% 42%}
+.home-footage img:not([src]){display:none}
+.home-footage video{opacity:0;transition:opacity 400ms var(--home-ease-out)}
+.home-footage video.is-playing{opacity:1}
+.home-veil{position:absolute;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(to bottom,color-mix(in srgb,var(--camera-night) 60%,transparent) 0,color-mix(in srgb,var(--camera-night) 26%,transparent) 24%,transparent 44%),linear-gradient(to top,color-mix(in srgb,var(--camera-night) 34%,transparent) 0,transparent 40%)}
+@keyframes home-flash{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+
+/* a tag on each tracked visitor */
+.home-tags{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.location-view .home-tag{position:absolute;left:0;top:0;width:0;height:0;padding:0;border:0;background:none;pointer-events:auto;opacity:0;transition:opacity 260ms var(--home-ease-out);will-change:transform}
+.home-tag.is-seen{opacity:1}
+.home-tag:not(.is-seen){pointer-events:none}
+.home-tag-name{position:absolute;left:0;bottom:24px;transform:translateX(-50%);display:block;padding:3px 9px;border-radius:calc(var(--radius) * .5);background:color-mix(in srgb,var(--camera-glass-ink) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--camera-ink);font-size:12px;line-height:16px;font-weight:600;white-space:nowrap;box-shadow:0 6px 18px -6px color-mix(in srgb,var(--camera-night) 60%,transparent);transition:background-color var(--home-duration-fast) var(--home-ease)}
+.home-tag i{position:absolute;left:-.5px;bottom:5px;width:1px;height:19px;background:linear-gradient(to top,var(--camera-glow-cool),color-mix(in srgb,var(--camera-glass-ink) 90%,transparent))}
+.home-tag::after{content:"";position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--camera-glow-cool);box-shadow:0 0 0 3px color-mix(in srgb,var(--camera-glow-cool) 30%,transparent),0 0 12px 1px color-mix(in srgb,var(--camera-glow-cool) 55%,transparent)}
+.home-tag:hover .home-tag-name{background:var(--camera-glass-ink)}
+
+.home-place{grid-area:place;min-width:0;padding:10px 0 0 14px;display:flex;flex-direction:column;align-items:flex-start}
+.home-place h1{font:600 var(--home-display)/1.04 var(--font);letter-spacing:-.035em;text-wrap:balance;color:var(--camera-glass-ink);text-shadow:0 1px 28px color-mix(in srgb,var(--camera-night) 50%,transparent)}
+.home-address{margin-top:12px;font-size:17px;line-height:24px;color:color-mix(in srgb,var(--camera-glass-ink-soft) 88%,transparent)}
+.location-view .home-live{margin-top:22px;display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 18px 0 16px;border:0;border-radius:999px;background:var(--camera-accent);color:var(--camera-ink);font-size:15px;line-height:20px;font-weight:600;white-space:nowrap;box-shadow:0 12px 26px -14px color-mix(in srgb,var(--camera-accent) 80%,transparent);transition:transform var(--home-duration-fast) var(--home-ease),box-shadow var(--home-duration-fast) var(--home-ease)}
+.home-live:hover{transform:translateY(-1px);box-shadow:0 16px 30px -14px color-mix(in srgb,var(--camera-accent) 92%,transparent)}
+.home-live:active{transform:translateY(0)}
+.location-view .home-live:focus-visible,.location-view .home-period button:focus-visible,.location-view .home-instrument:focus-visible{outline:2px solid var(--camera-glass-ink);outline-offset:2px}
+.home-live-dot{width:8px;height:8px;border-radius:50%;background:var(--camera-ink);box-shadow:0 0 0 4px color-mix(in srgb,var(--camera-ink) 18%,transparent);animation:home-breath var(--home-breath-duration) ease-in-out infinite}
+@keyframes home-breath{50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--camera-ink) 0%,transparent)}}
+
+.home-period{grid-area:period;align-self:start;display:flex;gap:2px;padding:4px;border-radius:999px;background:color-mix(in srgb,var(--camera-glass) 62%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.location-view .home-period button{height:36px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--camera-glass-ink-small);font-size:14px;line-height:20px;font-weight:500;white-space:nowrap;transition:background-color var(--home-duration-fast) var(--home-ease),color var(--home-duration-fast) var(--home-ease)}
+.location-view .home-period button:hover{color:var(--camera-glass-ink)}
+.location-view .home-period button[aria-checked=true]{background:var(--camera-glass-ink);color:var(--camera-ink)}
+
+/* ── tiles: one numeral, one mark, one state ──────────────────────────────────────────────── */
+.location-view .home-tile{position:relative;isolation:isolate;display:block;min-width:0;height:var(--home-tile-height);padding:0;border:0;overflow:hidden;text-align:left;border-radius:var(--home-radius-tile);background:var(--home-pane);color:var(--camera-ink);box-shadow:0 0 0 1px var(--home-hair);transition:transform var(--home-duration-fast) var(--home-ease),background-color var(--home-duration-fast) var(--home-ease),box-shadow var(--home-duration-fast) var(--home-ease)}
+.location-view .home-tile:hover{transform:translateY(-1px);background:var(--paper);box-shadow:0 0 0 1px color-mix(in srgb,var(--camera-ink) 14%,transparent)}
+.location-view .home-tile:active{transform:translateY(0)}
+.location-view .home-tile:focus-visible{outline:2px solid var(--camera-accent);outline-offset:3px}
+.home-tile-title{position:absolute;left:20px;right:38px;top:18px;font-size:15px;line-height:20px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.home-tile>.home-icon{position:absolute;right:15px;top:19px;color:color-mix(in srgb,var(--camera-ink) 34%,transparent);transition:transform var(--home-duration-fast) var(--home-ease),color var(--home-duration-fast) var(--home-ease)}
+.home-tile:hover>.home-icon{color:var(--camera-ink);transform:translateX(2px)}
+.home-tile-row{position:absolute;left:20px;right:18px;bottom:18px;display:flex;align-items:flex-end;gap:14px;min-width:0}
+.home-tile-figure[hidden]{display:none}
+.home-tile-tag{position:absolute;right:40px;top:17px;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--camera-ink) 6%,transparent);font-size:var(--home-text-small);line-height:18px;font-weight:500;color:var(--home-soft)}
+.home-tile[data-estimated] .home-tile-title{right:128px}
+.home-tile-tag:empty{display:none}
+.home-instrument .home-tile-tag{right:42px;top:17px;background:color-mix(in srgb,var(--camera-glass-ink) 14%,transparent);color:var(--camera-glass-ink-small)}
+.home-tile-figure{flex:none;display:flex;align-items:baseline;gap:5px;white-space:nowrap}
+.home-tile-value{font-size:var(--home-numeral-tile);line-height:.9;font-weight:400;letter-spacing:-.045em}
+.home-tile-value:empty{display:none}
+.home-tile[data-state=needs] .home-tile-figure,.home-tile[data-state=paused] .home-tile-figure{display:none}
+.home-tile-unit{font-size:20px;line-height:1;font-weight:400;letter-spacing:-.02em;color:var(--home-soft)}
+.home-tile-unit:empty,.home-tile-needs:empty{display:none}
+.home-tile-needs{flex:none;white-space:nowrap;padding-bottom:1px;font-size:17px;line-height:22px;font-weight:500;letter-spacing:-.01em;color:color-mix(in srgb,var(--camera-ink) 52%,transparent)}
+.home-tile-mark{position:relative;flex:1 1 0;min-width:0;max-width:52%;height:44px;margin-left:auto;pointer-events:none}
+.home-tile[data-mark=ring] .home-tile-mark,.home-tile[data-mark=arc] .home-tile-mark{flex:none;width:52px;height:52px}
+/* the edge light of a number that arrives */
+.home-tile::after{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;opacity:0;box-shadow:inset -6px -6px 18px color-mix(in srgb,var(--camera-glow-warm) 55%,transparent),inset 6px 6px 18px color-mix(in srgb,var(--camera-glow-cool) 55%,transparent)}
+.home-tile.has-arrived::after{animation:home-flash var(--home-flash-duration) var(--home-ease-out)}
+.home-tile.has-ticked .home-tile-value{animation:home-tick var(--home-tick-duration) var(--home-ease-out)}
+@keyframes home-tick{from{opacity:.2;transform:translateY(.16em)}}
+
+/* on the stage: the camera view's own dark glass */
+.home-instruments{grid-area:tiles;display:grid;grid-template-columns:repeat(var(--count,4),minmax(0,1fr));gap:var(--home-gap)}
+.location-view .home-instrument{height:var(--home-instrument-height);color:var(--camera-glass-ink);background-color:color-mix(in srgb,var(--camera-glass) 60%,transparent);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);box-shadow:inset 8px 8px 15px 7px color-mix(in srgb,var(--camera-glass-inner) 60%,transparent),inset -8px -8px 15px color-mix(in srgb,var(--camera-glass-outer) 60%,transparent)}
+.location-view .home-instrument:hover{background-color:color-mix(in srgb,var(--camera-glass) 78%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--camera-glass-ink) 26%,transparent),inset 8px 8px 15px 7px color-mix(in srgb,var(--camera-glass-inner) 60%,transparent),inset -8px -8px 15px color-mix(in srgb,var(--camera-glass-outer) 60%,transparent)}
+.home-instrument .home-tile-title{left:22px;top:18px;color:var(--camera-glass-ink-small)}
+.home-instrument>.home-icon{right:16px;top:19px;color:color-mix(in srgb,var(--camera-glass-ink-small) 58%,transparent)}
+.home-instrument:hover>.home-icon{color:var(--camera-glass-ink)}
+.home-instrument .home-tile-row{left:22px;right:20px;bottom:18px;gap:28px}
+.home-instrument .home-tile-figure{gap:8px}
+.home-instrument .home-tile-value{font-size:var(--home-numeral)}
+.home-instrument .home-tile-unit,.home-instrument .home-tile-needs{color:var(--camera-glass-ink-small)}
+.home-instrument .home-tile-mark{max-width:62%;height:88px}
+.home-instrument[data-mark=ring] .home-tile-mark,.home-instrument[data-mark=arc] .home-tile-mark{width:86px;height:86px}
+
+/* under the stage: light glass */
+.home-tiles{position:relative;z-index:1;max-width:1552px;margin:var(--home-gap) auto 0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--home-gap)}
+/* a measure whose source is still to connect: the same tile, its mark at rest */
+.home-tile[data-state=needs] .home-tile-mark,.home-tile[data-state=paused] .home-tile-mark{max-width:34%;opacity:.8}
+/* New tracker: the product's own act, so it carries the accent */
+.location-view .home-tile-new{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:18px 20px 19px;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--camera-ink) 12%,transparent)}
+.location-view .home-tile-new:hover{background:color-mix(in srgb,var(--paper) 60%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--camera-ink) 20%,transparent)}
+.home-tile-new .home-tile-title{position:static;order:2;font-weight:500}
+.home-tile-plus{order:1;position:relative;width:36px;height:36px;border-radius:50%;background:var(--camera-accent)}
+.home-tile-plus::before,.home-tile-plus::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;margin:-1px 0 0 -7px;border-radius:2px;background:var(--camera-ink)}
+.home-tile-plus::after{transform:rotate(90deg)}
+.home-tile-new::after{display:none}
+
+/* the marks, drawn here when the shared chart module is away */
+.home-mark{display:block}
+.home-mark svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.home-mark-stop-a{stop-color:color-mix(in srgb,var(--camera-peach) 14%,var(--camera-ink))}
+.home-mark-stop-b{stop-color:color-mix(in srgb,var(--camera-glow-cool) 14%,var(--camera-ink))}
+.home-mark[data-tone=glass] .home-mark-stop-a{stop-color:color-mix(in srgb,var(--camera-glow-warm) 46%,var(--camera-glass-ink))}
+.home-mark[data-tone=glass] .home-mark-stop-b{stop-color:color-mix(in srgb,var(--camera-glow-cool) 46%,var(--camera-glass-ink))}
+.home-mark-stroke,.home-mark-glow,.home-mark-track{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.home-mark-line .home-mark-stroke{stroke-width:var(--home-line-width);vector-effect:non-scaling-stroke}
+.home-mark-line .home-mark-glow{stroke-width:6px;vector-effect:non-scaling-stroke;filter:blur(var(--home-glow-blur));opacity:var(--home-glow-strength)}
+.home-mark-line svg{-webkit-mask-image:linear-gradient(to right,rgba(0,0,0,.3) 0,black 70%);mask-image:linear-gradient(to right,rgba(0,0,0,.3) 0,black 70%)}
+.home-mark-end{position:absolute;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--camera-ink);box-shadow:0 0 0 2px var(--paper)}
+.home-mark[data-tone=glass] .home-mark-end{background:var(--camera-glass-ink);box-shadow:0 0 12px 3px color-mix(in srgb,var(--camera-glow-cool) 38%,transparent)}
+.home-mark-ring .home-mark-stroke,.home-mark-arc .home-mark-stroke,.home-mark-track{stroke-width:var(--home-ring-stroke)}
+.home-mark-ring .home-mark-glow,.home-mark-arc .home-mark-glow{stroke-width:var(--home-ring-stroke);filter:blur(var(--home-glow-blur));opacity:var(--home-glow-strength)}
+.home-mark-track{stroke:color-mix(in srgb,var(--camera-ink) 9%,transparent)}
+.home-mark[data-tone=glass] .home-mark-track{stroke:color-mix(in srgb,var(--camera-glass-ink) 16%,transparent)}
+.home-mark.is-resting .home-mark-stroke{opacity:.55}
+.home-mark.is-resting .home-mark-glow{opacity:0}
+.home-mark-bar{opacity:.5}
+.home-mark-bar.is-newest{opacity:1}
+[data-state=needs]>.home-mark .home-mark-stroke,[data-state=paused]>.home-mark .home-mark-stroke{stroke-dasharray:.1 6;opacity:.6}
+
+/* ── products and neighbourhood ───────────────────────────────────────────────────────────── */
+.home-lower{position:relative;max-width:1552px;margin:var(--home-gap) auto 0;display:grid;grid-template-columns:minmax(0,1.72fr) minmax(0,1fr);gap:var(--home-gap);align-items:stretch}
+.home-pane{min-width:0;padding:28px 32px 30px;border-radius:var(--home-radius-panel);background:var(--home-pane);box-shadow:0 0 0 1px var(--home-hair)}
+.home-pane-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;min-height:36px;margin-bottom:20px}
+.home-pane-heading h2{min-width:0;font-size:var(--home-heading);line-height:28px;font-weight:600;letter-spacing:-.02em}
+.location-view .home-text-button{height:36px;padding:0 14px;border:0;border-radius:999px;background:color-mix(in srgb,var(--camera-ink) 6%,transparent);font-size:14px;line-height:20px;font-weight:500;white-space:nowrap;transition:background-color var(--home-duration-fast) var(--home-ease)}
+.location-view .home-text-button:hover{background:color-mix(in srgb,var(--camera-ink) 11%,transparent)}
+
+.home-boards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.home-board{min-width:0;padding:0 28px;border-left:1px solid var(--home-hair)}
+.home-board:first-child{padding-left:0;border-left:0}
+.home-board:last-child{padding-right:0}
+.home-board h3{font-size:15px;line-height:20px;font-weight:600;margin-bottom:4px}
+.location-view .home-board-row{display:grid;grid-template-columns:10px 56px minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;min-height:80px;padding:12px 4px 12px 0;border:0;border-top:1px solid var(--home-hair);background:transparent;text-align:left;border-radius:0;transition:background-color var(--home-duration-fast) var(--home-ease)}
+.home-board li:first-child .home-board-row{border-top-color:transparent}
+.location-view button.home-board-row:hover{background:color-mix(in srgb,var(--camera-ink) 4%,transparent)}
+.home-board-rank{font-size:var(--home-text-small);line-height:18px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--camera-muted);text-align:center}
+.home-board-image{display:block;width:56px;height:56px;border-radius:var(--radius);overflow:hidden;background:var(--camera-product-frame)}
+.home-board-image img{display:block;width:100%;height:100%;object-fit:cover}
+.home-board-image.is-open{background:transparent;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--camera-ink) 12%,transparent)}
+.home-board-name{min-width:0;font-size:15px;line-height:20px;font-weight:500}
+.home-board-name>span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.home-board-name small{display:block;margin-top:2px;font-size:var(--home-text-small);line-height:18px;font-weight:400;color:var(--home-soft);font-variant-numeric:tabular-nums}
+.home-board-name small i{font-style:normal;margin-left:6px}
+.home-board-count{font-size:26px;line-height:32px;font-weight:400;letter-spacing:-.03em;padding-left:4px}
+.home-board-waits{min-width:0;font-size:15px;line-height:20px;color:var(--home-soft)}
+.home-board-row.is-open .home-board-rank,.home-board-row.is-open .home-board-count{color:color-mix(in srgb,var(--camera-ink) 34%,transparent)}
+
+.home-neighbourhood{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);grid-template-areas:"heading heading" "map figures";column-gap:24px}
+.home-neighbourhood .home-pane-heading{grid-area:heading}
+.home-map{grid-area:map;position:relative;min-height:188px;border-radius:var(--weather-radius-map);overflow:hidden;background:var(--camera-panel-shade)}
+/* the map is a picture of streets: it sits quietly in the tile and the shop's mark keeps its colour */
+.home-map img{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:fill}
+.location-view .home-map-empty{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;font-size:15px;font-weight:500;color:var(--camera-muted)}
+.home-hood{grid-area:figures;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.home-hood:empty{display:none}
+.home-neighbourhood:has(.home-hood:empty) .home-map{grid-column:1 / -1}
+.home-hood-figure{display:flex;flex-direction:column;gap:6px}
+.home-hood-figure strong{font-size:var(--home-numeral-tile);line-height:.9;font-weight:400;letter-spacing:-.045em}
+.home-hood-figure em{font-size:15px;line-height:20px;color:var(--home-soft)}
+.home-hood-split{display:flex;gap:3px;height:6px;margin-top:18px}
+.home-hood-split i{min-width:6px;border-radius:999px;background:color-mix(in srgb,var(--camera-ink) 16%,transparent)}
+.home-hood-split i[data-kind=residential]{background:var(--camera-ink)}
+.home-hood-split i[data-kind=commercial]{background:color-mix(in srgb,var(--camera-ink) 52%,transparent)}
+.home-hood-split i[data-kind=mixed]{background:color-mix(in srgb,var(--camera-ink) 34%,transparent)}
+.home-hood-legend{margin-top:10px}
+.home-hood-legend>div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid var(--home-hair)}
+.home-hood-legend>div:first-child{border-top:0}
+.home-hood-legend dd{order:2;font-size:17px;line-height:22px;font-weight:500;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.home-hood-legend dt{order:1;position:relative;padding-left:16px;font-size:15px;line-height:22px;color:var(--home-soft)}
+.home-hood-legend dt::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:50%;background:color-mix(in srgb,var(--camera-ink) 16%,transparent)}
+.home-hood-legend [data-kind=residential] dt::before{background:var(--camera-ink)}
+.home-hood-legend [data-kind=commercial] dt::before{background:color-mix(in srgb,var(--camera-ink) 52%,transparent)}
+.home-hood-legend [data-kind=mixed] dt::before{background:color-mix(in srgb,var(--camera-ink) 34%,transparent)}
+
+/* ── dialogs: product history, catalog, and a tile's history when the shared one is away ───── */
+.home-dialog{width:min(780px,calc(100vw - 32px));max-height:88dvh;margin:auto;padding:0;border:0;border-radius:var(--home-radius-panel);overflow:hidden;background:color-mix(in srgb,var(--camera-dialog) 94%,transparent);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);color:var(--camera-ink);font:400 var(--home-text)/1.5 var(--font);box-shadow:0 0 0 1px color-mix(in srgb,var(--camera-ink) 8%,transparent),0 40px 100px -30px color-mix(in srgb,var(--camera-frame-shadow) 50%,transparent)}
+.home-dialog::backdrop{background:color-mix(in srgb,var(--camera-dialog-scrim) 42%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.home-dialog-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:22px 22px 18px 26px;border-bottom:1px solid var(--home-hair)}
+.home-dialog-heading h2{font-size:var(--home-heading);line-height:28px;font-weight:600;letter-spacing:-.02em}
+.home-dialog-heading p{margin-top:4px;font-size:15px;line-height:20px;color:var(--camera-muted)}
+.home-dialog-heading p strong{color:var(--camera-ink);font-weight:600}
+.location-view .home-dialog-close{display:grid;place-items:center;flex:none;width:36px;height:36px;padding:0;border:0;border-radius:50%;background:color-mix(in srgb,var(--camera-ink) 6%,transparent)}
+.location-view .home-dialog-close:hover{background:color-mix(in srgb,var(--camera-ink) 11%,transparent)}
+#locationProductDetailTitle{display:flex;align-items:center;gap:16px;min-width:0}
+#locationProductDetailTitle>img{width:72px;height:72px;border-radius:var(--radius);object-fit:cover;flex:none}
+.location-product-history{overflow:auto;max-height:calc(88dvh - 130px);padding:10px 12px 16px;scrollbar-width:thin;scrollbar-color:var(--camera-scrollbar) transparent}
+.location-view .location-history-row{display:flex;align-items:center;gap:16px;width:100%;padding:12px;border:0;border-radius:var(--radius);background:transparent;text-align:left}
+.location-view .location-history-row:hover,.location-view .location-history-row:focus-visible{background:color-mix(in srgb,var(--camera-ink) 5%,transparent)}
+.location-history-preview{position:relative;flex:none;display:block;width:144px;height:94px;border-radius:var(--radius-sm);overflow:hidden;background:var(--camera-product-frame)}
+.location-history-preview img,.location-history-preview video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.location-history-preview video{opacity:0}
+.location-history-preview video.playing{opacity:1}
+.location-history-preview>span{position:absolute;right:6px;bottom:6px;padding:1px 6px;border-radius:999px;background:color-mix(in srgb,var(--camera-night) 76%,transparent);color:var(--camera-glass-ink);font-size:var(--home-text-small);line-height:18px;font-variant-numeric:tabular-nums}
+.location-history-copy{min-width:0;flex:1}
+.location-history-copy>strong{display:block;font-size:15px;line-height:20px;font-weight:600}
+.location-history-copy>span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px;font-size:14px;line-height:20px;color:var(--camera-description)}
+.location-history-copy>small{display:block;margin-top:6px;font-size:var(--home-text-small);line-height:18px;color:var(--camera-muted)}
+.location-history-row>.home-icon{color:var(--camera-muted)}
+.location-catalog-dialog{width:min(520px,calc(100vw - 32px))}
+.location-catalog-body{display:grid;gap:14px;padding:20px 26px 24px}
+.location-catalog-body h3{font-size:16px;line-height:22px;font-weight:600}
+.location-catalog-body p,.location-catalog-body small{font-size:15px;line-height:22px;color:var(--camera-muted)}
+.location-catalog-body p strong{color:var(--camera-ink);font-weight:600}
+.location-catalog-modes{display:grid;gap:8px}
+.location-view .location-catalog-mode{display:grid;gap:4px;padding:14px 16px;border:0;border-radius:var(--radius);background:color-mix(in srgb,var(--paper) 78%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--camera-ink) 10%,transparent);text-align:left;transition:box-shadow var(--home-duration-fast) var(--home-ease)}
+.location-view .location-catalog-mode:hover{box-shadow:inset 0 0 0 1px var(--camera-ink)}
+.location-catalog-mode strong{font-size:15px;font-weight:600}
+.location-catalog-mode span{font-size:14px;line-height:20px;color:var(--camera-muted)}
+.location-catalog-import{display:grid;gap:12px;justify-items:start}
+.location-view .location-catalog-submit,.location-catalog-link{display:inline-flex;align-items:center;width:max-content;max-width:100%;height:40px;padding:0 16px;border:0;border-radius:999px;background:var(--camera-ink);color:var(--camera-paper);font-size:15px;font-weight:600}
+.location-catalog-qr{width:180px;max-width:100%}
+.location-catalog-qr svg{display:block;width:100%;height:auto}
+.home-tile-dialog{width:min(560px,calc(100vw - 32px))}
+.home-tile-history{position:relative;overflow:auto;max-height:calc(88dvh - 90px);padding:22px 26px 20px}
+.home-tile-history-figure{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.home-tile-history-figure strong{font-size:var(--home-numeral);line-height:.9;font-weight:400;letter-spacing:-.045em}
+.home-tile-history-figure em{font-size:18px;line-height:24px;font-weight:500;color:var(--home-soft)}
+.home-tile-history-needs{font-size:26px;line-height:32px;font-weight:500;letter-spacing:-.02em}
+.home-tile-history .home-tile-history-mark{position:absolute;right:26px;top:22px;bottom:auto;width:38%;height:64px}
+.home-tile-history-rows{margin-top:20px}
+.location-view .home-tile-history-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:center;gap:14px;width:100%;padding:10px 4px 10px 0;border:0;border-top:1px solid var(--home-hair);background:transparent;text-align:left}
+.location-view .home-tile-history-row:disabled{opacity:1;cursor:default}
+.home-tile-history-thumb{display:block;width:56px;height:56px;border-radius:var(--radius);overflow:hidden;background:var(--camera-product-frame)}
+.home-tile-history-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.home-tile-history-copy{min-width:0}
+.home-tile-history-copy strong{display:block;font-size:15px;line-height:20px;font-weight:600}
+.home-tile-history-copy span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;line-height:20px;color:var(--camera-description)}
+.home-tile-history-copy span:empty{display:none}
+
+/* ── first paint and reduced motion ───────────────────────────────────────────────────────── */
+@media(prefers-reduced-motion:no-preference){
+ .home-mark-line svg{animation:home-draw var(--home-draw-duration) var(--home-ease-out) both}
+}
+@keyframes home-draw{from{clip-path:inset(-20px 100% -20px 0)}to{clip-path:inset(-20px -20px -20px 0)}}
+@media(prefers-reduced-motion:reduce){.location-view *,.location-view *::before,.location-view *::after,.home-dialog,.home-dialog *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* ── narrower ─────────────────────────────────────────────────────────────────────────────── */
+@media(max-width:1279px){
+ .home-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .home-lower{grid-template-columns:minmax(0,1fr)}
+ .home-neighbourhood{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);column-gap:32px}
+ .home-map{min-height:220px}
+}
+@media(max-width:1100px){
+ .home-place h1{font-size:44px}
+ .home-instrument[data-mark=ring] .home-tile-mark,.home-instrument[data-mark=arc] .home-tile-mark{width:72px;height:72px}
+}
+@media(max-width:900px){
+ #locationRoot{overflow:visible}
+ .location-view{padding:2px var(--home-gutter-compact) 48px}
+ .home-instruments{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ .home-stage{min-height:0;padding:12px;border-radius:var(--home-radius-panel);grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(120px,1fr) auto auto;grid-template-areas:"place" "." "period" "tiles"}
+ .home-place{padding:10px 4px 0 8px}
+ .home-place h1{font-size:var(--home-display-compact);line-height:1.08}
+ .home-address{margin-top:6px;font-size:15px;line-height:20px}
+ .location-view .home-live{margin-top:16px}
+ .home-period{justify-self:start;margin-bottom:10px}
+ .location-view .home-period button{height:34px;padding:0 13px}
+ .home-instruments{gap:var(--home-gap-compact)}
+ .location-view .home-instrument{height:var(--home-instrument-height-compact);border-radius:calc(var(--radius) * 1.5)}
+ .home-instrument .home-tile-title{left:14px;right:14px;top:12px;font-size:14px;line-height:18px}
+ .home-tile>.home-icon{display:none}
+ .home-tile-tag,.home-instrument .home-tile-tag{right:12px;top:11px}
+ .home-tile[data-estimated] .home-tile-title{right:96px}
+ .home-instrument .home-tile-row{left:14px;right:12px;bottom:13px;gap:10px}
+ .home-instrument .home-tile-figure{gap:5px}
+ .home-instrument .home-tile-value{font-size:var(--home-numeral-compact)}
+ .home-instrument .home-tile-mark{height:48px}
+ .home-instrument[data-mark=ring] .home-tile-mark,.home-instrument[data-mark=arc] .home-tile-mark{width:54px;height:54px}
+ .home-tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--home-gap-compact);margin-top:var(--home-gap-compact)}
+ .location-view .home-tile:not(.home-instrument){height:var(--home-tile-height-compact);border-radius:calc(var(--radius) * 1.5)}
+ .home-tile-title{left:14px;right:14px;top:12px;font-size:14px;line-height:18px}
+ .home-tile-row{left:14px;right:12px;bottom:13px;gap:8px}
+ .home-tile-value{font-size:var(--home-numeral-tile-compact)}
+ .home-tile-unit{font-size:16px}
+ .home-tile-needs{font-size:15px;line-height:19px}
+ .home-tile-mark{height:36px}
+ .home-tile[data-mark=ring] .home-tile-mark,.home-tile[data-mark=arc] .home-tile-mark{width:40px;height:40px}
+ .location-view .home-tile-new{padding:12px 14px 13px}
+ .home-lower{gap:var(--home-gap-compact);margin-top:var(--home-gap-compact)}
+ .home-pane{padding:18px 16px 18px}
+ .home-boards{grid-template-columns:minmax(0,1fr)}
+ .home-board,.home-board:first-child,.home-board:last-child{padding:14px 0 2px;border-left:0;border-top:1px solid var(--home-hair)}
+ .home-board:first-child{padding-top:0;border-top:0}
+ .location-view .home-board-row{min-height:72px}
+ .home-neighbourhood{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 200px auto;grid-template-areas:"heading" "map" "figures"}
+ .home-map{min-height:200px}
+ .home-hood{margin-top:18px}
+ .home-tile[data-state=needs][data-mark=ring] .home-tile-mark,.home-tile[data-state=needs][data-mark=arc] .home-tile-mark{width:32px;height:32px}
+ .location-history-preview{width:104px;height:78px}
+ .home-dialog-heading{padding:18px 16px 16px 20px}
+ .home-tile-history{padding:18px 20px}
+}
+/* the narrowest phones: numerals step down so each mark keeps its room, and a measure that needs a source keeps its words whole */
+@media(max-width:520px){
+ /* a narrow tile gives its top line to the name; the estimate mark stays in the tile's full view */
+ .home-tile-title{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere}
+ .home-tile-tag,.home-instrument .home-tile-tag{display:none}
+ .home-tile[data-estimated] .home-tile-title{right:14px}
+ .home-tile-figure{flex-wrap:wrap;row-gap:2px;min-width:0}
+}
+@media(max-width:360px){
+ .home-instrument .home-tile-value{font-size:var(--home-numeral-tile-compact)}
+ .home-tile[data-state=needs]:not(.home-instrument) .home-tile-mark,.home-tile[data-state=paused]:not(.home-instrument) .home-tile-mark{display:none}
+}
+
+/* An estimated tile's mark takes the chevron's place, so its name keeps the line. */
+.home-tile[data-estimated]>.home-icon{display:none}
+.home-tile[data-estimated] .home-tile-tag{right:16px}
+.home-tile[data-estimated] .home-tile-title{right:104px}
+/* The weather chip rides beside «View live». */
+/* On the hero the chip sits at the left, so its preview opens from its left edge. */
+.home-place #headerWeather{position:relative}
+.home-place #headerWeather .weather-preview{left:0;right:auto}
+.home-place #headerWeather{display:inline-block;vertical-align:top;margin:22px 0 0 10px}
+@media(max-width:520px){.home-tile[data-estimated] .home-tile-title{right:14px}.home-place #headerWeather{display:block;margin:10px 0 0}}

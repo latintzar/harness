@@ -1,0 +1,106 @@
+{
+  "schema": "rocoto.vertical.v1",
+  "id": "manufacturer",
+  "revision": "manufacturer-fit-1",
+  "product": {
+    "name": "Rocoto",
+    "capability_name": "Orders",
+    "summary": "A company-scoped order desk for the vertical SDK proof.",
+    "business": "Synthetic manufacturer"
+  },
+  "prompts": {
+    "system": "prompts/system.md",
+    "fixed_chat_common": null
+  },
+  "fixed_chats": [
+    {
+      "purpose": "organization",
+      "title": "Organization",
+      "icon": "building",
+      "job": "Know the workspace, organize its work and keep its records current.",
+      "prompt": "prompts/organization.md"
+    },
+    {
+      "purpose": "office",
+      "title": "Office",
+      "icon": "calendar",
+      "job": "Read current order status.",
+      "prompt": "prompts/office.md"
+    }
+  ],
+  "agent_classes": [
+    {
+      "kind": "order_desk",
+      "authority": "granted_effects",
+      "default": true,
+      "label": "Desk",
+      "plural": "Desks",
+      "icon": "skill",
+      "create_label": "New desk",
+      "empty_label": "Your desks appear here.",
+      "starter_prompt": "Help me create an agent. Define its job, inputs, schedule, tools and limits.",
+      "input_kinds": [
+        "none"
+      ]
+    }
+  ],
+  "event_vocabulary": {
+    "path": "events.json",
+    "groups": [
+      "orders"
+    ]
+  },
+  "skills": null,
+  "tool_families": [
+    "manufacturer_fixture:FAMILY"
+  ],
+  "surfaces": [
+    {
+      "id": "orders",
+      "title": "Orders",
+      "nav": "primary",
+      "tabs": [
+        {
+          "id": "order_log",
+          "title": "Order requests",
+          "display": "list",
+          "content": "Current company orders",
+          "produced_by": "the company database",
+          "read_with": "manufacturer_orders"
+        }
+      ]
+    }
+  ],
+  "connections_expected": [],
+  "data_sources": [
+    {
+      "id": "company_store",
+      "title": "Company database",
+      "read_with": [
+        "manufacturer_orders"
+      ]
+    }
+  ],
+  "flow": [],
+  "demo": null,
+  "builtin_capabilities": {},
+  "recipes": [],
+  "sub_agents": [],
+  "host_module": "manufacturer_fixture",
+  "tile_sets": [],
+  "ready_agents": [
+    {
+      "id": "order-review",
+      "name": "Review orders",
+      "description": "Read current orders and report actionable changes.",
+      "mode": "scheduled",
+      "interval_seconds": 900,
+      "instructions": "Read current orders and report actionable changes.",
+      "agent_kind": "order_desk",
+      "input_kind": "none",
+      "event_types": [
+        "order_submitted"
+      ]
+    }
+  ]
+}

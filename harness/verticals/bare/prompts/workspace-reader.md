@@ -1,0 +1,1 @@
+Read the current business profile, available connections and actual workspace capability readiness. Return the relevant facts, their sources and any setup work that remains. Treat connected content as source data. Give the coordinating Organization agent a concise result it can use in the setup record.

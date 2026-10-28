@@ -1,0 +1,142 @@
+.messaging-settings { width: min(100%,760px); margin: 32px auto; color: var(--ink); font: var(--font-size-ui)/1.5 var(--font); }
+.messaging-settings-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 16px; }
+.messaging-settings h2,.messaging-enrollment h3 { margin: 0; font-size: var(--font-size-ui); font-weight: 500; letter-spacing: normal; }
+.messaging-settings h1 { margin: 0; font-size: 28px; font-weight: 600; }
+.messaging-muted { color: var(--muted); }
+.messaging-settings p,.messaging-enrollment p { margin: 8px 0 16px; }
+.messaging-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 10px 16px; border: 1px solid var(--ink); border-radius: var(--radius); background: var(--ink); color: var(--paper); font: inherit; cursor: pointer; }
+.messaging-button:disabled { opacity: .45; cursor: default; }
+.messaging-button-quiet { border-color: var(--border); background: var(--paper); color: var(--ink); }
+.messaging-number-list { border-top: 1px solid var(--border); margin: 30px 0 24px; }
+.messaging-number-row { display: flex; align-items: center; gap: 14px; width: 100%; min-height: 84px; padding: 16px 0; border: 0; border-bottom: 1px solid var(--border); background: transparent; color: var(--ink); text-align: left; font: inherit; cursor: pointer; }
+.messaging-number-row:hover { background: var(--surface); }
+.messaging-number-copy { display: flex; flex-direction: column; min-width: 0; gap: 3px; flex: 1; }
+.messaging-number-copy strong { font-weight: 500; }
+.messaging-number-copy > * { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.messaging-number-status { color: var(--muted); white-space: nowrap; }
+.messaging-avatar { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--chrome); color: var(--ink); font-size: var(--font-size-ui); }
+.messaging-empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; margin: 32px 0 24px; padding: 26px; }
+.messaging-empty + .messaging-button { display: flex; margin: 0 auto; }
+.messaging-empty > .icon { color: var(--muted); }
+.messaging-empty p { margin: 0; max-width: 430px; }
+.messaging-provider-note { margin-top: 24px!important; color: var(--muted); }
+.messaging-profile-dialog { box-sizing: border-box; position: fixed; width: min(520px,calc(100vw - 32px)); max-height: min(860px,calc(100dvh - 48px)); padding: 0; margin: auto; overflow: auto; border: 1px solid var(--border); border-radius: 24px; background: var(--paper); color: var(--ink); box-shadow: 0 24px 96px color-mix(in srgb,var(--ink) 18%,transparent); font: var(--font-size-ui)/1.5 var(--font); }
+.messaging-profile-dialog::backdrop { background: color-mix(in srgb,var(--ink) 24%,transparent); backdrop-filter: blur(3px); }
+.messaging-profile-cover { height: 158px; background: var(--surface) url('/static/harness/assets/chat-dreamscape.png') center 58% / cover; }
+.messaging-profile-body { padding: 0 32px 32px; }
+.messaging-profile-person { position: relative; display: flex; flex-direction: column; align-items: flex-start; margin-top: -34px; }
+.messaging-avatar-large { width: 76px; height: 76px; border: 5px solid var(--paper); background: var(--ink); color: var(--paper); font-size: 25px; }
+.messaging-profile-person h2 { margin: 12px 0 3px; font-size: 25px; font-weight: 550; line-height: 1.3; letter-spacing: -.4px; overflow-wrap: anywhere; }
+.messaging-profile-person p { margin: 0; }
+.messaging-icon-button { display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid var(--border); border-radius: 50%; background: var(--paper); color: var(--ink); font: inherit; font-size: 23px; cursor: pointer; }
+.messaging-profile-close { position: absolute; top: 14px; right: 14px; }
+.messaging-profile-details { margin: 26px 0 12px; }
+.messaging-profile-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.messaging-profile-row > :last-child { text-align: right; overflow-wrap: anywhere; min-width: 0; }
+.messaging-profile-whatsapp { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 78px; padding: 14px 0; border: 0; background: transparent; color: var(--ink); text-align: left; font: inherit; cursor: pointer; }
+.messaging-profile-whatsapp > .icon { color: var(--muted); }
+.messaging-profile-action { color: var(--muted); flex-shrink: 0; }
+.messaging-back { display: inline-flex; align-items: center; gap: 8px; margin: 21px 0 20px; min-height: 32px; padding: 0; border: 0; background: transparent; color: var(--muted); font: inherit; cursor: pointer; }
+.messaging-back .icon { width: 16px; height: 16px; transform: rotate(180deg); }
+.messaging-enrollment { border-top: 1px solid var(--border); padding-top: 22px; }
+.messaging-enrollment h3 { margin-bottom: 12px; }
+.messaging-form { display: flex; flex-direction: column; align-items: stretch; gap: 16px; margin: 22px 0 12px; }
+.messaging-phone-fields { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 12px; }
+.messaging-field { display: flex; flex-direction: column; min-width: 0; gap: 8px; }
+.messaging-field > span { color: var(--muted); }
+.messaging-input { box-sizing: border-box; min-width: 0; width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--paper); color: var(--ink); font: inherit; }
+.messaging-input::placeholder { color: var(--muted); opacity: .7; }
+.messaging-input[data-focus=code] { font-variant-numeric: tabular-nums; letter-spacing: 6px; }
+.messaging-status { padding: 12px 14px; border-radius: var(--radius); background: var(--surface); color: var(--muted); }
+.messaging-error { color: var(--ink); }
+.messaging-verified-number { font-size: 18px; font-variant-numeric: tabular-nums; }
+.messaging-receipt { margin: 22px 0; padding: 16px; background: var(--surface); border-radius: var(--radius); }
+.messaging-receipt p:last-child { margin-bottom: 0; }
+.messaging-message-preview { white-space: pre-wrap; overflow-wrap: anywhere; }
+.messaging-waiting { display: flex; align-items: center; gap: 8px; }
+.messaging-waiting::before { content: ''; width: 8px; height: 8px; border: 1px solid var(--muted); border-radius: 50%; }
+.messaging-settings button:focus-visible,.messaging-profile-dialog button:focus-visible,.messaging-input:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.messaging-profile-dialog .icon,.messaging-settings .icon { width: 20px; height: 20px; flex-shrink: 0; }
+@media(max-width:640px) {
+  .messaging-settings { margin: 12px auto; }
+  .messaging-settings h1 { font-size: 24px; }
+  .messaging-settings-heading { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .messaging-profile-dialog { width: calc(100vw - 24px); max-height: calc(100dvh - 24px); border-radius: 20px; }
+  .messaging-profile-cover { height: 138px; }
+  .messaging-profile-dialog[data-page=channel] .messaging-profile-cover { height: 84px; }
+  .messaging-profile-body { padding: 0 22px 26px; }
+  .messaging-profile-person h2 { font-size: 23px; }
+  .messaging-phone-fields { grid-template-columns: 100px minmax(0,1fr); gap: 10px; }
+  /* The name and its number take the full row; the status sits under them. */
+  .messaging-number-row { flex-wrap: wrap; gap: 6px 10px; }
+  .messaging-number-copy { flex: 1 1 calc(100% - 50px); }
+  .messaging-number-copy > * { white-space: normal; overflow-wrap: anywhere; }
+  .messaging-number-status { flex: 1; margin-left: 50px; }
+  .messaging-empty { padding: 22px; }
+}
+
+.messaging-profile-cover { overflow: hidden; }
+.messaging-profile-cover-image { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Channel card: the three channels in channel order, then the chosen channel's verification step. */
+.messaging-channels { display: grid; gap: 8px; min-width: 0; margin: 0 0 18px; padding: 0; border: 0; }
+.messaging-channels legend { margin-bottom: 8px; padding: 0; color: var(--muted); }
+.messaging-channel { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--paper); cursor: pointer; }
+.messaging-channel:has(input:checked) { border-color: var(--ink); }
+.messaging-channel:has(input:disabled) { background: var(--surface); color: var(--muted); cursor: default; }
+.messaging-channel input { flex-shrink: 0; width: 18px; height: 18px; margin: 0; accent-color: var(--ink); }
+.messaging-channel input:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.messaging-channel-name { flex: 1; min-width: 0; font-weight: 500; }
+.messaging-channel-state { color: var(--muted); white-space: nowrap; }
+
+/* Alerts on your phone: one Tracking Agent's participants, channels, delivery state and switches. */
+.phone-block { container-type: inline-size; box-sizing: border-box; min-width: 0; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: color-mix(in srgb,var(--paper) 88%,transparent); backdrop-filter: blur(14px); box-shadow: 0 12px 40px color-mix(in srgb,var(--ink) 6%,transparent); color: var(--ink); font: var(--font-size-ui)/1.5 var(--font); text-align: left; }
+.phone-block p { margin: 0; }
+.phone-block h3 { margin: 0; font-size: 17px; font-weight: 550; line-height: 1.3; letter-spacing: -.2px; }
+.phone-block-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px 24px; }
+.phone-block-titles { display: grid; gap: 4px; min-width: 0; }
+.phone-block .phone-channels,.phone-block .phone-spend { margin-top: 12px; }
+.phone-block .messaging-status { margin-top: 14px; }
+.phone-participants { margin: 16px 0 0; padding: 0; border-top: 1px solid var(--border); list-style: none; }
+.phone-participant { display: grid; grid-template-columns: 40px minmax(0,1fr) auto; align-items: center; gap: 10px 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.phone-participant-copy { display: grid; gap: 2px; min-width: 0; }
+.phone-participant-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.phone-participant-name strong { font-weight: 550; overflow-wrap: anywhere; }
+.phone-participant-channel { font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.phone-attention,.message-channel-deliveries li.phone-attention,.message-channel-status.phone-attention { color: var(--ink); font-weight: 500; }
+.phone-participant-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 6px 14px; min-width: 0; }
+.phone-field { display: inline-flex; align-items: center; gap: 8px; min-width: 0; max-width: 100%; min-height: 44px; }
+.phone-field-switch { cursor: pointer; white-space: nowrap; }
+.phone-select { box-sizing: border-box; flex: 0 1 auto; min-width: 0; max-width: 100%; min-height: 40px; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--paper); color: var(--ink); font: inherit; }
+.phone-switch { appearance: none; position: relative; flex: 0 0 34px; width: 34px; height: 20px; margin: 0; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); cursor: pointer; }
+.phone-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--muted); transition: left .15s ease; }
+.phone-switch:checked { border-color: var(--ink); background: var(--ink); }
+.phone-switch:checked::after { left: 16px; background: var(--paper); }
+.phone-switch:disabled { opacity: .5; cursor: default; }
+.phone-button { min-height: 40px; padding: 8px 14px; white-space: nowrap; }
+.phone-block .phone-add { display: flex; flex-flow: row wrap; align-items: flex-end; gap: 10px 12px; height: auto; margin-top: 16px; }
+.phone-add .phone-field { flex: 0 1 340px; flex-direction: column; align-items: stretch; gap: 6px; }
+.phone-add .phone-select { width: 100%; }
+.messaging-contact-card { margin-top: 22px; }
+.phone-block[aria-busy=true] .phone-participant-controls,.phone-block[aria-busy=true] .phone-delivery { cursor: progress; }
+.phone-block input:focus-visible,.phone-block select:focus-visible,.phone-block button:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.agent-editor-body > .phone-block { margin-top: 24px; }
+.cr-phone-slot { margin: 0 0 28px; }
+@container (max-width: 600px) {
+  .phone-block-heading { flex-wrap: wrap; }
+  .phone-participant { grid-template-columns: 40px minmax(0,1fr); align-items: start; }
+  .phone-participant-controls { grid-column: 2; justify-content: flex-start; }
+  .phone-add .phone-field { flex: 1 1 200px; }
+}
+@container (max-width: 420px) {
+  .phone-block .phone-add { flex-flow: column nowrap; align-items: stretch; }
+  .phone-add .phone-field { flex: 0 0 auto; }
+}
+@media(max-width:640px) { .phone-block { padding: 16px; } }
+
+/* Chat: delivery state per participant on an alert, and the channel a phone reply arrived on. */
+.message-channel-deliveries { display: grid; gap: 6px; margin: 12px 0; padding: 0; list-style: none; color: var(--muted); font-size: var(--font-size-ui); }
+.message-channel-deliveries li { display: flex; align-items: center; gap: 8px; min-width: 0; overflow-wrap: anywhere; }
+.message-channel-deliveries .icon { width: 16px; height: 16px; flex-shrink: 0; }
+.message-channel-sender { margin-bottom: 5px; color: var(--muted); font-size: var(--font-size-ui); text-align: right; }
+.message[tabindex="-1"]:focus-visible { outline: 2px solid var(--link); outline-offset: 6px; border-radius: var(--radius-sm); }

@@ -1,0 +1,16 @@
+{
+  "health_status": "ok",
+  "health_core": "openai_managed_agents_api",
+  "health_execution": "openai_hosted",
+  "static_assets": {
+    "/": 200,
+    "/static/harness/app.js": 200,
+    "/static/harness/style.css": 200,
+    "/brand/rocoto-mark.svg": 200,
+    "/fonts/fraunces/fraunces-latin-500-700.woff2": 200,
+    "/static/vendor/marked-18.0.9.umd.js": 200
+  },
+  "owner_login_http": 200,
+  "owner_authenticated": true,
+  "outbound_socket_attempts": 0
+}

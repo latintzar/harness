@@ -1,0 +1,105 @@
+[
+  {
+    "id": "queue-watch",
+    "name": "Queue watch",
+    "description": "Follows the queue from committed events: who joined, who reached the till, who left and the longest wait. Each run reports in its chat and can end with one alert to its own member.",
+    "industry": "Retail",
+    "use_case": "Service",
+    "agent_kind": "tracker",
+    "input_kind": "tracker_events",
+    "mode": "ongoing",
+    "interval_seconds": 300,
+    "max_runs": 20,
+    "frequency": "On new committed events",
+    "event_types": [
+      "entered_queue",
+      "reached_checkout",
+      "left_queue",
+      "queue_exit"
+    ],
+    "watch_for": [
+      "A person joining the queue",
+      "A person reaching the till",
+      "A person leaving the queue before the till"
+    ],
+    "required_input": [
+      "A camera that sees the queue and the till",
+      "Committed observations for this location"
+    ],
+    "instructions": "Follow the queue of this location from committed observations. Read the events of the types entered_queue, reached_checkout, left_queue and queue_exit that arrive with this run. Read list_trackers, then the Queue time tracker with get_tracker, for the waits it has computed. First write your report: how many people joined the queue, how many reached the till, how many left the queue before the till and the longest wait, each with its evidence link and its source time. Keep observed facts apart from estimates and state the period the events cover. Then, when a wait passed three minutes or two people left the queue in this run, end the run with one send_alert that says what happened, where and when. That alert goes to your own member and closes the run, so it comes last.",
+    "publisher": "Rocoto",
+    "kind": "tracker_brief",
+    "skill_ids": [],
+    "required_connections": []
+  },
+  {
+    "id": "empty-shelf-watch",
+    "name": "Empty shelf watch",
+    "description": "Follows the shelves from committed events: which stand empty, since when, and which were restocked. Each run reports in its chat and can end with one alert to its own member.",
+    "industry": "Retail",
+    "use_case": "Stock",
+    "agent_kind": "tracker",
+    "input_kind": "tracker_events",
+    "mode": "ongoing",
+    "interval_seconds": 300,
+    "max_runs": 20,
+    "frequency": "On new committed events",
+    "event_types": [
+      "display_empty",
+      "out_of_stock",
+      "stock_out",
+      "restocked"
+    ],
+    "watch_for": [
+      "A shelf or display seen empty",
+      "A product out of stock",
+      "A shelf being restocked"
+    ],
+    "required_input": [
+      "A camera that sees the shelves",
+      "Committed observations for this location"
+    ],
+    "instructions": "Follow the shelves of this location from committed observations. Read the events of the types display_empty, out_of_stock, stock_out and restocked that arrive with this run. Read list_trackers, then the Empty shelves tracker with get_tracker, for the present state of each shelf. First write your report: each shelf that stands empty now with the time it was first seen empty, and each shelf that was restocked with how long it stood empty. Link every statement to its evidence and state the period the events cover. Then, when one or more shelves have stood empty for more than thirty minutes, end the run with one send_alert that names every such shelf and its time. That alert goes to your own member and closes the run, so it comes last.",
+    "publisher": "Rocoto",
+    "kind": "tracker_brief",
+    "skill_ids": [],
+    "required_connections": []
+  },
+  {
+    "id": "shop-summary",
+    "name": "Shop summary",
+    "description": "Every three hours while it is active: visitors, the products handled, the queue, the shelves and sales, with up to three actions for the team.",
+    "industry": "Retail",
+    "use_case": "Operations",
+    "agent_kind": "action",
+    "input_kind": "tracker_events",
+    "mode": "scheduled",
+    "interval_seconds": 10800,
+    "max_runs": 8,
+    "frequency": "Every 3 hours",
+    "event_types": [
+      "pick_up",
+      "put_back",
+      "place_in_basket",
+      "entered_queue",
+      "reached_checkout",
+      "left_queue",
+      "display_empty",
+      "restocked"
+    ],
+    "watch_for": [
+      "Products picked up and put back",
+      "People joining and leaving the queue",
+      "Shelves seen empty and restocked"
+    ],
+    "required_input": [
+      "The Core Trackers installed for this location",
+      "Committed observations for this location"
+    ],
+    "instructions": "Summarize this shop since your last run. Read the committed observations that arrive with this run, and read list_trackers for the current tile of each Core Tracker: Visitors, Product interactions, Picked up, Put back, Basket, Queue time, Empty shelves, Sales and Conversion. Write one short report: the visitors, the products handled most, what was picked up and put back, the queue, the shelves that need stock, and sales with their basis, till or estimated. End with up to three actions for the team, each tied to one observation and its evidence link. Keep observed facts apart from estimates and state the period the report covers.",
+    "publisher": "Rocoto",
+    "kind": "action_brief",
+    "skill_ids": [],
+    "required_connections": []
+  }
+]

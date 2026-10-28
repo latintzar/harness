@@ -1,0 +1,10 @@
+{
+  "source_url": "https://www.twelvelabs.io/",
+  "selector": ".framer-JRrzD .framer-3sjvzm",
+  "element_name": "announcment-card",
+  "element_href": "https://twelvelabs.io/jockey",
+  "retrieved_at": "2026-10-09T13:28:21.695597+00:00",
+  "source_html_sha256": "7e7dbcb5980a21961a480200b7a6ccc73dae6b442f824e6654f1771cc0995d30",
+  "exact_rule": ".framer-JRrzD .framer-3sjvzm{-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);z-index:7;background-color:#41403e99;border-radius:20px;flex-flow:column;flex:none;place-content:flex-start;align-items:flex-start;gap:12px;width:100%;height:min-content;padding:24px;text-decoration:none;display:flex;position:relative;overflow:visible;box-shadow:inset 8px 8px 15px 7px #48484899,inset -8px -8px 15px #54545499}",
+  "note": "Styles extracted directly from delivered homepage inline CSS. Material utility retains exact blur, fill, radius and inset shadows; layout remains viewer-owned. Border is absent from card rule."
+}

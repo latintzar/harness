@@ -1,0 +1,206 @@
+/* Weather chip, preview card and forecast sheet; the neighbourhood map frame.
+ * Paint: every colour is a theme token or a mix of tokens (theme.json, served by /theme.css). Type is the
+ * page's own face (--font) with tabular figures. The three surfaces are near-neutral glass on a hairline.
+ * The warm and cool pair appears only as a low light under a line and under a day's range. */
+.weather-widget,.weather-sheet,.rocoto-map{
+  --weather-ink:var(--camera-ink);
+  --weather-soft:color-mix(in srgb,var(--camera-ink) 66%,transparent);
+  --weather-faint:color-mix(in srgb,var(--camera-ink) 38%,transparent);
+  --weather-hair:color-mix(in srgb,var(--camera-ink) 8%,transparent);
+  --weather-warm:var(--camera-peach);
+  --weather-cool:color-mix(in srgb,var(--camera-glow-cool) 58%,var(--camera-foliage));
+  --weather-shade:var(--camera-frame-shadow);
+  --weather-pad:var(--weather-gutter);
+  font-family:var(--font);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;
+}
+.weather-widget *,.weather-sheet *,.weather-sheet *::before,.weather-sheet *::after{box-sizing:border-box}
+.weather-icon{width:20px;height:20px;flex:none;display:block}
+
+/* ── chip ─────────────────────────────────────────────────────────────────────────────────── */
+.weather-widget{position:relative;z-index:50;margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
+.weather-trigger{display:flex;align-items:center;gap:12px;min-width:0;max-width:100%;height:var(--weather-chip-height);padding:0 18px 0 14px;border:0;border-radius:999px;background:color-mix(in srgb,var(--paper) var(--weather-glass),transparent);-webkit-backdrop-filter:blur(var(--weather-glass-blur));backdrop-filter:blur(var(--weather-glass-blur));box-shadow:0 0 0 1px var(--weather-hair);color:var(--weather-ink);font:500 14px/20px var(--font);white-space:nowrap;text-align:left;transition:background-color var(--weather-hover-duration) var(--weather-ease-out),box-shadow var(--weather-hover-duration) var(--weather-ease-out),transform var(--weather-hover-duration) var(--weather-ease-out)}
+.weather-trigger:hover,.weather-widget.is-previewing .weather-trigger{background:color-mix(in srgb,var(--paper) 96%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--camera-ink) 14%,transparent)}
+.weather-trigger:active{transform:scale(.98)}
+.weather-current{display:flex;align-items:center;gap:8px;min-width:0}
+.weather-current .weather-icon{width:18px;height:18px}
+.weather-current strong{font-size:15px;line-height:20px;font-weight:600;letter-spacing:-.01em}
+.weather-condition{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--weather-soft)}
+.weather-place{display:flex;align-items:center;gap:12px;min-width:0;overflow:hidden;color:var(--weather-soft)}
+.weather-place::before{content:"";flex:none;width:1px;height:14px;background:color-mix(in srgb,var(--camera-ink) 14%,transparent)}
+.weather-icon-ghost{color:var(--weather-faint);stroke-dasharray:.1 4}
+
+/* the place a number holds while it loads */
+.weather-skeleton{display:block;flex:none;height:8px;border-radius:999px;background:linear-gradient(90deg,color-mix(in srgb,var(--camera-ink) 5%,transparent) 0,color-mix(in srgb,var(--camera-ink) 10%,transparent) 50%,color-mix(in srgb,var(--camera-ink) 5%,transparent) 100%) 0 0/200% 100%;animation:weather-shimmer 1800ms linear infinite}
+.weather-skeleton-dot{width:18px;height:18px}
+.weather-skeleton-short{width:24px}
+.weather-skeleton-long{width:68px}
+.weather-skeleton-numeral{width:96px;height:calc(var(--weather-numeral-preview) * .76);margin:calc(var(--weather-numeral-preview) * .12) 0;border-radius:var(--radius)}
+@keyframes weather-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
+
+/* ── the figure and its measures, shared by the preview and the sheet ─────────────────────── */
+.weather-figure{display:flex;align-items:flex-end;gap:16px;margin:0;white-space:nowrap}
+.weather-figure>strong{font-weight:400;font-size:var(--weather-numeral-preview);line-height:1;letter-spacing:-.045em;color:var(--weather-ink)}
+.weather-figure-side{display:grid;gap:2px;min-width:0;padding-bottom:6px}
+.weather-figure-side em{min-width:0;overflow:hidden;text-overflow:ellipsis;font-style:normal;font-size:16px;line-height:24px;font-weight:500;color:var(--weather-ink)}
+.weather-figure-side span{font-size:14px;line-height:20px;color:var(--weather-soft)}
+.weather-stats{display:grid;grid-template-columns:repeat(var(--columns,3),minmax(0,1fr));gap:24px 16px;margin:0;padding:0;list-style:none}
+.weather-stats li{display:grid;gap:2px;min-width:0}
+.weather-stats strong{font-size:17px;line-height:24px;font-weight:500;letter-spacing:-.01em;white-space:nowrap;color:var(--weather-ink)}
+.weather-stats small{font-size:var(--weather-text-small);font-weight:400;letter-spacing:0;color:var(--weather-soft)}
+.weather-stats span{font-size:var(--weather-text-small);line-height:18px;color:var(--weather-soft)}
+.weather-waits{margin:0;font-size:22px;line-height:28px;font-weight:500;letter-spacing:-.02em;white-space:normal;color:var(--weather-ink)}
+
+/* ── preview card ─────────────────────────────────────────────────────────────────────────── */
+.weather-preview{position:absolute;right:0;top:calc(100% + 12px);z-index:90;width:min(var(--weather-preview-width),calc(100vw - 24px));padding:24px;border-radius:var(--weather-radius-card);background:color-mix(in srgb,var(--paper) var(--weather-glass-raised),transparent);-webkit-backdrop-filter:blur(var(--weather-glass-raised-blur));backdrop-filter:blur(var(--weather-glass-raised-blur));box-shadow:0 0 0 1px var(--weather-hair),0 24px 48px -28px color-mix(in srgb,var(--weather-shade) 36%,transparent);color:var(--weather-ink);transform-origin:calc(100% - 48px) 0;animation:weather-rise var(--weather-hover-duration) var(--weather-ease-out) both;pointer-events:none}
+@keyframes weather-rise{from{opacity:0;transform:translateY(-4px) scale(.98)}}
+.weather-preview .weather-line{margin-top:20px}
+.weather-preview .weather-stats{margin-top:20px}
+
+/* ── the line: a low light under a neutral core ───────────────────────────────────────────── */
+.weather-line{position:relative;max-width:100%}
+.weather-line .weather-line-svg{display:block;width:100%;height:100%;overflow:visible}
+.weather-line-light,.weather-line-stroke,.weather-ghost-path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.weather-line-light{stroke-width:calc(var(--weather-line-width) * 2.6);filter:blur(var(--weather-glow-blur));opacity:var(--weather-glow)}
+.weather-line-stroke{stroke-width:var(--weather-line-width)}
+.weather-line-point{fill:var(--weather-ink)}
+.weather-light-warm{stop-color:var(--weather-warm)}
+.weather-light-cool{stop-color:var(--weather-cool)}
+.weather-core-warm{stop-color:color-mix(in srgb,var(--weather-warm) var(--weather-tint),var(--weather-ink))}
+.weather-core-cool{stop-color:color-mix(in srgb,var(--weather-cool) var(--weather-tint),var(--weather-ink))}
+.weather-ghost-path{stroke:var(--weather-faint);stroke-width:2px;stroke-dasharray:.1 6;vector-effect:non-scaling-stroke}
+.weather-now{position:absolute;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:var(--weather-ink);box-shadow:0 0 0 4px color-mix(in srgb,var(--camera-ink) 12%,transparent)}
+
+/* ── forecast sheet ───────────────────────────────────────────────────────────────────────── */
+.weather-sheet{width:min(var(--weather-sheet-width),calc(100vw - 32px));max-width:none;max-height:min(880px,calc(100dvh - 48px));margin:auto;padding:0;border:0;border-radius:var(--weather-radius-sheet);overflow:hidden;background:color-mix(in srgb,var(--paper) var(--weather-glass-sheet),transparent);-webkit-backdrop-filter:blur(var(--weather-glass-raised-blur));backdrop-filter:blur(var(--weather-glass-raised-blur));box-shadow:0 0 0 1px var(--weather-hair),0 40px 96px -40px color-mix(in srgb,var(--weather-shade) 44%,transparent);color:var(--weather-ink);font:400 var(--weather-text)/1.5 var(--font)}
+.weather-sheet[open]{display:flex;flex-direction:column}
+.weather-sheet::backdrop{background:color-mix(in srgb,var(--camera-night) 24%,transparent);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.weather-sheet.is-open{animation:weather-sheet-in var(--weather-open-duration) var(--weather-ease-out) both}
+.weather-sheet.is-open::backdrop{animation:weather-fade var(--weather-open-duration) var(--weather-ease-out) both}
+.weather-sheet.is-closing{animation:weather-sheet-out var(--weather-close-duration) var(--weather-ease) both}
+.weather-sheet.is-closing::backdrop{animation:weather-fade var(--weather-close-duration) var(--weather-ease) reverse both}
+/* The sheet arrives from the side of the chip that opened it, a few pixels of the way. */
+@keyframes weather-sheet-in{from{opacity:0;transform:translate(calc(var(--weather-from-x,0px) * .04),calc(var(--weather-from-y,0px) * .04)) scale(.97)}}
+@keyframes weather-sheet-out{to{opacity:0;transform:scale(.98)}}
+@keyframes weather-fade{from{opacity:0}}
+.weather-sheet-heading{flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:calc(var(--weather-pad) - 8px) calc(var(--weather-pad) - 8px) 0 var(--weather-pad)}
+.weather-sheet-heading h2{min-width:0;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:var(--weather-heading);line-height:28px;font-weight:600;letter-spacing:-.02em;color:var(--weather-ink)}
+.weather-sheet-close,.weather-step{display:grid;place-items:center;flex:none;padding:0;border:0;border-radius:50%;background:color-mix(in srgb,var(--camera-ink) 6%,transparent);color:var(--weather-ink);transition:background-color var(--weather-hover-duration) var(--weather-ease-out),opacity var(--weather-hover-duration) var(--weather-ease-out)}
+.weather-sheet-close{width:40px;height:40px}
+.weather-sheet-close:hover,.weather-step:hover:not(:disabled){background:color-mix(in srgb,var(--camera-ink) 11%,transparent)}
+.weather-sheet-figure{flex:none;gap:20px;padding:20px var(--weather-pad) 0}
+.weather-sheet-figure>strong{font-size:var(--weather-numeral)}
+.weather-sheet-figure .weather-figure-side{gap:4px;padding-bottom:13px}
+.weather-sheet-figure .weather-figure-side em{font-size:20px;line-height:28px}
+.weather-sheet-figure .weather-figure-side span{font-size:var(--weather-text);line-height:24px}
+.weather-sheet-figure .weather-waits{font-size:34px;line-height:40px;letter-spacing:-.03em}
+.weather-sheet-figure .weather-skeleton-numeral{width:148px;height:calc(var(--weather-numeral) * .76);margin:calc(var(--weather-numeral) * .12) 0}
+.weather-sheet-body{flex:1 1 auto;min-height:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;padding:0 var(--weather-pad) var(--weather-pad);scrollbar-width:none}
+.weather-sheet-body::-webkit-scrollbar{display:none}
+.weather-sheet-body{--weather-fade-top:0px;--weather-fade-foot:0px;-webkit-mask-image:linear-gradient(to bottom,transparent 0,black var(--weather-fade-top),black calc(100% - var(--weather-fade-foot)),transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,black var(--weather-fade-top),black calc(100% - var(--weather-fade-foot)),transparent 100%)}
+.weather-sheet-body[data-top=scrolled]{--weather-fade-top:32px}
+.weather-sheet-body[data-foot=more]{--weather-fade-foot:56px}
+.weather-sheet-body:focus-visible,.weather-hours:focus-visible{outline:2px solid var(--camera-accent);outline-offset:-2px;border-radius:var(--radius-sm)}
+.weather-sheet .weather-stats{margin-top:32px}
+.weather-section{margin-top:var(--weather-gap)}
+.weather-section-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:36px;margin-bottom:12px}
+.weather-section-heading h3{margin:0;font-size:17px;line-height:24px;font-weight:600;letter-spacing:-.01em;color:var(--weather-ink)}
+.weather-hours-steps{display:flex;gap:8px}
+.weather-step{width:36px;height:36px}
+.weather-step .weather-icon{width:18px;height:18px}
+.weather-step:disabled{opacity:.32;cursor:default}
+
+/* hours: one column an hour, the temperature riding its own point of the line */
+.weather-hours{--weather-hour-head:60px;position:relative;margin:0 calc(var(--weather-pad) * -1);padding:0 var(--weather-pad);overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-mask-image:linear-gradient(to right,transparent 0,black var(--weather-pad),black calc(100% - 64px),transparent 100%);mask-image:linear-gradient(to right,transparent 0,black var(--weather-pad),black calc(100% - 64px),transparent 100%)}
+.weather-hours::-webkit-scrollbar{display:none}
+.weather-hours[data-edge=start]{-webkit-mask-image:linear-gradient(to right,black calc(100% - 64px),transparent 100%);mask-image:linear-gradient(to right,black calc(100% - 64px),transparent 100%)}
+.weather-hours[data-edge=end]{-webkit-mask-image:linear-gradient(to right,transparent 0,black var(--weather-pad));mask-image:linear-gradient(to right,transparent 0,black var(--weather-pad))}
+.weather-hours-track{position:relative;padding:4px 0 0}
+.weather-hours-line{position:absolute;left:0;top:calc(4px + var(--weather-hour-head));pointer-events:none}
+.weather-hours ol{display:grid;grid-template-columns:repeat(24,var(--weather-hour-step));margin:0;padding:0;list-style:none}
+.weather-hour{position:relative;display:grid;justify-items:center;grid-template-rows:20px 24px 80px;row-gap:8px;min-width:0;text-align:center}
+.weather-hours.has-rain{--weather-hour-head:86px}
+.weather-hours.has-rain .weather-hour{grid-template-rows:20px 24px 18px 80px}
+.weather-hour time{font-size:var(--weather-text-small);line-height:20px;color:var(--weather-soft)}
+.weather-hour.is-now time,.weather-hour.is-day time{color:var(--weather-ink);font-weight:600}
+.weather-hour .weather-icon{align-self:center;color:color-mix(in srgb,var(--camera-ink) 80%,transparent)}
+.weather-hour strong{position:absolute;left:0;right:0;top:calc(var(--weather-hour-head) + var(--y) - 34px);font-size:15px;line-height:20px;font-weight:500;letter-spacing:-.01em;color:var(--weather-ink)}
+.weather-hour.is-now strong{font-weight:600}
+.weather-hour-rain{display:none;grid-row:3;font-size:var(--weather-text-small);line-height:18px;color:var(--weather-soft)}
+.weather-hours.has-rain .weather-hour-rain{display:block}
+
+/* days: the week's range as one scale, each day its own span of it */
+.weather-days{margin:0;padding:0;list-style:none}
+.weather-days li{display:grid;grid-template-columns:minmax(112px,1fr) 24px 44px 48px minmax(120px,2.4fr) 48px;align-items:center;column-gap:16px;padding:16px 0;border-top:1px solid var(--weather-hair);font-size:var(--weather-text);line-height:24px;color:var(--weather-soft)}
+.weather-day-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--weather-ink)}
+.weather-days li.is-today .weather-day-name{font-weight:600}
+.weather-day-short{display:none}
+.weather-days .weather-icon{color:color-mix(in srgb,var(--camera-ink) 80%,transparent)}
+.weather-day-rain{font-size:var(--weather-text-small);line-height:24px;text-align:right}
+.weather-day-low{text-align:right}
+.weather-day-high{text-align:right;font-weight:500;color:var(--weather-ink)}
+.weather-range{position:relative;height:4px;border-radius:2px;background:var(--weather-hair)}
+.weather-range-light,.weather-range-core{position:absolute;top:0;bottom:0;left:calc(var(--from) * 100%);width:calc((var(--to) - var(--from)) * 100%);border-radius:2px}
+.weather-range-light{top:-1px;bottom:-1px;background:linear-gradient(to right,var(--weather-cool),var(--weather-warm)) calc(var(--from) / (1 - (var(--to) - var(--from)) + .0001) * 100%) 0/calc(100% / (var(--to) - var(--from))) 100%;filter:blur(calc(var(--weather-glow-blur) * .7));opacity:var(--weather-glow)}
+.weather-range-core{background:color-mix(in srgb,var(--camera-ink) 72%,transparent)}
+.weather-range-now{position:absolute;top:50%;left:calc(var(--at) * 100%);width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 2px var(--weather-ink)}
+.weather-credit{margin:24px 0 0;font-size:var(--weather-text-small);line-height:18px;color:var(--weather-soft)}
+.weather-credit a{color:inherit;text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--camera-ink) 24%,transparent);text-underline-offset:3px}
+.weather-credit a:hover{color:var(--weather-ink)}
+.weather-line-wide{margin-top:32px;height:96px}
+.weather-retry{margin-top:32px;height:44px;padding:0 22px;border:0;border-radius:999px;background:var(--camera-accent);color:var(--camera-glass-ink);font:600 15px/20px var(--font);transition:transform var(--weather-hover-duration) var(--weather-ease-out),filter var(--weather-hover-duration) var(--weather-ease-out)}
+.weather-retry:hover{filter:brightness(1.05)}
+.weather-retry:active{transform:scale(.98)}
+.weather-sheet.is-open .weather-hours-line .weather-line-svg{animation:weather-draw var(--weather-draw-duration) var(--weather-ease-out) both}
+.weather-sheet.is-open .weather-hours-line .weather-now{animation:weather-appear 300ms var(--weather-ease-out) both}
+@keyframes weather-draw{from{clip-path:inset(-24px 100% -24px 0)}to{clip-path:inset(-24px -24px -24px 0)}}
+@keyframes weather-appear{from{opacity:0;transform:scale(.4)}}
+
+/* ── the neighbourhood map ────────────────────────────────────────────────────────────────── */
+/* a small corner radius keeps the mark and the credit in the picture's corners whole */
+.rocoto-map{position:relative;isolation:isolate;display:block;overflow:hidden;border-radius:var(--weather-radius-map);background:color-mix(in srgb,var(--camera-ink) 4%,var(--camera-paper));box-shadow:0 0 0 1px var(--weather-hair)}
+.rocoto-map-auto{aspect-ratio:1/1;min-height:168px}
+/* the picture arrives finished, with its maker's mark and credit: it is shown whole, in the size it was asked */
+.rocoto-map-image{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;max-width:none;object-fit:fill;opacity:0;transition:opacity 400ms var(--weather-ease-out)}
+.rocoto-map[data-map-state=ready] .rocoto-map-image{opacity:1}
+.rocoto-map-wait{position:absolute;inset:0;z-index:1;display:grid;place-items:end start;padding:20px 24px;pointer-events:none;transition:opacity 300ms var(--weather-ease-out)}
+.rocoto-map[data-map-state=ready] .rocoto-map-wait{opacity:0}
+.rocoto-map-wait p{position:relative;margin:0;font:500 15px/20px var(--font);color:var(--weather-ink)}
+.rocoto-map-wait p:empty{display:none}
+/* streets held in hairlines while the picture is away: two avenues and the blocks between them */
+.rocoto-map-streets{position:absolute;inset:-20%;transform:rotate(-14deg);background:repeating-linear-gradient(90deg,transparent 0 62px,var(--weather-hair) 62px 64px),repeating-linear-gradient(0deg,transparent 0 46px,var(--weather-hair) 46px 48px),linear-gradient(90deg,transparent calc(50% - 5px),color-mix(in srgb,var(--camera-ink) 9%,transparent) calc(50% - 5px) calc(50% + 5px),transparent calc(50% + 5px)),linear-gradient(0deg,transparent calc(38% - 4px),color-mix(in srgb,var(--camera-ink) 9%,transparent) calc(38% - 4px) calc(38% + 4px),transparent calc(38% + 4px))}
+.rocoto-map[data-map-state=loading] .rocoto-map-streets{animation:weather-pulse 1800ms var(--weather-ease-out) infinite alternate}
+@keyframes weather-pulse{from{opacity:.55}to{opacity:1}}
+.rocoto-map-pin{position:absolute;left:50%;top:50%;z-index:2;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--weather-ink);box-shadow:0 0 0 3px var(--paper),0 0 0 4px color-mix(in srgb,var(--camera-ink) 16%,transparent),0 6px 14px -4px color-mix(in srgb,var(--weather-shade) 50%,transparent);pointer-events:none}
+.rocoto-map:not([data-map-state=ready]) .rocoto-map-pin{background:var(--weather-faint)}
+#locationMapHost.rocoto-map{min-height:210px}
+
+/* ── narrow screens ───────────────────────────────────────────────────────────────────────── */
+@media(max-width:600px){
+  .weather-sheet{--weather-pad:var(--weather-gutter-compact);border-radius:var(--weather-radius-sheet-compact);max-height:calc(100dvh - 32px)}
+  .weather-trigger{gap:10px;padding:0 14px 0 12px}
+  .weather-place{gap:10px}
+  .weather-sheet-figure{gap:16px;padding-top:16px}
+  .weather-sheet-figure>strong{font-size:var(--weather-numeral-compact)}
+  .weather-sheet-figure .weather-figure-side{gap:2px;padding-bottom:5px}
+  .weather-sheet-figure .weather-figure-side em{font-size:17px;line-height:24px}
+  .weather-sheet-figure .weather-figure-side span{font-size:14px;line-height:20px}
+  .weather-sheet-figure .weather-waits{font-size:26px;line-height:32px}
+  .weather-sheet-figure .weather-skeleton-numeral{width:104px;height:calc(var(--weather-numeral-compact) * .76);margin:calc(var(--weather-numeral-compact) * .12) 0}
+  .weather-sheet .weather-stats{--columns:3!important;margin-top:28px}
+  .weather-hours{-webkit-mask-image:linear-gradient(to right,transparent 0,black var(--weather-pad),black calc(100% - 48px),transparent 100%);mask-image:linear-gradient(to right,transparent 0,black var(--weather-pad),black calc(100% - 48px),transparent 100%)}
+  .weather-hours[data-edge=start]{-webkit-mask-image:linear-gradient(to right,black calc(100% - 48px),transparent 100%);mask-image:linear-gradient(to right,black calc(100% - 48px),transparent 100%)}
+  .weather-days li{grid-template-columns:56px 22px 36px 40px minmax(48px,1fr) 40px;column-gap:10px;padding:14px 0}
+  .weather-day-full{display:none}
+  .weather-day-short{display:inline}
+}
+
+/* the narrowest phones: the day's rain steps aside for its range */
+@media(max-width:360px){
+  .weather-sheet-heading h2{font-size:19px}
+  .weather-days li{grid-template-columns:52px 22px minmax(0,36px) minmax(40px,1fr) 36px;column-gap:8px;font-size:15px}
+  .weather-day-rain{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .weather-widget *,.weather-sheet,.weather-sheet *,.weather-sheet::backdrop,.rocoto-map,.rocoto-map *,.rocoto-map *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}

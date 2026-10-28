@@ -1,0 +1,143 @@
+{
+  "schema": "rocoto.vertical.v1",
+  "id": "jobshop",
+  "revision": "jobshop-pack-test-1",
+  "product": {
+    "name": "Rocoto",
+    "capability_name": "Rocoto Backlog",
+    "summary": "The office backlog becomes delivery estimates for a product configurator.",
+    "business": "Job shops"
+  },
+  "prompts": {
+    "system": "prompts/system.md",
+    "fixed_chat_common": "prompts/common.md"
+  },
+  "fixed_chats": [
+    {
+      "purpose": "organization",
+      "title": "Organization",
+      "icon": "building",
+      "job": "Machines, shifts and opening hours.",
+      "prompt": "prompts/organization.md"
+    },
+    {
+      "purpose": "office",
+      "title": "Office",
+      "icon": "calendar",
+      "opens": "chat",
+      "job": "The backlog: finished jobs and full weeks, told by the people of the office.",
+      "prompt": "prompts/office.md",
+      "skill": "backlog-intake"
+    }
+  ],
+  "agent_classes": [
+    {
+      "kind": "action",
+      "authority": "granted_effects",
+      "default": true,
+      "label": "Dispatch",
+      "plural": "Dispatch agents",
+      "icon": "skill",
+      "create_label": "New dispatch agent",
+      "empty_label": "Dispatch agents appear here.",
+      "input_kinds": [
+        "tracker_events"
+      ],
+      "starter_prompt": "Help me create a Dispatch agent that tells a customer when their delivery date moves."
+    },
+    {
+      "kind": "tracker",
+      "authority": "participant_reach",
+      "label": "Desk",
+      "plural": "Desks",
+      "icon": "eye",
+      "create_label": "New desk",
+      "empty_label": "Desks appear here.",
+      "input_kinds": [
+        "tracker_events"
+      ],
+      "starter_prompt": "Help me create a Desk that follows one machine's queue and tells its operator when it changes."
+    }
+  ],
+  "event_vocabulary": {
+    "ref": "tile_sets/jobshop#vocabulary",
+    "groups": [
+      "shop_floor",
+      "office"
+    ]
+  },
+  "skills": "skills.json",
+  "tool_families": [],
+  "surfaces": [
+    {
+      "id": "backlog",
+      "title": "Backlog",
+      "nav": "primary",
+      "tabs": [
+        {
+          "id": "orders",
+          "title": "Order log",
+          "display": "list",
+          "content": "open customer jobs",
+          "produced_by": "the backlog script",
+          "read_with": "list_trackers"
+        }
+      ]
+    }
+  ],
+  "connections_expected": [
+    {
+      "id": "calendar",
+      "kind": "provider",
+      "purpose": "The office calendar",
+      "skill": "backlog-intake"
+    }
+  ],
+  "data_sources": [
+    {
+      "id": "backlog",
+      "title": "Open customer jobs",
+      "read_with": [
+        "list_trackers",
+        "get_tracker"
+      ],
+      "skill": "backlog-intake"
+    }
+  ],
+  "flow": [
+    {
+      "stage": "intake",
+      "does": "A customer job enters the backlog",
+      "attaches": "host"
+    },
+    {
+      "stage": "estimate",
+      "does": "The backlog becomes a delivery estimate",
+      "attaches": "script"
+    },
+    {
+      "stage": "publish",
+      "does": "The configurator shows the estimate",
+      "attaches": "host"
+    },
+    {
+      "stage": "tell",
+      "does": "A person tells the agent a job is finished",
+      "attaches": "agent"
+    }
+  ],
+  "demo": null,
+  "recipes": [],
+  "sub_agents": [],
+  "tile_sets": [
+    {
+      "id": "jobshop",
+      "kind": "core_trackers",
+      "path": "tile_sets/jobshop.json",
+      "revision": "jobshop-core-test-1",
+      "install_tool": "install_core_trackers",
+      "processors": "jobshop_trackers."
+    }
+  ],
+  "ready_agents": "ready_agents.json"
+}

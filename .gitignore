@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.env.local
+.env.*.local
+harness/dist-preview/
+app/dist-video-preview/
+state/
+*.sqlite
+*.sqlite-*
+
+# Private runtime and operator inputs
+*.sqlite3
+*.db
+*.pem
+*.key
+.env.*
+!.env.example
+!.env.*.example

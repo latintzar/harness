@@ -1,0 +1,284 @@
+{
+  "schema": "rocoto.display-presentation-kit.v1",
+  "presentation": "rocoto.display-presentation.v1",
+  "about": "A display presents one agent’s published output as a tile and a full canvas. Blocks bind to fields of that output; the tile and figure read the same value.",
+  "limits": {
+    "bytes": 4096,
+    "blocks": 8,
+    "label": 24,
+    "unit": 8,
+    "title": 40,
+    "field": "^[a-z][a-z0-9_]{0,39}$"
+  },
+  "tile": {
+    "reads": "The output's value, state and needs. The label, the mark and the number format come from the presentation. The label and the unit are held to what a tile draws on one line beside its mark. A mark whose binding the output leaves unfilled rests on the tile, and the display's canvas says what it needs.",
+    "marks": {
+      "line": {
+        "needs": "Needs a number over time.",
+        "fields": {
+          "series": "points"
+        },
+        "choices": {
+          "series": [
+            "series",
+            "trend"
+          ]
+        }
+      },
+      "bars": {
+        "needs": "Needs a number over time.",
+        "fields": {
+          "series": "points"
+        },
+        "choices": {
+          "series": [
+            "series",
+            "trend"
+          ]
+        }
+      },
+      "ring": {
+        "needs": "Needs a share of a whole.",
+        "fields": {
+          "fraction": "share"
+        }
+      },
+      "arc": {
+        "needs": "Needs a share of a whole.",
+        "fields": {
+          "fraction": "share"
+        }
+      }
+    },
+    "formats": {
+      "count": {
+        "reads": "A number, written with at most one decimal. The unit is the presentation's own word, or the one the output publishes when it is as short."
+      },
+      "money": {
+        "reads": "An amount in the output’s currency."
+      },
+      "duration": {
+        "reads": "Seconds, written as seconds under a minute and as minutes and seconds from there."
+      },
+      "rate": {
+        "reads": "A percentage. A value above 1, or a value published with the unit %, is the percentage itself: 86.5 reads 86.5 %. Any other value from 0 to 1 is a ratio: 0.865 reads 86.5 %."
+      }
+    }
+  },
+  "families": {
+    "metric": {
+      "name": "Chart",
+      "needs": "Needs a number over time.",
+      "requires": [
+        "figure",
+        "line"
+      ],
+      "allows": [
+        "figure",
+        "period",
+        "line",
+        "bars",
+        "gauge",
+        "summary",
+        "key_points",
+        "recommendation",
+        "instances"
+      ],
+      "rail": "instances",
+      "default": [
+        {
+          "block": "figure"
+        },
+        {
+          "block": "period"
+        },
+        {
+          "block": "line",
+          "bind": {
+            "series": "series"
+          }
+        },
+        {
+          "block": "summary",
+          "bind": {
+            "text": "summary"
+          }
+        },
+        {
+          "block": "instances",
+          "bind": {
+            "rows": "rows"
+          }
+        }
+      ]
+    },
+    "live": {
+      "name": "Timeline",
+      "needs": "Needs timed events.",
+      "requires": [
+        "timeline"
+      ],
+      "allows": [
+        "figure",
+        "gauge",
+        "summary",
+        "key_points",
+        "recommendation",
+        "timeline"
+      ],
+      "rail": "timeline",
+      "default": [
+        {
+          "block": "figure"
+        },
+        {
+          "block": "timeline",
+          "bind": {
+            "rows": "rows"
+          }
+        }
+      ]
+    },
+    "occurrences": {
+      "name": "Occurrences",
+      "needs": "Needs a list of instances.",
+      "requires": [
+        "instances"
+      ],
+      "allows": [
+        "figure",
+        "facts",
+        "summary",
+        "key_points",
+        "recommendation",
+        "bars",
+        "instances"
+      ],
+      "rail": "instances",
+      "default": [
+        {
+          "block": "figure"
+        },
+        {
+          "block": "facts"
+        },
+        {
+          "block": "summary",
+          "bind": {
+            "text": "summary"
+          }
+        },
+        {
+          "block": "instances",
+          "bind": {
+            "rows": "rows"
+          }
+        }
+      ]
+    }
+  },
+  "blocks": {
+    "figure": {
+      "draws": "The number, as the tile writes it, with its unit and its period.",
+      "needs": "Needs one number.",
+      "reads": {
+        "value": "number"
+      },
+      "fields": {}
+    },
+    "period": {
+      "draws": "The Weekly, Monthly and Annual switch.",
+      "needs": "Needs a reading for the week, the month and the year.",
+      "reads": {
+        "periods": "readings"
+      },
+      "fields": {}
+    },
+    "line": {
+      "draws": "A line over the period. A point opens its instances.",
+      "needs": "Needs a number over time.",
+      "fields": {
+        "series": "points"
+      }
+    },
+    "bars": {
+      "draws": "One bar for each band under the block's own title, the tallest lit.",
+      "needs": "Needs a value for each named band.",
+      "fields": {
+        "values": "bands"
+      },
+      "options": {
+        "title": "text"
+      }
+    },
+    "gauge": {
+      "draws": "A ring or an arc filled to a share.",
+      "needs": "Needs a share of a whole.",
+      "fields": {
+        "fraction": "share"
+      },
+      "options": {
+        "chart": [
+          "ring",
+          "arc"
+        ]
+      }
+    },
+    "summary": {
+      "draws": "One paragraph in words.",
+      "needs": "Needs a summary in words.",
+      "fields": {
+        "text": "text"
+      }
+    },
+    "key_points": {
+      "draws": "Up to five short points in a panel.",
+      "needs": "Needs one to five short points.",
+      "fields": {
+        "items": "texts"
+      }
+    },
+    "recommendation": {
+      "draws": "One recommendation beside an accent rule.",
+      "needs": "Needs a recommendation in words.",
+      "fields": {
+        "text": "text"
+      }
+    },
+    "facts": {
+      "draws": "When the owning agent last updated the display, its cadence and its source.",
+      "needs": "Needs the owning agent and its last update.",
+      "fields": {}
+    },
+    "instances": {
+      "draws": "A scrolling list of instances, each with its sentence and its time. A row of the output's own rows carries its picture.",
+      "needs": "Needs a list of instances.",
+      "fields": {
+        "rows": "rows"
+      },
+      "options": {
+        "title": "text"
+      }
+    },
+    "timeline": {
+      "draws": "A feed of timed events, newest first, with a comment between them where the output carries comments.",
+      "needs": "Needs timed events.",
+      "fields": {
+        "rows": "timed_rows",
+        "comments": "comments?"
+      }
+    }
+  },
+  "shapes": {
+    "number": "A finite number.",
+    "text": "A string.",
+    "texts": "A list of up to 5 strings.",
+    "share": "A number from 0 to 1.",
+    "points": "A list of 2 or more {t, value}: t is an ISO time, value is a number.",
+    "bands": "A list of 1 to 12 {label, value}: label (or band) is a string, value is a number.",
+    "rows": "A list of {id, at, description}: label may stand for description. The host admits trusted rows; other lists carry text, numbers and times.",
+    "timed_rows": "Rows where every at is an ISO time.",
+    "comments": "A list of {text}: at (or written_at) places it among the events; id and recommendation are optional. The text slots a display's agent writes fit.",
+    "readings": "The same output over the week, the month and the year, as the display’s passes store them."
+  }
+}

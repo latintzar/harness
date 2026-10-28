@@ -1,0 +1,9 @@
+[
+  {
+    "id": "backlog-intake",
+    "name": "Backlog intake",
+    "description": "Read the office backlog and keep each job's promised date current.",
+    "instructions": "Read the open customer jobs before you answer. State each delivery estimate with the backlog date it was computed from, and record every finished job a person reports.",
+    "required_tools": ["get_business_profile"]
+  }
+]

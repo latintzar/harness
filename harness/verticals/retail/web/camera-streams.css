@@ -1,0 +1,22 @@
+.camera-streams { max-width: 1040px; margin-inline: auto; }
+.camera-streams-heading { margin: 12px 0 24px; }
+.camera-streams-heading h2 { font-size: 22px; font-weight: 600; margin: 0 0 8px; }
+.camera-streams-heading p, .camera-streams-status, .camera-streams-footnote { color: var(--muted); line-height: 1.6; }
+.camera-streams-heading p { margin: 0; }
+.camera-streams-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 280px; padding: 32px 20px; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+.camera-streams-empty > .icon { width: 28px; height: 28px; color: var(--muted); margin-bottom: 16px; }
+.camera-streams-empty h3 { margin: 0; font-size: 17px; font-weight: 600; }
+.camera-streams-empty p { max-width: 340px; margin: 10px 0 20px; line-height: 1.6; color: var(--muted); }
+.camera-stream-row { display: flex; align-items: center; gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+.camera-stream-mark { display: grid; place-items: center; width: 42px; height: 42px; flex: 0 0 42px; border: 1px solid var(--border); border-radius: var(--radius); }
+.camera-stream-mark .icon { width: 20px; height: 20px; }
+.camera-stream-copy { flex: 1; min-width: 0; }
+.camera-stream-copy h3 { margin: 0; font-size: var(--font-size-ui); font-weight: 600; }
+.camera-stream-copy p { margin: 6px 0; color: var(--muted); line-height: 1.5; overflow-wrap: anywhere; }
+.camera-stream-state { color: var(--muted); font-size: 12px; }
+.camera-stream-row > button { flex-shrink: 0; }
+.camera-streams-footnote { margin: 20px 0; font-size: 12px; }
+.camera-source-tabs { display: flex; gap: 6px; margin: 12px 0 24px; }
+.camera-source-tabs button { border: 0; border-radius: var(--radius); background: transparent; color: var(--muted); padding: 8px 12px; font: inherit; }
+.camera-source-tabs button[aria-pressed="true"] { color: var(--ink); background: var(--surface); }
+@media (max-width: 640px) { .camera-stream-row { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 12px; } .camera-stream-row > button { grid-column: 2; justify-self: start; } .camera-streams-empty { min-height: 240px; } }

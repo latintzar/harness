@@ -1,0 +1,74 @@
+{
+  "source": "Rocoto-Labs/rocoto:app/src/rocoto-theme.ts",
+  "source_sha256": "4e0e319f620b62322391f7567aa00d644d54c2435728ac781356e58d26c7f7e3",
+  "dependencies": {
+    "baseui": "16.1.1",
+    "lucide-react": "1.34.0",
+    "@fontsource/inter": "5.3.0",
+    "react": "18.3.1",
+    "styletron-engine-monolithic": "1.0.0"
+  },
+  "icon_names": [
+    "play",
+    "pause",
+    "skip-forward",
+    "skip-back",
+    "volume-2",
+    "volume-x",
+    "settings",
+    "maximize",
+    "minimize",
+    "rectangle-horizontal",
+    "captions",
+    "chevron-left",
+    "chevron-right",
+    "chevron-down",
+    "chevron-up",
+    "x",
+    "user-round",
+    "search",
+    "sparkles",
+    "video",
+    "list-video",
+    "image",
+    "download",
+    "arrow-left",
+    "arrow-right",
+    "check",
+    "more-horizontal",
+    "clock",
+    "shopping-bag",
+    "hand",
+    "focus",
+    "eye",
+    "eye-off",
+    "picture-in-picture-2",
+    "menu",
+    "panel-right-close",
+    "panel-right-open"
+  ],
+  "button_variants": {
+    "rocoto-kit-icon-button": {
+      "kind": "tertiary",
+      "shape": "circle",
+      "size": "compact"
+    },
+    "rocoto-kit-button": {
+      "kind": "tertiary",
+      "shape": "pill",
+      "size": "compact"
+    },
+    "rocoto-kit-secondary-button": {
+      "kind": "secondary",
+      "shape": "pill",
+      "size": "compact"
+    }
+  },
+  "theme_tokens": 1160,
+  "adapter": "Resolved theme tokens; BaseUI SSR button styles; original Lucide component paths; Inter Latin font files.",
+  "rocoto_mark": {
+    "source": "/home/peter/rocoto-repo/app/public/brand/rocoto-mark.svg",
+    "component": "app/src/prototypes/cedar/shell/rail.tsx RocotoMark",
+    "method": "Unchanged source SVG, CSS mask in current foreground colour"
+  }
+}

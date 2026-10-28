@@ -1,0 +1,56 @@
+{
+  "package": "@mediapipe/tasks-vision",
+  "version": "0.10.22-rc.20250304",
+  "license": "Apache-2.0",
+  "tarball_integrity": "sha512-dElxVXMFGthshfIj+qAVm8KE2jmNo2p8oXFib8WzEjb7GNaX/ClWBc8UJfoSZwjEMVrdHJ4YUfa7P3ifl6MIWw==",
+  "model": "selfie_segmenter float16 version 1",
+  "files": [
+    {
+      "path": "vision_bundle.mjs",
+      "sha256": "3252b10e0fd26c4095e4b6ee545c1c898120b3a3813388ecd4876abe6f1399a9",
+      "bytes": 137809,
+      "source": "https://registry.npmjs.org/@mediapipe/tasks-vision/-/tasks-vision-0.10.22-rc.20250304.tgz",
+      "member": "package/vision_bundle.mjs"
+    },
+    {
+      "path": "wasm/vision_wasm_internal.js",
+      "sha256": "4a97e2520ba506c680ecd6ba6acfb146888afa0e2746d57f205352bc6ebb82eb",
+      "bytes": 204284,
+      "source": "https://registry.npmjs.org/@mediapipe/tasks-vision/-/tasks-vision-0.10.22-rc.20250304.tgz",
+      "member": "package/wasm/vision_wasm_internal.js"
+    },
+    {
+      "path": "wasm/vision_wasm_internal.wasm",
+      "sha256": "f00ec4731faa23b3e714d00e88d4d10e2df5c0a427d3a2b4ae6e3526fdd14ef7",
+      "bytes": 9574032,
+      "source": "https://registry.npmjs.org/@mediapipe/tasks-vision/-/tasks-vision-0.10.22-rc.20250304.tgz",
+      "member": "package/wasm/vision_wasm_internal.wasm"
+    },
+    {
+      "path": "wasm/vision_wasm_nosimd_internal.js",
+      "sha256": "927def7b465c51b86e4b3060f93646aca4e27121f4b8fc0483786e407ea9cf1f",
+      "bytes": 204137,
+      "source": "https://registry.npmjs.org/@mediapipe/tasks-vision/-/tasks-vision-0.10.22-rc.20250304.tgz",
+      "member": "package/wasm/vision_wasm_nosimd_internal.js"
+    },
+    {
+      "path": "wasm/vision_wasm_nosimd_internal.wasm",
+      "sha256": "3821ea9b1f7fb8c549ef2a064ef5c85750bf375c545a49fd6eea0df44a95f1f4",
+      "bytes": 9448638,
+      "source": "https://registry.npmjs.org/@mediapipe/tasks-vision/-/tasks-vision-0.10.22-rc.20250304.tgz",
+      "member": "package/wasm/vision_wasm_nosimd_internal.wasm"
+    },
+    {
+      "path": "selfie_segmenter.tflite",
+      "sha256": "191ac9529ae506ee0beefa6b2c945a172dab9d07d1e802a290a4e4038226658b",
+      "bytes": 249537,
+      "source": "https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/1/selfie_segmenter.tflite"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "8707eef0533987efc5b155d64761eeb6e20793f50b9bd1a68dad1cf4719d0ed8",
+      "bytes": 12331,
+      "source": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/v0.10.22/LICENSE"
+    }
+  ]
+}

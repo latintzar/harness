@@ -1,0 +1,447 @@
+[
+  {
+    "id": "customer-friction",
+    "name": "Customer service improvements",
+    "description": "Find recurring waits, missed handoffs and repeated requests, with clips to review.",
+    "industry": "Café",
+    "use_case": "Customer experience",
+    "mode": "ad_hoc",
+    "interval_seconds": 3600,
+    "frequency": "When you run it",
+    "watch_for": [
+      "People waiting at the service counter",
+      "Repeated approaches to staff",
+      "Drinks or food waiting for collection",
+      "A person leaving after waiting"
+    ],
+    "required_input": [
+      "The service process and collection points",
+      "The period or concern to review"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Compare service interactions across the selected period. Follow each candidate through its visible beginning and outcome, checking adjacent footage where available. Describe observable behavior and label interpretations of satisfaction or intent. Return a short ranked set of improvement opportunities, representative clips and questions for the team. Any claim about how common a problem is must identify its reviewed sample and gaps.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "queue-review",
+    "name": "Queue and staffing review",
+    "description": "Show when queues build and what staff are doing during the busiest visible periods.",
+    "industry": "Café",
+    "use_case": "Operations",
+    "mode": "scheduled",
+    "interval_seconds": 86400,
+    "frequency": "Daily",
+    "watch_for": [
+      "A growing service queue",
+      "People waiting while orders are prepared",
+      "Staff moving between tasks",
+      "A queue clearing after a handoff"
+    ],
+    "required_input": [
+      "Service stations and staff responsibilities",
+      "The shift or opening hours to review",
+      "The waiting time that matters to the team"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Compare periods with growing and clearing queues. Trace visible preparation, serving and collection work alongside the queue, measuring waits only where continuous footage and timestamps support them. Identify moments when a staffing change might help and explain the evidence and operational assumptions. Produce a daily evidence-linked staffing review; separate a suggested change from a measured improvement.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "table-turnaround",
+    "name": "Table turnaround",
+    "description": "Find tables that stay uncleared or unused between customers.",
+    "industry": "Café",
+    "use_case": "Operations",
+    "mode": "scheduled",
+    "interval_seconds": 86400,
+    "frequency": "Daily",
+    "watch_for": [
+      "Customers leaving a table",
+      "Dishes remaining on an empty table",
+      "Staff clearing or wiping tables",
+      "Customers waiting beside occupied tables"
+    ],
+    "required_input": [
+      "Seating areas and clearing responsibilities",
+      "The service period to review",
+      "The team's target turnaround time"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Follow visible tables from departure through clearing and the next use. Keep each table reference tied to its camera view and retain occlusions as gaps. Measure a turnaround only when both endpoints and the intervening period are available. Compare slow examples with promptly cleared tables and return practical clearing or seating questions with clips.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "retail-experience",
+    "name": "Shopping assistance",
+    "description": "Find shoppers seeking help and compare how those interactions unfold.",
+    "industry": "Retail",
+    "use_case": "Customer experience",
+    "mode": "ad_hoc",
+    "interval_seconds": 3600,
+    "frequency": "When you run it",
+    "watch_for": [
+      "Shoppers approaching staff",
+      "Repeated searches along the same shelves",
+      "People waiting at an assistance point",
+      "Staff guiding a shopper to a product"
+    ],
+    "required_input": [
+      "Store departments and assistance points",
+      "The shopping experience to investigate"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Compare assistance requests, searches and staff-guided visits in the selected footage. Trace visible interaction outcomes and plausible alternative explanations. Product interest, purchase conversion and satisfaction remain separate claims requiring their own evidence. Return useful examples of effective assistance and opportunities to improve coverage or layout.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "shelf-access",
+    "name": "Shelf access",
+    "description": "Find displays and restocking activity that make products harder to reach.",
+    "industry": "Retail",
+    "use_case": "Store layout",
+    "mode": "scheduled",
+    "interval_seconds": 604800,
+    "frequency": "Weekly",
+    "watch_for": [
+      "Boxes or carts beside shelves",
+      "Shoppers detouring around displays",
+      "Restocking beside browsing shoppers",
+      "People reaching around an obstruction"
+    ],
+    "required_input": [
+      "Departments or displays to review",
+      "Restocking hours and intended clear routes"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Compare access to the selected shelves during ordinary browsing and restocking. Inspect whether objects actually narrow the route or product access from the available view. Group repeated examples by location and activity, retaining separate episodes. Return a weekly layout and restocking review with source clips and the boundaries of the visible evidence.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "warehouse-flow",
+    "name": "Warehouse flow",
+    "description": "Find repeated waits, extra handling and detours in the warehouse.",
+    "industry": "Warehouse",
+    "use_case": "Operations",
+    "mode": "scheduled",
+    "interval_seconds": 604800,
+    "frequency": "Weekly",
+    "watch_for": [
+      "Pallets waiting between handling steps",
+      "Repeated loading and unloading",
+      "Workers or vehicles waiting for a route",
+      "Materials moved through the same area again"
+    ],
+    "required_input": [
+      "The normal material flow and work areas",
+      "The shift or process to review"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Build representative sequences of handling, waiting and movement. Compare similar tasks that flow smoothly with slower candidates. Use confirmed camera clocks and mappings where available; preserve uncertainty in cross-view object links. Report evidence-backed process questions and useful comparisons, with measured durations restricted to continuous coverage.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "blocked-aisles",
+    "name": "Blocked aisles",
+    "description": "Review newly searchable footage for objects obstructing agreed warehouse routes.",
+    "industry": "Warehouse",
+    "use_case": "Access",
+    "mode": "ongoing",
+    "interval_seconds": 60,
+    "frequency": "As new footage becomes searchable",
+    "watch_for": [
+      "Pallets left in a marked route",
+      "Boxes or carts narrowing an aisle",
+      "People or vehicles detouring",
+      "An obstructed route becoming clear"
+    ],
+    "required_input": [
+      "The routes and zones to keep clear",
+      "What counts as an obstruction",
+      "The duration that warrants a review"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Apply the agreed criteria to newly indexed archive intervals. Retrieve candidates, then inspect relevant frames and surrounding times to establish the obstruction and its visible duration. Merge adjacent windows from the same episode and distinguish clearance from an unknown later outcome. Produce an in-app review with clips. The current trigger consumes committed archive imports; live detection latency and external delivery require their own commissioned source and delivery path.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "loading-handoffs",
+    "name": "Loading handoffs",
+    "description": "Trace how goods move through loading areas and where handoffs pause.",
+    "industry": "Warehouse",
+    "use_case": "Logistics",
+    "mode": "ad_hoc",
+    "interval_seconds": 3600,
+    "frequency": "When you run it",
+    "watch_for": [
+      "Goods arriving at a loading bay",
+      "Loads waiting beside a vehicle",
+      "Workers exchanging a load",
+      "Goods being moved back from a loading area"
+    ],
+    "required_input": [
+      "Loading bays and the expected handoff process",
+      "The delivery or time range to review"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Follow the selected loading sequence through available views. Preserve separate candidate loads where identity is uncertain and describe visible transfer steps and waits. Compare the sequence with the supplied process and identify the point requiring operational review. A claim about missing goods or a completed shipment needs evidence beyond a partial view. Return a timed sequence with source clips and unresolved links.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "production-investigation",
+    "name": "Production issue timeline",
+    "description": "Trace the visible steps before and after a reported production problem.",
+    "industry": "Factory",
+    "use_case": "Quality",
+    "mode": "ad_hoc",
+    "interval_seconds": 3600,
+    "frequency": "When you run it",
+    "watch_for": [
+      "Changes in material appearance",
+      "A product being handled again",
+      "A pause at a work station",
+      "Items moved aside from the main flow"
+    ],
+    "required_input": [
+      "The reported issue and approximate time",
+      "The normal process and affected station",
+      "Any batch reference or known observation"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Start from the supplied issue, locate its visible evidence and search relevant preceding and following steps. Inspect neighboring times and supported camera views. Keep supplied batch information distinct from visible identifiers, and preserve competing sequences. Return a source-linked timeline, observed deviations and questions that would distinguish possible causes. Temporal order supports the sequence; causal conclusions require more evidence.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "line-interruptions",
+    "name": "Line interruptions",
+    "description": "Find visible pauses and repeated restarts at the selected production station.",
+    "industry": "Factory",
+    "use_case": "Operations",
+    "mode": "scheduled",
+    "interval_seconds": 86400,
+    "frequency": "Daily",
+    "watch_for": [
+      "Material accumulating before a station",
+      "A visible process pausing",
+      "An operator returning to the same equipment",
+      "Material flow resuming"
+    ],
+    "required_input": [
+      "The station and its normal operating cycle",
+      "The shift to review",
+      "The pause duration worth investigating"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Define a visible operating cycle with the operator's context, then compare candidate pauses and ordinary gaps. Inspect before and after each selected episode and measure duration where continuous source coverage permits. Report a daily set of supported interruptions, possible operational questions and reviewed coverage. Internal machine state remains unknown unless an authorized source establishes it.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "construction-progress",
+    "name": "Construction progress",
+    "description": "Show visible changes at the site and assemble a source-linked progress review.",
+    "industry": "Construction",
+    "use_case": "Progress",
+    "mode": "scheduled",
+    "interval_seconds": 604800,
+    "frequency": "Weekly",
+    "watch_for": [
+      "Newly installed structures or finishes",
+      "Materials arriving or being removed",
+      "Changes in active work areas",
+      "Equipment moving between site zones"
+    ],
+    "required_input": [
+      "Site zones and current work stages",
+      "The comparison period",
+      "Milestones the report should address"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Compare available earlier and later views of each relevant site zone. Check camera movement, framing, lighting and capture clocks before describing a physical change. Separate completed visible work from activity in progress and record areas outside coverage. Return a concise progress review with paired source references, visible milestones and items for site confirmation.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "site-deliveries",
+    "name": "Site delivery coordination",
+    "description": "Find delivery waits and route conflicts around the construction site's unloading areas.",
+    "industry": "Construction",
+    "use_case": "Logistics",
+    "mode": "scheduled",
+    "interval_seconds": 86400,
+    "frequency": "Daily",
+    "watch_for": [
+      "Vehicles waiting near a site entrance",
+      "Materials awaiting unloading",
+      "Equipment sharing an access route",
+      "A delivery moving between unloading areas"
+    ],
+    "required_input": [
+      "Entrances, unloading zones and access routes",
+      "The planned delivery process",
+      "The workday or delivery period to review"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Review visible arrivals, waiting, unloading and onward movement. Compare representative smooth deliveries with candidates involving waits or conflicting routes. Use established source clocks for elapsed time and retain identity uncertainty between views. Return a daily logistics review with clips and coordination questions for the site team.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "pattern-overview"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "content-selects",
+    "name": "Content selects",
+    "description": "Choose useful shots for a brief, with playable clips and source downloads.",
+    "industry": "Content production",
+    "use_case": "Editing",
+    "mode": "ad_hoc",
+    "interval_seconds": 3600,
+    "frequency": "When you run it",
+    "watch_for": [
+      "The requested subject or action",
+      "A clear beginning and end to a moment",
+      "Useful framing and visible detail",
+      "Complementary wide and close views"
+    ],
+    "required_input": [
+      "The audience and editorial brief",
+      "Target length and format",
+      "Subjects or moments to prioritize"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Translate the brief into subject, action, setting and composition queries. Inspect candidate shots and choose precise available intervals with a reason for each selection. Return an ordered gallery, original source times and host-provided bounded download links. Preserve available source quality and attribution. Editing-package preparation remains a separate artifact operation when that operation is available.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "source-clip-selects"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "time-lapse-selects",
+    "name": "Time-lapse selections",
+    "description": "Select visible changes and suggest an ordered cut list and playback speeds.",
+    "industry": "Content production",
+    "use_case": "Time-lapse",
+    "mode": "ad_hoc",
+    "interval_seconds": 3600,
+    "frequency": "When you run it",
+    "watch_for": [
+      "A visible change across comparable views",
+      "A complete stretch of work",
+      "A stable camera position",
+      "A useful starting and finishing state"
+    ],
+    "required_input": [
+      "The change or project to show",
+      "The desired video length",
+      "The preferred order and framing"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Find comparable views and inspect the visible progression, capture gaps and camera changes. Allocate the requested output length across selected shots and calculate suggested speed from each available source duration. Return an ordered cut list with source intervals, suggested speeds, gaps and playable source links. Keep normal-speed source selections available for the editor. A rendered time-lapse is a separate requested artifact, and missing source periods remain explicit.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "source-clip-selects"
+    ],
+    "required_connections": []
+  },
+  {
+    "id": "evidence-report",
+    "name": "Incident evidence timeline",
+    "description": "Assemble the relevant footage and competing evidence around a reported incident.",
+    "industry": "All industries",
+    "use_case": "Evidence review",
+    "mode": "ad_hoc",
+    "interval_seconds": 3600,
+    "frequency": "When you run it",
+    "watch_for": [
+      "The reported event",
+      "Visible actions before the event",
+      "What happens immediately afterward",
+      "Other available views of the same period"
+    ],
+    "required_input": [
+      "The incident or claim to review",
+      "The place and approximate time",
+      "The factual questions the report should answer"
+    ],
+    "instructions": "Read the business profile, source provenance and applicable camera context. Turn the objective into observable categories and focused visual queries, save the investigation plan and retrieve each category. Inspect relevant source frames, neighboring intervals and selected clips with question-specific Cosmos viewing within the admitted budget. Compare representative examples and counterexamples. Link each finding to its source interval and state the reviewed coverage; candidate windows, confirmed episodes and inferred explanations have distinct meanings. Use established capture timestamps for the requested period. When capture clocks are unknown, identify the actual source-relative archive range used. Locate evidence for the stated event and inspect relevant earlier and later intervals. Retain both supporting and contradictory observations, source clocks and uncertain links. Build a chronology with available asset identifiers, hashes and provenance, then identify open factual questions and coverage gaps. Use actual host-provided download references. Keep model interpretations separate from source observations and leave professional conclusions to the appropriate reviewer.",
+    "publisher": "Rocoto",
+    "kind": "investigation_brief",
+    "skill_ids": [
+      "search-planning",
+      "source-evidence-inspection",
+      "evidence-export-manifest"
+    ],
+    "required_connections": []
+  }
+]

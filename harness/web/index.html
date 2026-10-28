@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent workspace</title>
+    <link rel="stylesheet" href="/static/harness/theme.css" />
+    <link rel="stylesheet" href="/static/harness/style.css" />
+    <link rel="stylesheet" href="/static/harness/question-box.css" />
+    <link rel="stylesheet" href="/static/harness/messaging-settings.css" />
+    <link rel="stylesheet" href="/static/harness/business-summary.css" />
+    <link rel="stylesheet" href="/static/harness/settings-shell.css" />
+    <link rel="stylesheet" href="/static/harness/tool-trail.css" />
+    <link rel="stylesheet" href="/static/harness/rich-content.css" />
+    <link rel="stylesheet" href="/static/harness/plugin-settings.css" />
+    <link rel="stylesheet" href="/static/harness/profile-settings.css" />
+    <link rel="stylesheet" href="/static/harness/workspace-settings.css" />
+    <link rel="stylesheet" href="/static/harness/business-map.css" />
+    <link rel="stylesheet" href="/static/harness/display-charts.css" />
+    <link rel="stylesheet" href="/static/harness/display-canvas.css" />
+    <script src="/static/vendor/marked-18.0.9.umd.js" defer></script>
+    <script src="/static/vendor/dompurify-3.4.16.min.js" defer></script>
+    <script src="/static/harness/business-summary.js" defer></script>
+    <script src="/static/harness/settings-shell.js" defer></script>
+    <script src="/static/harness/tool-trail.js" defer></script>
+    <script src="/static/harness/rich-content.js" defer></script>
+    <script src="/static/harness/profile-settings.js" defer></script>
+    <script src="/static/harness/plugin-settings.js" defer></script>
+    <script src="/static/harness/workspace-settings.js" defer></script>
+    <script src="/static/harness/business-map.js" defer></script>
+    <script src="/static/harness/question-box.js" defer></script>
+    <script src="/static/harness/messaging-settings.js" defer></script>
+    <script src="/static/harness/display-charts.js" defer></script>
+    <script src="/static/harness/display-canvas.js" defer></script>
+    <link rel="stylesheet" href="/static/harness/workspace-tabs.css" />
+    <link rel="stylesheet" href="/static/harness/workspace-home.css" />
+    <script src="/static/harness/harness-shell.js" defer></script>
+    <script src="/static/harness/workspace-tabs.js" defer></script>
+    <script src="/static/harness/workspace-home.js" defer></script>
+    <script src="/static/harness/workspace-extensions.js" defer></script>
+    <script src="/static/harness/wake-controls.js" defer></script>
+    <link rel="stylesheet" href="/static/harness/wake-controls.css" />
+    <!-- vertical-assets -->
+    <script src="/static/harness/app.js" defer></script>
+  </head>
+  <body class="session-pending">
+    <svg class="icon-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+      <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol><symbol id="i-send" viewBox="0 0 24 24"><path d="M12 20V4m-6 6 6-6 6 6"/></symbol><symbol id="i-at" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></symbol><symbol id="i-skill" viewBox="0 0 24 24"><path d="m13 3-8 10h6l-1 8 9-12h-7Z"/></symbol><symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 3v18h17M8 17v-6M13 17V6M18 17v-9"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 9a8 8 0 1 0-1 9M20 3v6h-6"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol><symbol id="i-logout" viewBox="0 0 24 24"><path d="M10 3H3v18h7M7 12h14m-5-5 5 5-5 5"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="m3 3 18 18M10 5.2A12 12 0 0 1 12 5c7 0 10 7 10 7a18 18 0 0 1-3 4M6 6a18 18 0 0 0-4 6s3 7 10 7a12 12 0 0 0 5-1M10 10a3 3 0 0 0 4 4"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H4l1.7-4.2A8 8 0 1 1 20 11.5Z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="m6 11 6-6 6 6M12 5v14"/></symbol>
+      <symbol id="i-audio" viewBox="0 0 24 24"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></symbol>
+      <symbol id="i-building" viewBox="0 0 24 24"><path d="M3 21V10l6 3V8l6 3V3h4l2 18H3Z"/><path d="M7 17h1m4 0h1m4 0h1"/></symbol><symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v3"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol><symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M6 15h4"/></symbol><symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></symbol>
+      <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+      <symbol id="i-fullscreen" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+      <symbol id="i-terminal" viewBox="0 0 24 24"><path d="m4 6 6 6-6 6M13 18h7"/></symbol>
+      <symbol id="i-stop" viewBox="0 0 24 24"><path d="M6 6h12v12H6Z"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7V5h6l2 2h10v13H3Z"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="m9 3 6 0-1 6 4 4v2H6v-2l4-4-1-6M12 15v6"/></symbol><symbol id="i-archive" viewBox="0 0 24 24"><path d="M4 7h16v14H4Z M3 3h18v4H3Z M9 11h6"/></symbol><symbol id="i-images" viewBox="0 0 24 24"><rect x="6" y="3" width="15" height="15" rx="2"/><path d="M3 7v12a2 2 0 0 0 2 2h12M7 15l4-4 3 3 2-2 5 5"/><circle cx="16" cy="7" r="1"/></symbol><symbol id="i-paperclip" viewBox="0 0 24 24"><path d="m8 13 7-7a3 3 0 0 1 4 4l-9 9a5 5 0 0 1-7-7l9-9M7 15l8-8"/></symbol><symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 17v4h16v-4"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="m9 15 6-6m-8 4-2 2a4 4 0 0 0 6 6l4-4M9 7l4-4a4 4 0 0 1 6 6l-2 2"/></symbol><symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></symbol><symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></symbol><symbol id="i-document" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8Zm0 0v5h5M8 12h8M8 16h6"/></symbol>
+      <symbol id="i-agent" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v1"/></symbol>
+      <symbol id="i-edit" viewBox="0 0 24 24"><path d="m14 5 5 5M4 20l5-1L21 7l-5-5L4 14Z"/></symbol>
+    </defs></svg>
+    <section id="session-screen" class="session-screen" aria-label="Sign in">
+      <form id="session-form" class="session-form"><img src="/static/harness/brand/rocoto-mark.svg" alt="Rocoto" /><h1><span class="rocoto-wordmark">Rocoto</span></h1><p id="session-intro">Open your workspace with an access code.</p><button id="explore-demo" type="button" hidden>Explore demo</button><label for="session-code">Company access code</label><input id="session-code" name="code" type="text" autocomplete="one-time-code" spellcheck="false" required /><button id="session-submit" class="secondary-button" type="submit">Open company</button><p id="session-message" role="status">Connecting…</p></form>
+    </section>
+    <button id="sidebar-scrim" class="sidebar-scrim" aria-label="Close chats" hidden></button>
+    <aside id="sidebar" class="sidebar" aria-label="Chats">
+      <a class="brand" href="/" aria-label="Rocoto home"><img src="/static/harness/brand/rocoto-mark.svg" alt="" /><span class="rocoto-wordmark">Rocoto</span></a>
+      <button id="new-chat" class="new-chat" type="button"><svg class="icon"><use href="#i-home"/></svg>Home</button>
+      <button id="rail-chats" class="agents-nav" hidden type="button" title="Your Chats" aria-label="Your Chats" aria-expanded="false"><svg class="icon"><use href="#i-chat"/></svg><span>Your Chats</span></button>
+      <button id="agents-nav" class="agents-nav" type="button"><svg class="icon"><use href="#i-agent"/></svg><span>Agents</span><span id="agents-active-count" class="agents-active-count" hidden></span></button>
+      <nav id="vertical-navigation" class="workspace-tab-navigation" aria-label="Workspace pages"></nav>
+      <template data-workspace-slot="source-nav"></template>
+      <button id="marketplace-nav" class="agents-nav" type="button" title="Connections" aria-label="Connections"><svg class="icon"><use href="#i-at"/></svg><span>Connections</span></button>
+      <div class="sidebar-caption chats-caption"><span>Agents</span><button id="add-chat" class="new-context-chat" type="button" aria-label="New chat" title="New chat"><svg class="icon"><use href="#i-edit"/></svg>New chat</button></div>
+      <nav id="chat-list" class="chat-list" aria-label="Agents"></nav>
+      <template data-workspace-slot="source-summary"></template>
+      <button id="founder-nav" class="agents-nav founder-nav" type="button" title="Founder" aria-label="Founder" aria-haspopup="dialog" aria-controls="founder-demo-popover" hidden><svg class="icon"><use href="#i-building"/></svg><span>Founder</span></button>
+      <button id="account-button" class="sidebar-footer" type="button" aria-haspopup="dialog" aria-label="Account and usage"><span id="workspace-avatar" class="avatar">R</span><span><span id="workspace-owner">Rocoto</span><span id="workspace-person">Demo Person</span></span></button>
+      <div id="profile-menu" class="profile-menu" hidden><div class="profile-menu-heading"><div id="profile-menu-name"></div><details id="connection-info" class="connection-info"><summary id="connection-status" class="connection-status"><span class="connection-dot"></span><span>Checking server</span></summary><div id="connection-details" class="connection-details"></div></details></div><label id="observer-control" class="observer-control" hidden><span>View workspace as</span><select id="observer-select" aria-label="View workspace as"><option value="">Your workspace</option></select></label><button id="open-profile" type="button">Profile</button><button id="open-settings" type="button">Settings</button><button id="open-usage" type="button">Usage</button><button type="button" class="referral-stub" disabled><span>Refer and get €100</span><small>Coming soon</small></button><button id="profile-logout" type="button">Log out</button></div>
+    </aside>
+    <main class="workspace">
+      <div id="workspace-backdrop" class="workspace-backdrop" aria-hidden="true" hidden></div>
+      <header class="topbar">
+        <button id="sidebar-toggle" class="icon-button mobile-menu" aria-label="Open chats" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button>
+        <div id="chat-title" class="chat-title">New chat</div>
+        <template data-workspace-slot="source-shortcut"></template>
+        <div class="chat-context-anchor"><button id="chat-context-toggle" class="icon-button" type="button" aria-label="Chat details" title="Chat details" aria-expanded="false" aria-controls="chat-context-popup"><svg class="icon"><use href="#i-list"/></svg></button><div id="chat-context-popup" class="chat-context-popup" aria-label="Chat details" hidden></div></div>
+        <button id="chat-files-toggle" class="text-button chat-files-toggle" type="button" aria-label="Files" title="Files" aria-expanded="false" aria-controls="chat-files-panel"><svg class="icon"><use href="#i-document"/></svg><span>Files</span></button>
+
+      </header>
+      <div id="viewing-banner" class="viewing-banner" hidden><span id="viewing-label"></span><button id="end-observation" class="text-button" type="button">Return to your workspace</button></div>
+      <div id="notice" class="notice" role="status" hidden></div>
+      <div id="home-mode-switch" class="home-mode-switch" role="group" aria-label="Workspace mode"><button id="home-quick-search" type="button" aria-pressed="false">Quick Search</button><button id="home-chat" type="button" aria-pressed="true">Chat</button></div>
+      <section id="workspace-tab-view" aria-label="Home" hidden></section>
+      <nav id="settings-nav" class="settings-nav" aria-label="Settings" hidden><span>Settings</span><template data-workspace-slot="source-settings"></template><button id="settings-usage" type="button">Usage</button><button id="settings-mcp" type="button">Rocoto MCP</button><button id="settings-archives" type="button">Archived chats</button></nav>
+      <aside id="agent-context" class="agent-context" aria-label="Saved agents" hidden><button id="context-new-agent" class="new-context-chat" type="button"><svg class="icon"><use href="#i-edit"/></svg>New agent</button><nav id="agent-list" class="agent-list" aria-label="Saved agents"></nav></aside>
+      <aside id="customize-context" class="context-nav" aria-label="Customize" hidden><span>Customize</span><button id="customize-agents" type="button">Agents</button><button id="customize-skills" type="button">Skills</button><button id="customize-connections" type="button">Connections</button><h2 id="customize-yours" class="context-section-label">Your connections</h2><div id="customize-installed"></div></aside>
+      <template data-workspace-slot="source-context"></template>
+      <template data-workspace-slot="source-library"></template>
+      <section id="agents-view" class="agents-view" aria-label="Agents" hidden>
+        <header class="agents-heading"><label class="collection-search"><svg class="icon"><use href="#i-search"/></svg><input id="agents-search" type="search" placeholder="Search agents" aria-label="Search saved agents" /></label><button id="agents-skills-link" class="agent-secondary" type="button">Agents marketplace</button><button id="create-agent" class="agent-primary" type="button"><svg class="icon"><use href="#i-plus"/></svg>New agent</button></header>
+        <div id="agents-message" class="agents-message" role="status"></div>
+        <div id="agents-layout" class="agents-layout"><article id="agent-detail" class="agent-detail" aria-label="Agent details"></article></div>
+      </section>
+      <template data-workspace-slot="source-view"></template>
+      <section id="business-view" class="business-view" aria-label="Your Business" hidden><div id="stats-business"><header class="stats-heading"><h1>Your Business</h1><span id="stats-collection-label" class="workspace-help"></span></header><div id="business-message" class="workspace-message" role="status"></div><div id="business-content" class="business-content"></div></div></section>
+      <section id="stats-view" class="stats-view business-view" aria-label="Stats" hidden><section id="stats-activity" aria-label="Organization activity" hidden></section></section>
+      <section id="mcp-view" class="business-view mcp-settings-view" aria-label="Rocoto MCP settings" hidden><div id="mcp-content"></div></section>
+      <section id="appearance-view" class="business-view" aria-label="Appearance" hidden></section>
+      <section id="notifications-view" class="business-view" aria-label="Notifications" hidden></section>
+      <section id="messaging-view" class="business-view" aria-label="Messaging" hidden></section>
+      <section id="team-view" class="business-view" aria-label="Team" hidden></section>
+      <section id="billing-view" class="business-view" aria-label="Billing" hidden></section>
+      <section id="profile-view" class="business-view" aria-label="Personal profile" hidden></section><section id="plugin-settings-view" class="business-view" aria-label="Plugin settings" hidden></section>
+      <section id="usage-view" class="business-view usage-settings-view" aria-label="Usage settings" hidden><div id="usage-content" class="usage-content"></div></section>
+      <section id="archives-view" class="business-view" aria-label="Archived chats" hidden><header class="library-heading"><div><h1>Archived chats</h1><p>Restore a conversation to Recents.</p></div></header><div id="archives-list" class="archives-list"></div></section><section id="marketplace-view" class="marketplace-view" aria-label="Customize" hidden><header class="library-heading marketplace-heading"><div><h1 id="marketplace-title">Connections</h1><p id="marketplace-description">Services and tools for your workspace.</p></div><div class="marketplace-heading-actions"><label id="marketplace-search-wrap" class="marketplace-search"><svg class="icon"><use href="#i-search"/></svg><input id="marketplace-search" type="search" placeholder="Search connections" aria-label="Search connections" /></label><button id="add-custom-connector" class="agent-secondary custom-connector-add" type="button"><svg class="icon"><use href="#i-plus"/></svg>Add Custom Connector</button></div></header><div class="marketplace-tabs" hidden><button id="market-agents" type="button" aria-pressed="false">Agents</button><button id="market-skills" type="button" aria-pressed="false">Skills</button><button id="market-connections" type="button" aria-pressed="true">Connections</button></div><div id="marketplace-filters" class="marketplace-filters" hidden></div><div id="marketplace-content" class="marketplace-content"></div></section>
+      <aside id="chat-files-panel" class="chat-files-panel" aria-label="Files" hidden><header class="files-panel-heading"><svg class="icon"><use href="#i-document"/></svg><h2 id="files-panel-title">Files</h2><label id="file-selector-wrap" hidden><span class="sr-only">Choose file</span><select id="file-selector" aria-label="Choose file"></select></label><div id="full-file-actions" class="full-file-actions" hidden></div><button id="refresh-chat-files" class="icon-button" type="button" aria-label="Refresh files" title="Refresh files"><svg class="icon"><use href="#i-refresh"/></svg></button><button id="close-chat-files" class="icon-button" type="button" aria-label="Close files" title="Close files"><svg class="icon"><use href="#i-close"/></svg></button></header><div id="files-message" class="files-message" role="status"></div><div id="chat-files-list" class="chat-files-list"></div><article id="file-preview" class="file-preview" aria-label="File preview" hidden></article><form id="file-question-form" class="file-question-form" hidden><label class="sr-only" for="file-question">Ask about this file</label><input id="file-question" placeholder="Ask about this file" maxlength="4000" autocomplete="off" /><button id="file-question-send" class="icon-button" type="submit" aria-label="Ask about this file"><svg class="icon"><use href="#i-send"/></svg></button></form></aside>
+      <section id="conversation" class="conversation" aria-label="Conversation">
+        <div id="chat-continuation" class="chat-continuation" hidden></div>
+        <div id="chat-subagents" class="chat-subagents" hidden></div>
+        <div id="welcome" class="welcome">
+          <svg class="welcome-icon icon"><use href="#i-chat"/></svg>
+          <h1>New chat</h1>
+          <p>Describe the work you want to do.</p>
+          <div id="source-choices" class="source-choices" hidden></div>
+          <div class="suggestions" hidden></div>
+        </div>
+        <div id="home-search-results" class="home-search-results" hidden></div>
+        <div id="messages" class="messages" aria-live="polite" aria-relevant="additions"></div>
+      </section>
+      <div class="composer-area">
+        <div class="workspace-bar">
+          <div class="workspace-picker"><button id="environment-toggle" class="workspace-toggle" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="environment-popover"><svg class="icon"><use href="#i-folder"/></svg><span id="environment-label">Company</span><svg class="icon workspace-chevron"><use href="#i-chevron"/></svg></button><div id="environment-popover" class="workspace-popover" role="dialog" aria-label="Choose company" hidden><label for="environment-search" class="sr-only">Search companies</label><input id="environment-search" type="search" placeholder="Search companies…" autocomplete="off" /><div id="environment-options" class="workspace-options"></div><button id="session-logout" class="text-button" type="button">Sign out</button></div></div>
+          <div class="workspace-picker" hidden><button id="workspace-toggle" class="workspace-toggle" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="workspace-popover"><svg class="icon"><use href="#i-folder"/></svg><span id="workspace-label">All collections</span><svg class="icon workspace-chevron"><use href="#i-chevron"/></svg></button><div id="workspace-popover" class="workspace-popover" role="dialog" aria-label="Filter collections" hidden><label for="workspace-search" class="sr-only">Search collections</label><input id="workspace-search" type="search" placeholder="Search collections…" autocomplete="off" /><div id="workspace-options" class="workspace-options"></div></div></div>
+        </div>
+        <section id="message-queue" class="message-queue" aria-label="Queued messages" hidden></section>
+        <section id="selected-skills" class="selected-skills" aria-label="Selected skills" hidden></section>
+        <section id="attachment-previews" class="attachment-previews" aria-label="Image attachments" hidden></section>
+        <template data-workspace-slot="source-attachments"></template>
+        <section id="funding-notice" class="funding-notice" role="status" aria-live="polite" hidden></section>
+        <section id="agent-setup-notice" class="agent-setup-notice" aria-label="Agent setup" hidden></section>
+        <form id="composer" class="composer" novalidate>
+          <label for="message" class="sr-only">Message</label>
+          <div id="command-menu" class="command-menu" role="listbox" aria-label="Composer commands" hidden></div><textarea id="message" aria-label="Message" aria-autocomplete="list" aria-controls="command-menu" aria-expanded="false" rows="1" placeholder="Ask anything…" maxlength="8000"></textarea>
+          <div class="composer-controls">
+            <div class="attachment-menu-anchor"><button id="attachment-toggle" class="icon-button" type="button" aria-label="Add attachment" aria-expanded="false" aria-controls="attachment-menu"><svg class="icon"><use href="#i-plus"/></svg></button><div id="attachment-menu" class="attachment-menu" hidden><button id="attach-images" type="button"><svg class="icon"><use href="#i-paperclip"/></svg>Images</button><template data-workspace-slot="source-attachment-action"></template><div class="skills-menu-parent"><button id="attach-skills" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="skills-submenu"><svg class="icon"><use href="#i-document"/></svg>Skills<svg class="icon"><use href="#i-chevron"/></svg></button><div id="skills-submenu" class="skills-submenu" hidden><div id="installed-skill-options"></div><button id="add-new-skill" type="button">Add New Skill</button><button id="browse-skills" type="button">Browse Skills</button></div></div><div id="attachment-connections" class="attachment-connections"></div></div></div><input id="image-files" type="file" accept="image/*" multiple hidden />
+            <div data-workspace-slot="chat-context"></div>
+            <label class="select-control" hidden><span class="sr-only">Question mode</span><select id="mode"><option value="chat">Ask Rocoto</option></select></label>
+            <label class="select-control dataset-control" hidden><span class="sr-only">Collection</span><select id="dataset"><option value="">All collections</option></select></label>
+
+            <div class="context-anchor"><div id="usage-popover" class="usage-popover" role="dialog" aria-label="Usage" hidden><div id="usage-popover-content"></div><button id="usage-breakdown" type="button"><svg class="icon"><use href="#i-chart"/></svg>See detailed breakdown<svg class="icon"><use href="#i-chevron"/></svg></button></div><button id="context-ring" class="context-ring" type="button" aria-label="Context and usage" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" class="context-track"/><circle cx="12" cy="12" r="8" class="context-value"/></svg></button><div id="context-tooltip" class="context-tooltip" role="tooltip" hidden>Available after a response</div></div>
+            <button id="send" class="send-button" type="submit" aria-label="Send message"><svg class="icon"><use href="#i-arrow"/></svg></button>
+          </div>
+        </form>
+        <div id="composer-note" class="composer-note" hidden>Ask a question or describe a task.</div>
+      </div>
+    </main>
+    <aside id="business-chat-drawer" class="business-chat-drawer" aria-label="Business onboarding chat" hidden><header><strong>Business onboarding</strong><button id="onboarding-full-chat" class="text-button" type="button">Open chat</button><button id="close-business-chat" class="icon-button" type="button" aria-label="Close onboarding chat"><svg class="icon"><use href="#i-close"/></svg></button></header><iframe id="business-chat-frame" title="Business onboarding chat"></iframe></aside>
+    <dialog id="native-question-dialog" class="native-question-dialog" aria-labelledby="native-question-title" aria-describedby="native-question-purpose"><header class="native-question-heading"><span class="native-question-mark"><svg class="icon"><use href="#i-chat"/></svg></span><button id="close-native-question" class="icon-button" type="button" aria-label="Close question"><svg class="icon"><use href="#i-close"/></svg></button></header><div id="native-question-content"></div></dialog>
+    <dialog id="credential-request-dialog" class="credential-request-dialog" aria-labelledby="credential-request-title" aria-describedby="credential-request-purpose">
+      <header class="credential-dialog-heading"><span class="credential-dialog-mark"><svg class="icon"><use href="#i-lock"/></svg></span><button id="close-credential-request" class="icon-button" type="button" aria-label="Close credential request"><svg class="icon"><use href="#i-close"/></svg></button></header>
+      <div id="credential-request-content"></div>
+    </dialog>
+    <dialog id="custom-connector-dialog" class="custom-connector-dialog" aria-labelledby="custom-connector-title">
+      <form id="custom-connector-form">
+        <header class="custom-connector-heading"><span class="custom-connector-mark"><svg class="icon"><use href="#i-at"/></svg></span><button id="close-custom-connector" class="icon-button" type="button" aria-label="Close custom connector setup"><svg class="icon"><use href="#i-close"/></svg></button></header>
+        <h2 id="custom-connector-title">Add Custom Connector</h2>
+        <p id="custom-connector-intro" class="workspace-help">Describe your system and what you want to do. Rocoto will prepare the connector with you in a setup chat.</p>
+        <label class="agent-field"><span>Connection type</span><select id="custom-connector-kind"><option value="api">Private API</option><option value="sql">SQL database</option><option value="sftp">SFTP</option><option value="cli">CLI tool</option><option value="mcp">MCP server</option><option value="local">Local files</option><option value="other">Other</option></select></label>
+        <label class="agent-field"><span>Name <small>Optional</small></span><input id="custom-connector-name" maxlength="100" placeholder="Warehouse ERP" autocomplete="off" /></label>
+        <label class="agent-field"><span>What would you like to connect?</span><textarea id="custom-connector-description" rows="4" maxlength="8000" required placeholder="Read records from our business system and help with the next step."></textarea><small>Add goals and system details here. Credentials go in protected setup fields.</small></label>
+        <p id="custom-connector-error" class="agent-form-error" role="alert" hidden></p>
+        <footer class="custom-connector-footer"><button id="cancel-custom-connector" class="agent-secondary" type="button"><svg class="icon"><use href="#i-close"/></svg>Cancel</button><button id="create-custom-connector" class="agent-primary" type="submit"><svg class="icon"><use href="#i-chat"/></svg>Start setup</button></footer>
+      </form>
+    </dialog>
+    <dialog id="connection-setup-dialog" class="connection-setup-dialog" aria-label="Connection setup"><button id="close-connection-setup" class="icon-button" type="button" aria-label="Close connection setup"><svg class="icon"><use href="#i-close"/></svg></button><div id="connection-setup-content"></div></dialog>
+    <dialog id="skill-dialog" class="skill-dialog" aria-labelledby="skill-title"><header class="dialog-header"><div><h2 id="skill-title"></h2><p>Rocoto</p></div><button id="close-skill" class="icon-button" type="button" aria-label="Close skill"><svg class="icon"><use href="#i-close"/></svg></button></header><div id="skill-content" class="skill-content"></div></dialog>
+    <template data-workspace-slot="source-dialog"></template>
+    <template data-workspace-slot="source-attachment-dialog"></template>
+    <dialog id="agent-editor" class="agent-editor" aria-labelledby="agent-editor-title">
+      <form id="agent-form">
+        <header class="agent-editor-header"><div><h2 id="agent-editor-title">New agent</h2><p>Save the definition, then choose when to run it.</p></div><button id="close-agent-editor" class="icon-button" type="button" aria-label="Close agent editor"><svg class="icon"><use href="#i-close"/></svg></button></header>
+        <div class="agent-editor-body">
+          <label class="agent-field" for="agent-title"><span>Title</span><input id="agent-title" name="title" required maxlength="100" placeholder="Daily work review" /></label>
+          <section class="agent-form-section"><h3>Instructions</h3><label class="agent-field" for="agent-instruction"><span class="sr-only">Agent instructions</span><textarea id="agent-instruction" name="instruction" rows="5" required maxlength="8000" placeholder="Describe what to investigate and what a useful report should contain."></textarea></label><label class="agent-field" for="agent-dataset"><span id="agent-collection-label">Collection</span><select id="agent-dataset" name="dataset" required></select><small id="agent-company-label"></small></label></section>
+          <section class="agent-form-section"><h3>When it runs</h3><fieldset class="agent-mode-options"><legend class="sr-only">Agent type</legend><label><input type="radio" name="agent-mode" value="ad_hoc" checked /><span>Ad hoc</span></label><label><input type="radio" name="agent-mode" value="scheduled" /><span>Scheduled</span></label><label><input type="radio" name="agent-mode" value="ongoing" /><span>Ongoing</span></label></fieldset><p id="agent-mode-description" class="agent-field-help"></p><label id="agent-cadence-field" class="agent-field" for="agent-interval" hidden><span id="agent-cadence-label">Run every</span><div class="agent-cadence"><input id="agent-interval" type="number" min="60" max="604800" step="1" value="60" /><span>seconds</span></div><small id="agent-cadence-help"></small></label></section>
+          <section class="agent-form-section"><h3>Run limits</h3><div class="agent-limit-fields"><label class="agent-field" for="agent-max-runs"><span>Maximum runs</span><input id="agent-max-runs" type="number" min="1" max="20" step="1" value="1" required /></label><template data-workspace-slot="agent-input-options"></template></div><template data-workspace-slot="agent-resource-estimate"></template><p class="agent-field-help"><span id="agent-grant-description">Activate recurring work with a daily run allowance.</span></p></section>
+          <section class="agent-form-section"><h3>Output</h3><div class="agent-output"><svg class="icon"><use href="#i-document"/></svg><div><strong>In-app report</strong><p>Each run opens as its own investigation chat.</p></div></div><div class="agent-output"><svg class="icon"><use href="#i-chat"/></svg><div><strong>Alerts on your phone</strong><p>The agent uses the communication channels and permissions approved for its work.</p></div></div></section>
+          <p id="agent-form-error" class="agent-form-error" role="alert" hidden></p>
+        </div>
+        <footer class="agent-editor-footer"><button id="cancel-agent-editor" class="agent-secondary" type="button">Cancel</button><button id="save-agent" class="agent-primary" type="submit">Save draft</button></footer>
+      </form>
+    </dialog>
+    <template data-workspace-slot="source-upload-dialog"></template>
+    <dialog id="rename-file-dialog" class="connection-setup-dialog" aria-labelledby="rename-file-title"><form id="rename-file-form"><h2 id="rename-file-title">Rename</h2><label class="agent-field"><span>File title</span><input id="rename-file-input" maxlength="160" required autocomplete="off" /></label><p id="rename-file-error" role="status"></p><div class="custom-access-actions"><button id="rename-file-cancel" type="button" class="agent-secondary"><svg class="icon"><use href="#i-close"/></svg>Cancel</button><button id="rename-file-save" type="submit" class="agent-primary"><svg class="icon"><use href="#i-check"/></svg>Save</button></div></form></dialog>
+    <template data-workspace-slot="source-results-dialog"></template>
+    <dialog id="business-map-dialog" class="business-map-dialog" aria-label="Neighborhood map"><button id="close-business-map" class="icon-button" type="button" aria-label="Close map"><svg class="icon"><use href="#i-close"/></svg></button><div id="business-map-expanded"></div></dialog>
+    <template data-workspace-slot="source-preview-dialog"></template>
+  <dialog id="mcp-dialog" class="custom-connector-dialog" aria-labelledby="mcp-dialog-title"></dialog>
+<dialog id="founder-demo-popover" class="scope-picker-dialog" aria-labelledby="founder-demo-title"><header><div><h2 id="founder-demo-title">Founder</h2><p>Demo companies</p></div><button id="founder-demo-close" class="icon-button" type="button" aria-label="Close Founder"><svg class="icon"><use href="#i-close"/></svg></button></header><label class="sr-only" for="founder-demo-search">Search demo companies</label><input id="founder-demo-search" type="search" placeholder="Search demo companies" autocomplete="off" /><div id="founder-demo-options" class="workspace-options"></div><p id="founder-demo-message" role="status" hidden></p></dialog>
+<dialog id="collection-picker-dialog" class="scope-picker-dialog" aria-labelledby="collection-picker-title"><header><h2 id="collection-picker-title">Footage collection</h2><button id="collection-picker-close" class="icon-button" type="button" aria-label="Close collections"><svg class="icon"><use href="#i-close"/></svg></button></header><label class="sr-only" for="collection-picker-search">Search collections</label><input id="collection-picker-search" type="search" placeholder="Search collections" autocomplete="off" /><div id="collection-picker-options" class="workspace-options"></div></dialog>
+</body>
+</html>

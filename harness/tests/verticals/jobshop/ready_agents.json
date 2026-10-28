@@ -1,0 +1,17 @@
+[
+  {
+    "id": "late-job-watch",
+    "name": "Late job watch",
+    "description": "Tell the office when a job passes its promised date.",
+    "industry": "Job shops",
+    "use_case": "Delivery",
+    "mode": "scheduled",
+    "interval_seconds": 86400,
+    "frequency": "Daily",
+    "instructions": "Read the backlog each morning and list the jobs whose promised date has passed, each with its customer and its new estimate.",
+    "publisher": "Rocoto",
+    "kind": "dispatch_brief",
+    "skill_ids": ["backlog-intake"],
+    "required_connections": []
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "package": "d3",
+  "version": "7.9.0",
+  "registry": "https://registry.npmjs.org",
+  "archive_sha256": "7e36605710a2ba54846797c8c6d888911341b215ae53257dc32a49a0b824355e",
+  "integrity": "sha512-e1U46jVP+w7Iut8Jt8ri1YsPOvFpg46k+K8TpCb0P+zjCkjkPnV7WzfDJzMHy1LnA+wj5pLT1wjO901gLXeEhA==",
+  "files": [
+    {
+      "path": "d3-7.9.0/d3.min.js",
+      "sha256": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+      "size_bytes": 279706
+    },
+    {
+      "path": "d3-7.9.0/LICENSE",
+      "sha256": "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4",
+      "size_bytes": 731
+    }
+  ]
+}

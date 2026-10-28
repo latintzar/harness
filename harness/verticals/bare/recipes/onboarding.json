@@ -1,0 +1,54 @@
+[
+  {
+    "id": "onboarding",
+    "revision": "onboarding-1",
+    "title": "Workspace setup",
+    "job": "Bring a workspace from its current records to its agreed business setup.",
+    "instructions": "prompts/onboarding.md",
+    "launched_by": [
+      "organization"
+    ],
+    "steps": [
+      {
+        "id": "workspace",
+        "title": "Read the workspace",
+        "instructions": "Read the existing business profile, connections and capability readiness. Return a concise summary of facts and open setup items.",
+        "agent": "workspace_reader",
+        "tools": [
+          "get_business_profile",
+          "get_workspace_capabilities",
+          "list_connections"
+        ],
+        "after": [],
+        "done_when": "Existing workspace facts and readiness have been recorded with their source."
+      },
+      {
+        "id": "business",
+        "title": "Confirm the business",
+        "instructions": "Confirm the business role and required work with the person. Save the confirmed profile and cite the person or source for each change.",
+        "tools": [
+          "get_business_profile",
+          "update_business_profile"
+        ],
+        "after": [
+          "workspace"
+        ],
+        "done_when": "The person has confirmed the business profile and its intended work."
+      },
+      {
+        "id": "setup",
+        "title": "Connect the required work",
+        "instructions": "Use current capability readiness to help the person connect the systems their work requires. Record selected services, their verified state and the next authorized work.",
+        "tools": [
+          "get_workspace_capabilities",
+          "list_connections"
+        ],
+        "after": [
+          "business"
+        ],
+        "done_when": "The workspace has a verified setup record and an agreed next job."
+      }
+    ],
+    "done_when": "The person has confirmed the business, the setup record states actual readiness, and the next job is agreed."
+  }
+]

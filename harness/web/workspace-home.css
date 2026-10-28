@@ -1,0 +1,3 @@
+.workspace-home { max-width: 44rem; margin: auto; padding: clamp(1.25rem, 5vw, 4rem); }
+.workspace-home h1 { margin: 0 0 1rem; font: inherit; font-size: 2rem; font-weight: 600; }
+.workspace-home p { margin: 0 0 1.5rem; line-height: 1.6; }

@@ -1,0 +1,183 @@
+{
+  "schema": "rocoto.tracker-presentation-kit.v1",
+  "presentation": "rocoto.tracker-presentation.v1",
+  "about": "A presentation says how one tracker's published output is shown: one tile on Home and one canvas as its full view. It chooses from this kit and binds each block to a field of the output. The tile and the figure block read the output's own value, so both show the same number.",
+  "tile": {
+    "reads": "The output's value, state and needs. The label, the mark and the number format come from the presentation. The label and the unit are held to what a tile draws on one line beside its mark. A mark whose binding the output leaves unfilled rests on the tile, and the tracker's canvas says what it needs.",
+    "formats": {
+      "count": {
+        "reads": "A number, written with at most one decimal. The unit is the presentation's own word, or the one the output publishes when it is as short."
+      },
+      "money": {
+        "reads": "An amount in the location's currency."
+      },
+      "duration": {
+        "reads": "Seconds, written as seconds under a minute and as minutes and seconds from there."
+      },
+      "rate": {
+        "reads": "A percentage. A value above 1, or a value published with the unit %, is the percentage itself: 86.5 reads 86.5 %. Any other value from 0 to 1 is a ratio: 0.865 reads 86.5 %."
+      }
+    }
+  },
+  "families": {
+    "occurrences": {
+      "name": "Occurrences",
+      "needs": "Needs instances with a thumbnail.",
+      "requires": [
+        "instances"
+      ],
+      "allows": [
+        "figure",
+        "facts",
+        "summary",
+        "key_points",
+        "recommendation",
+        "bars",
+        "instances"
+      ],
+      "rail": "instances",
+      "default": [
+        {
+          "block": "figure"
+        },
+        {
+          "block": "facts"
+        },
+        {
+          "block": "summary",
+          "bind": {
+            "text": "summary"
+          }
+        },
+        {
+          "block": "instances",
+          "bind": {
+            "rows": "rows"
+          }
+        }
+      ]
+    },
+    "state": {
+      "name": "Shelves",
+      "needs": "Needs shelf states.",
+      "requires": [
+        "state_cards"
+      ],
+      "allows": [
+        "figure",
+        "state_counts",
+        "state_cards",
+        "summary",
+        "recommendation",
+        "instances"
+      ],
+      "rail": "instances",
+      "default": [
+        {
+          "block": "figure"
+        },
+        {
+          "block": "state_counts",
+          "bind": {
+            "shelves": "shelves"
+          }
+        },
+        {
+          "block": "state_cards",
+          "bind": {
+            "shelves": "shelves"
+          }
+        },
+        {
+          "block": "summary",
+          "bind": {
+            "text": "summary"
+          }
+        },
+        {
+          "block": "instances",
+          "bind": {
+            "rows": "rows"
+          }
+        }
+      ]
+    },
+    "ranking": {
+      "name": "Products",
+      "needs": "Needs events that name a product.",
+      "requires": [
+        "ranking"
+      ],
+      "allows": [
+        "figure",
+        "period",
+        "ranking",
+        "summary",
+        "recommendation",
+        "instances"
+      ],
+      "rail": "instances",
+      "default": [
+        {
+          "block": "figure"
+        },
+        {
+          "block": "period"
+        },
+        {
+          "block": "ranking",
+          "bind": {
+            "items": "products"
+          }
+        },
+        {
+          "block": "summary",
+          "bind": {
+            "text": "summary"
+          }
+        },
+        {
+          "block": "instances",
+          "bind": {
+            "rows": "rows"
+          }
+        }
+      ]
+    }
+  },
+  "blocks": {
+    "facts": {
+      "draws": "When the tracker last updated, how often it runs and what it watches.",
+      "needs": "Needs the tracker and its last update.",
+      "fields": {}
+    },
+    "state_counts": {
+      "draws": "How many shelves are empty, replenished and stocked.",
+      "needs": "Needs shelf states.",
+      "fields": {
+        "shelves": "shelves"
+      }
+    },
+    "state_cards": {
+      "draws": "One card for each shelf with its state and its times.",
+      "needs": "Needs shelf states.",
+      "fields": {
+        "shelves": "shelves"
+      }
+    },
+    "ranking": {
+      "draws": "Products in order, each with its count.",
+      "needs": "Needs products with a count each.",
+      "fields": {
+        "items": "ranked"
+      }
+    }
+  },
+  "shapes": {
+    "rows": "A list of {id, at, description}: label may stand for description; product, shelf and at_s are optional. The output's own rows fit, and they carry each row's picture: the host rebuilds them from its records. Of any other list the page reads these fields alone.",
+    "comments": "A list of {text}: at (or written_at) places it among the events; id and recommendation are optional. The text slots a tracker's agent writes fit.",
+    "shelves": "A list of {shelf, label, state}: state is empty, replenished or stocked; empty_since and replenished_at are optional ISO times.",
+    "ranked": "A list of {product, value}: picked, returned and bought are optional.",
+    "readings": "The same output over the week, the month and the year, as the tracker's passes store them."
+  }
+}

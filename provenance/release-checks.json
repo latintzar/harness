@@ -1,0 +1,113 @@
+{
+  "date_utc": "2026-10-28",
+  "python": "3.12.3",
+  "fresh_shared_install": true,
+  "environment": "New isolated virtual environment installed from exact shared requirements; NumPy added separately for optional retail contract checks. Torch/Transformers/model weights not installed for this proof.",
+  "provider_model_gpu_calls": 0,
+  "bare_build": {
+    "command": "python harness/deploy/build_preview.py --vertical bare",
+    "selected_files": 280,
+    "git_history_required": false,
+    "status": "passed"
+  },
+  "suites": [
+    {
+      "name": "lean source/protocol/public setup",
+      "command": "ROCOTO_VERTICAL=bare python -m pytest -q harness/tests/test_layout.py harness/tests/test_vertical_loading.py harness/tests/test_bare_deployment.py harness/tests/test_public_release.py harness/tests/test_managed_codex.py harness/tests/test_managed_spend.py harness/tests/test_managed_sessions.py harness/tests/test_managed_turn.py harness/tests/test_managed_files.py",
+      "passed": 109,
+      "failed": 0
+    },
+    {
+      "name": "funding/allowance/renewal",
+      "command": "ROCOTO_VERTICAL=retail python -m pytest -q harness/tests/test_company_usage.py harness/tests/test_native_agent_allowance.py harness/tests/test_operator_budget_renewal.py",
+      "passed": 60,
+      "failed": 0
+    },
+    {
+      "name": "broader original layout/pack/retail HTTP contracts",
+      "command": "python -m pytest -q harness/tests/test_layout.py harness/tests/test_pack.py harness/tests/test_vertical_loading.py harness/tests/test_bare_deployment.py harness/tests/test_server_access.py harness/tests/test_retail_settings.py harness/tests/test_vertical_compatibility.py",
+      "passed": 188,
+      "failed": 2,
+      "skipped": 1,
+      "skip_reason": "Existing Git-index comparison test skips because this clean export intentionally has no .git checkout."
+    }
+  ],
+  "inherited_failures": [
+    {
+      "test": "harness/tests/test_pack.py::test_the_developer_prompt_in_agent_bridge_and_the_template_file_hold_the_same_text",
+      "observed": "Managed policy adds stock-child MCP guidance beyond the exact assembled prompt expected by the original assertion. Test retained unchanged.",
+      "source_evidence": "The original extraction recorded the same failure on the original checkout on2026-10-24."
+    },
+    {
+      "test": "harness/tests/test_server_access.py::test_subagent_is_readable_but_only_parent_can_control_it",
+      "observed": "Synthetic child-chat read expects200 and receives404. Test retained unchanged.",
+      "source_evidence": "The original extraction recorded the same failure on the original checkout on2026-10-24."
+    }
+  ],
+  "local_startup": "Actual loopback Uvicorn process, static resources and owner login passed with an outbound-socket guard; see local-startup.json.",
+  "public_adaptations": [
+    "Reviewed inventory fallback for packaging an archive without Git",
+    "Project/dependency licence notices included in built artifacts",
+    "Configurable host-only operator identity instead of a company-specific default",
+    "Host-only local allowance helper uses existing immutable funding/authorization interfaces",
+    "Bare public identity, portable environment example and source documentation",
+    "Owner deployment-target assertion replaced by public artifact/identity test; two inherited failures retained",
+    "Original generated artwork provenance keeps source hashes without machine-local paths",
+    "Restore three dated technical target designs with current-implementation links and explicit historical status",
+    "Reconcile omitted operating-record links through an explicit private-original source-path index",
+    "Add hierarchical public guides, a source-backed provider/tool/approval flow, setup skill and pinned read-only offline CI"
+  ],
+  "verification_limits": [
+    "No live managed OpenAI turn or public MCP callback performed for this candidate",
+    "No new provider keys or real funds commissioned by preparing the source",
+    "Retail model/GPU/source-camera and optional custom-executor deployments untested",
+    "Full original suite includes omitted historical deployment receipts and separate manufacturer/Orders source requirements",
+    "Current source beta retains the two named inherited test failures"
+  ],
+  "python_syntax": {
+    "files": 622,
+    "status": "passed",
+    "method": "ast.parse without imports"
+  },
+  "documentation_review": {
+    "scope": "Documentation, CI, setup skill and provenance only",
+    "lean_suite": {
+      "passed": 109,
+      "failed": 0,
+      "duration_seconds": 6.41,
+      "python": "3.12.3"
+    },
+    "markdown_local_paths": {
+      "status": "passed",
+      "checked_local_links": 283,
+      "broken": 0
+    },
+    "markdown_heading_anchors": {
+      "status": "passed",
+      "broken": 0
+    },
+    "setup_skill": "skill-creator quick_validate.py passed",
+    "asset_notices": "Reviewed retained vendored notices, Fraunces OFL, generated-art hashes/prompts and Monet attribution; original assets unchanged",
+    "fresh_git_context": {
+      "status": "passed",
+      "candidate_has_git": false,
+      "temporary_copy_tracked_files": 942,
+      "git_index_contract_passed": 1,
+      "lean_passed": 109,
+      "lean_failed": 0,
+      "lean_duration_seconds": 6.72
+    },
+    "bare_packaging": {
+      "status": "passed",
+      "selected_files": 280,
+      "location": "separate temporary Git copy"
+    },
+    "provider_model_gpu_calls": 0,
+    "ci_validation": "YAML parsed; exact read-only permissions, pinned action revisions and Python3.12 checked; test-file command matches README",
+    "asset_provenance": {
+      "hashed_files_verified": 79,
+      "status": "passed",
+      "note": "Vendored rich-content, D3 and MediaPipe manifest files plus generated-art and Monet provenance match actual retained bytes. Clarified the intentionally bundled MediaPipe browser model in DEPENDENCIES.md."
+    }
+  }
+}

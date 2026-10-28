@@ -1,0 +1,13 @@
+.wake-controls { width: min(32rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); margin: auto; padding: 1.25rem; border: 1px solid var(--border); border-radius: var(--radius-lg); color: var(--ink); background: var(--surface); overflow-y: auto; }
+.wake-controls::backdrop { background: color-mix(in srgb, var(--ink) 35%, transparent); }
+.wake-controls > header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.wake-controls h2, .wake-controls h3 { margin: 0; }
+.wake-controls h2 { font-size: 1.25rem; }
+.wake-controls h3 { font-size: 1rem; }
+.wake-controls-body { display: grid; gap: 1rem; }
+.wake-source { display: grid; min-width: 0; gap: .65rem; padding-block: .75rem; border-block-end: 1px solid var(--border); }
+.wake-source-meta, .wake-controls-status { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.5; }
+.wake-controls-status { margin-block-start: 1rem; }
+.wake-source-address { display: block; min-width: 0; overflow-wrap: anywhere; font-size: .8125rem; }
+.wake-secret-label { display: grid; min-width: 0; gap: .375rem; font-size: .875rem; }
+.wake-secret { box-sizing: border-box; width: 100%; min-width: 0; padding: .625rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); font: .875rem monospace; }

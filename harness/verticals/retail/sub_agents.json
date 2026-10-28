@@ -1,0 +1,21 @@
+[
+  {
+    "id": "workspace_reader",
+    "title": "Workspace reader",
+    "job": "Read the current workspace before setup or a change.",
+    "instructions": "prompts/workspace-reader.md",
+    "launched_by": [
+      "organization"
+    ],
+    "tools": [
+      "get_business_profile",
+      "get_workspace_capabilities",
+      "list_connections"
+    ],
+    "model": "gpt-6-astra",
+    "effort": "low",
+    "limit_cents": 20,
+    "timeout_seconds": 180,
+    "per_turn": 1
+  }
+]

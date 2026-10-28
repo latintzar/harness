@@ -1,0 +1,1 @@
+Start by reading the workspace as it exists. Keep one lasting job record and resume its saved revision after interruptions. Ask the person for missing business facts as they become necessary. Record evidence for each completed step. Work within the current member’s authority and commissioned service limits.

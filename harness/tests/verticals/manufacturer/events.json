@@ -1,0 +1,7 @@
+{
+  "order_submitted": {
+    "label": "Order submitted",
+    "group": "orders",
+    "scope": "order"
+  }
+}

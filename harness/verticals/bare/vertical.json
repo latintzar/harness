@@ -1,0 +1,58 @@
+{
+  "schema": "rocoto.vertical.v1",
+  "id": "bare",
+  "revision": "bare-1",
+  "product": {
+    "name": "Agent workspace",
+    "capability_name": "Agent workspace",
+    "summary": "An Organization agent and shared tools for your workspace.",
+    "business": "General workspaces"
+  },
+  "prompts": {
+    "system": "prompts/system.md",
+    "fixed_chat_common": null
+  },
+  "fixed_chats": [
+    {
+      "purpose": "organization",
+      "title": "Organization",
+      "icon": "building",
+      "job": "Know the workspace, organize its work and keep its records current.",
+      "prompt": "prompts/organization.md"
+    }
+  ],
+  "agent_classes": [
+    {
+      "kind": "action",
+      "authority": "granted_effects",
+      "default": true,
+      "label": "Agent",
+      "plural": "Agents",
+      "icon": "skill",
+      "create_label": "New agent",
+      "empty_label": "Your agents appear here.",
+      "starter_prompt": "Help me create an agent. Define its job, inputs, schedule, tools and limits.",
+      "input_kinds": [
+        "none"
+      ]
+    }
+  ],
+  "event_vocabulary": null,
+  "skills": null,
+  "tool_families": [],
+  "surfaces": [],
+  "connections_expected": [],
+  "data_sources": [],
+  "flow": [],
+  "demo": null,
+  "builtin_capabilities": {
+    "whatsapp": true,
+    "viber": true,
+    "email": true,
+    "voice": true
+  },
+  "recipes": "recipes/onboarding.json",
+  "sub_agents": "sub_agents.json",
+  "tile_sets": [],
+  "ready_agents": []
+}

@@ -1,0 +1,166 @@
+[
+  {
+    "id": "home_numbers",
+    "title": "The numbers on Home",
+    "state": "real",
+    "works": "Nine processor scripts compute them from committed events and publish one tile and one canvas each. The tracker service recomputes a location by itself.",
+    "for_show": "On the demo company the inputs are the demo data in the next row.",
+    "where": [
+      "core_trackers/",
+      "tracker_runner.py"
+    ]
+  },
+  {
+    "id": "demo_data",
+    "title": "The demo company's data",
+    "state": "partial",
+    "works": "Ten Cosmos events from five preserved recordings, admitted through stream ingestion.",
+    "missing": "Eighteen preserved answers lack tracker output; they are counted and skipped.",
+    "for_show": "A generated 30-day history in Cosmos's output shape, marked generated_history in every record. Most of what Home shows for the demo company comes from it.",
+    "where": [
+      "records/2026-10-11-consolidation/DEMO-SEED.md",
+      "retail_demo_history.py",
+      "records/2026-10-delivery-ledger.md"
+    ]
+  },
+  {
+    "id": "live_camera_viewing",
+    "title": "Live camera viewing",
+    "state": "planned",
+    "for_show": "The Cameras page has a Streams tab with Add camera and a line about live previews. A scheduled or ongoing agent that waits for its input shows a Connect cameras button beside its notice. The player shows sealed recordings, and the service reports live input as off for every collection. A camera probe, a decode and a live worker are planned.",
+    "where": [
+      "web/camera-streams.js",
+      "web/app.js",
+      "workspace_capabilities.py"
+    ]
+  },
+  {
+    "id": "product_names_and_prices",
+    "title": "Product names and prices",
+    "state": "partial",
+    "works": "Catalog import from a file or from shelf photos, through tools and routes.",
+    "missing": "Until a till or a catalog file is connected, product types come from model descriptions, and a finder that a person runs by hand returns names and prices marked estimated, each with its source link.",
+    "for_show": "The demo's product list is that hand-run result.",
+    "where": [
+      "catalog_setup_tools.py",
+      "catalog_setup_routes.py",
+      "catalog_finder.py"
+    ]
+  },
+  {
+    "id": "sales_and_conversion",
+    "title": "Sales and conversion",
+    "state": "partial",
+    "missing": "Both are estimates from baskets and catalog prices, marked estimated. The writer of till sales is called by tests alone. A POS connector is planned.",
+    "for_show": "The Sales and Conversion tiles on the demo.",
+    "where": [
+      "core_trackers/sales.py",
+      "core_trackers/conversion.py",
+      "retail_records.py"
+    ]
+  },
+  {
+    "id": "queue_and_shelf_trackers",
+    "title": "Queue and shelf trackers",
+    "state": "partial",
+    "works": "The Queue time and Empty shelves processors compute from queue intervals and shelf states.",
+    "missing": "They need a queue zone, shelf zones and their event types from a camera, and live camera input is planned.",
+    "for_show": "Their demo values come from the generated history.",
+    "where": [
+      "core_trackers/queue_time.py",
+      "core_trackers/empty_shelves.py",
+      "retail_demo_history.py"
+    ]
+  },
+  {
+    "id": "tracker_runner",
+    "title": "Trackers that run by themselves",
+    "state": "real",
+    "works": "The tracker service recomputes a location when its observations change, when its local day turns and when someone asks: one pass per location at a time, free of model calls. Tools read and manage trackers, their schedule and their runs.",
+    "where": [
+      "tracker_runner.py",
+      "monitoring_tools.py"
+    ]
+  },
+  {
+    "id": "tracker_scripts",
+    "title": "Tracker scripts the harness writes",
+    "state": "partial",
+    "works": "An agent saves a Python script for a company tracker as a numbered revision, tests it in the sandbox over the location's present data and publishes a revision that passed. The tracker service runs each published script as one sandbox job per pass, checks its output and publishes it through the one writer of tracker outputs. The agent sets whether an output waits for approval and which runs wake it. A staging proof ran 2,000 synthetic events across four periods in the real gVisor sandbox in 1.070 seconds, with confirmed cleanup and zero model or provider calls. Runs on new events are enabled; the first landing receipt records the published switch.",
+    "missing": "Connector data as script input and script records on PostgreSQL are open.",
+    "where": [
+      "tracker_scripts.py",
+      "tracker_runner.py",
+      "records/2026-10-11-consolidation/CUSTOM-ADAPTERS.md",
+      "deploy/native-executor/TRACKER-SCRIPT-PROOF-2026-10-11.json"
+    ]
+  },
+  {
+    "id": "tracker_views",
+    "title": "Tile and canvas views the harness saves",
+    "state": "partial",
+    "works": "Every tracker publishes one tile and one canvas in a fixed shape that Home draws. An agent saves how one of the company's own trackers is shown, its tile and its canvas, from a fixed kit of marks, number formats, canvas families and blocks, each bound to a field of the tracker's output, and reads the kit with the fields that output holds. A person changes the canvas from its control through the same save.",
+    "missing": "Core Trackers keep the presentation of their recipe. A Tracking Agent ahead of its tracker's first output is drawn in the browser from its committed events.",
+    "where": [
+      "tracker_presentation.py",
+      "core_trackers/presentation.py",
+      "core_trackers/presentation_kit.json"
+    ]
+  },
+  {
+    "id": "onboarding_conversations",
+    "title": "Onboarding conversations",
+    "state": "partial",
+    "works": "The Organization and Cameras chats are persistent, shared and resumable, with standing instructions on every turn and structured questions. Their tools save the business profile, the map, the cover, the catalog, observation profiles and camera context drafts, and install the Core Trackers.",
+    "missing": "The Cameras conversation ends in saved drafts and credentials. A connection probe, a decode and a live worker are planned.",
+    "where": [
+      "organization_chats.py",
+      "intake_instructions.py",
+      "native_questions.py"
+    ]
+  },
+  {
+    "adds_to": "ready_made_agents",
+    "works": "Retail offers three on committed observations: Queue watch, Empty shelf watch and Shop summary.",
+    "missing": "The phone alerts of Queue watch and Empty shelf watch wait for live phone delivery. The host then alerts each participant for every committed event the agent follows, so both need event types and a phone policy chosen for that fan-out before live sends start.",
+    "for_show": "The fifteen retired ready-made agents remain available when reading existing saved conversations.",
+    "where": [
+      "packs/retail/ready_agents.json"
+    ],
+    "state": "partial"
+  },
+  {
+    "adds_to": "action_agents",
+    "title": "Action Agents",
+    "for_show": "The starter prompt offers an approved message to other people or a business operation.",
+    "where": []
+  },
+  {
+    "adds_to": "scheduled_work",
+    "works": "A location's tracker passes run on new observations, at a daily time in the location's clock and on request.",
+    "where": [
+      "tracker_runner.py"
+    ]
+  },
+  {
+    "adds_to": "data_sources",
+    "missing": "Skills for observations and for trackers are planned. The catalog, business and camera sources report unknown until their tools join the family registry.",
+    "where": [
+      "packs/retail/vertical.json"
+    ]
+  },
+  {
+    "adds_to": "skills",
+    "state": "partial",
+    "works": "Four of retail's thirteen seeds are usable.",
+    "missing": "Nine seeds wait: five need tools of the retired archive search and four need provider readers that are planned.",
+    "where": [
+      "packs/retail/skills.json"
+    ]
+  },
+  {
+    "adds_to": "postgresql",
+    "missing": "The player and its snapshots read PostgreSQL in maintained mode; Home and trackers stay in the file stores.",
+    "where": []
+  }
+]

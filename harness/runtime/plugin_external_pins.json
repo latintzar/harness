@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "packages": [
+    {
+      "repository": "CrowdStrike/foundry-skills",
+      "revision": "d8c29cec480823b71a8b1ede708abd85026591cf",
+      "archive_sha256": "91304527826cc6fff23c984cbb2b9fda134a25a2fdc7f7158f81916b0dd666df",
+      "archive_bytes": 1779501,
+      "id": "crowdstrike-falcon-foundry",
+      "subtree": "",
+      "license_path": "LICENSE"
+    },
+    {
+      "repository": "CrowdStrike/fusion-skills",
+      "revision": "35ff4e8252c4a68002640399c346a84e64f1ef5d",
+      "archive_sha256": "3447f9fe1c4a338d5066feb552f90f2429696337cad7db706efa365bd9f8d020",
+      "archive_bytes": 575718,
+      "id": "crowdstrike-falcon-fusion",
+      "subtree": "",
+      "license_path": "LICENSE"
+    },
+    {
+      "repository": "qodo-ai/qodo-skills",
+      "revision": "7f619ec0d497be20be6934e10fc63ac5f7a45463",
+      "archive_sha256": "f5efb0cacba407248f79141fa26d819ac8fbbdebbbfc6e95ff8ff3d6fdd28574",
+      "archive_bytes": 3933968,
+      "id": "qodo",
+      "subtree": "codex-packages/qodo",
+      "license_path": "LICENSE"
+    }
+  ]
+}

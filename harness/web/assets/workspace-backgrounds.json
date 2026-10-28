@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-05",
+  "generator": "Codex built-in image_gen",
+  "purpose": "Decorative full-area New Chat and New Search artwork",
+  "provenance": "Original generated Monet-inspired illustrations; not actual customer premises or footage",
+  "assets": [
+    {
+      "name": "chat-dreamscape.png",
+      "prompt": "Use case: stylized-concept. Asset type: full-viewport decorative background for the empty New Chat screen of Rocoto, a light business workspace. Generate a wide landscape 16:9 image, an original Monet-inspired impressionist painting, dreamlike morning light over a distant garden and small business courtyard. Delicate oil-brush texture, pale ivory, misty sage, lavender and soft sky blue with tiny warm peach highlights. The scene should be extremely airy and understated, brightest and almost ivory in the central 55 percent where dark text and a white chat composer will sit. Brushwork and subtle landscape details flow continuously toward the edges, a full immersive painting rather than a bounded panel. No text, labels, UI, icons, people, watermark, logos or border. This is decorative art, not a depiction of any actual customer's property.",
+      "sha256": "652efa842623db6b33e4229320c4181e14769b9c500550786e0695479ca82c4f",
+      "size_bytes": 2489391
+    },
+    {
+      "name": "search-dreamscape.png",
+      "prompt": "Use case: stylized-concept. Asset type: full-viewport decorative background for the empty Search screen of Rocoto, a light business workspace. Create an original Monet-inspired impressionist dream sequence in wide landscape 16:9. A very pale, spacious garden of rectangular light and reflections: distant windows, soft architectural frames, glass panes and pools form an understated loose grid, suggesting many moments ready to be explored. The grid belongs naturally to the painted environment, not a literal user interface. Loose delicate oil-brush marks, misty ivory, sage, lavender and sky blue with tiny peach highlights. The central 55 percent is extremely light and quiet for dark text and a white search field. More painted grid detail toward edges, scene flows over the whole canvas. Subtle depth, soft daylight, calm and sophisticated. No words, numbers, symbols, logos, UI cards, people, border or watermark. Decorative art, not actual footage or a real customer's site.",
+      "sha256": "589a35d2d07cd6b26138bd9d34fae8076c976c74355a5cd85e7d7794fd92b2fb",
+      "size_bytes": 2436914
+    }
+  ]
+}

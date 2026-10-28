@@ -1,0 +1,576 @@
+{
+  "business_type": "retail",
+  "revision": "retail-core-v1",
+  "playbook": "retail-v1",
+  "layers": {
+    "tracker": "The observed event stream of one kind for a location, per camera.",
+    "processor": "The script that reads the stream with the catalog and sales, passes it through or computes, and writes one output revision. A Tracking Agent processor may wake its agent for a new summary edition; a Core Tracker computes its own.",
+    "canvas": "The full view data of that revision.",
+    "tile": "The compact summary of the same revision."
+  },
+  "trackers": [
+    {
+      "key": "visitors",
+      "label": "Visitors",
+      "interest": "visitors",
+      "tracker": {
+        "observes": "People seen by the location cameras, one session per tracked person.",
+        "stream": "tracked_visits",
+        "event_types": []
+      },
+      "processor": {
+        "script": "core_trackers.visitors",
+        "reads": [
+          "tracked_visits",
+          "events"
+        ],
+        "summary": "script"
+      },
+      "canvas": {
+        "family": "metric_history"
+      },
+      "tile": {
+        "family": "metric",
+        "unit": "visitors"
+      },
+      "requires": [
+        "camera",
+        "person_tracking"
+      ]
+    },
+    {
+      "key": "product_interactions",
+      "label": "Product interactions",
+      "interest": "products",
+      "tracker": {
+        "observes": "Every time a visitor handles or examines a product.",
+        "stream": "events",
+        "event_types": [
+          "pick_up",
+          "pickup",
+          "picked_up_item",
+          "touch",
+          "touch_product",
+          "put_back",
+          "put_back_item",
+          "put_down",
+          "place_in_basket",
+          "examine_object",
+          "examine_item",
+          "inspect_product",
+          "rotate_item",
+          "hand_over",
+          "carry",
+          "drop_item",
+          "conceal_item",
+          "remove_packaging",
+          "exit_with_item",
+          "place_elsewhere"
+        ]
+      },
+      "processor": {
+        "script": "core_trackers.product_interactions",
+        "reads": [
+          "events",
+          "observed_items",
+          "catalog"
+        ],
+        "summary": "script"
+      },
+      "canvas": {
+        "family": "ranking_product"
+      },
+      "tile": {
+        "family": "metric",
+        "unit": "interactions"
+      },
+      "requires": [
+        "camera",
+        "person_tracking"
+      ]
+    },
+    {
+      "key": "picked_up",
+      "label": "Picked up",
+      "interest": "products",
+      "tracker": {
+        "observes": "Products a visitor takes from a shelf.",
+        "stream": "events",
+        "event_types": [
+          "pick_up",
+          "pickup",
+          "picked_up_item"
+        ]
+      },
+      "processor": {
+        "script": "core_trackers.picked_up",
+        "reads": [
+          "events",
+          "observed_items",
+          "catalog"
+        ],
+        "summary": "script"
+      },
+      "canvas": {
+        "family": "occurrences"
+      },
+      "tile": {
+        "family": "metric",
+        "unit": "items"
+      },
+      "requires": [
+        "camera",
+        "person_tracking"
+      ]
+    },
+    {
+      "key": "put_back",
+      "label": "Put back",
+      "interest": "products",
+      "tracker": {
+        "observes": "Products a visitor returns to a shelf.",
+        "stream": "events",
+        "event_types": [
+          "put_back",
+          "put_back_item"
+        ]
+      },
+      "processor": {
+        "script": "core_trackers.put_back",
+        "reads": [
+          "events",
+          "observed_items",
+          "catalog"
+        ],
+        "summary": "script"
+      },
+      "canvas": {
+        "family": "occurrences"
+      },
+      "tile": {
+        "family": "metric",
+        "unit": "items"
+      },
+      "requires": [
+        "camera",
+        "person_tracking"
+      ]
+    },
+    {
+      "key": "basket",
+      "label": "Basket",
+      "interest": "products",
+      "tracker": {
+        "observes": "What each visitor holds over time, valued with catalog prices.",
+        "stream": "events",
+        "event_types": [
+          "pick_up",
+          "pickup",
+          "picked_up_item",
+          "carry",
+          "place_in_basket",
+          "put_back",
+          "put_back_item",
+          "put_down",
+          "place_elsewhere",
+          "drop_item",
+          "hand_over"
+        ]
+      },
+      "processor": {
+        "script": "core_trackers.basket",
+        "reads": [
+          "baskets",
+          "catalog"
+        ],
+        "summary": "script"
+      },
+      "canvas": {
+        "family": "metric_history"
+      },
+      "tile": {
+        "family": "metric",
+        "unit": "items"
+      },
+      "requires": [
+        "camera",
+        "person_tracking"
+      ]
+    },
+    {
+      "key": "queue_time",
+      "label": "Queue time",
+      "interest": "queues",
+      "tracker": {
+        "observes": "How long visitors wait from joining the queue to reaching the till.",
+        "stream": "events",
+        "event_types": [
+          "entered_queue",
+          "reached_checkout",
+          "left_queue",
+          "queue_exit"
+        ]
+      },
+      "processor": {
+        "script": "core_trackers.queue_time",
+        "reads": [
+          "queue_intervals"
+        ],
+        "summary": "script"
+      },
+      "canvas": {
+        "family": "metric_history"
+      },
+      "tile": {
+        "family": "metric",
+        "unit": "s"
+      },
+      "requires": [
+        "camera",
+        "person_tracking",
+        "queue_zone"
+      ]
+    },
+    {
+      "key": "empty_shelves",
+      "label": "Empty shelves",
+      "interest": "stock",
+      "tracker": {
+        "observes": "Shelves seen empty and when they are replenished.",
+        "stream": "events",
+        "event_types": [
+          "display_empty",
+          "out_of_stock",
+          "stock_out",
+          "restocked"
+        ]
+      },
+      "processor": {
+        "script": "core_trackers.empty_shelves",
+        "reads": [
+          "shelf_states"
+        ],
+        "summary": "script"
+      },
+      "canvas": {
+        "family": "state_replenishment"
+      },
+      "tile": {
+        "family": "state",
+        "unit": "shelves"
+      },
+      "requires": [
+        "camera",
+        "shelf_zone"
+      ]
+    },
+    {
+      "key": "sales",
+      "label": "Sales",
+      "interest": "payment_actions",
+      "tracker": {
+        "observes": "Transactions and their lines, from the till or estimated from baskets.",
+        "stream": "sales",
+        "event_types": []
+      },
+      "processor": {
+        "script": "core_trackers.sales",
+        "reads": [
+          "sales",
+          "catalog"
+        ],
+        "summary": "script"
+      },
+      "canvas": {
+        "family": "metric_history"
+      },
+      "tile": {
+        "family": "metric",
+        "unit": ""
+      },
+      "requires": [
+        "sales"
+      ]
+    },
+    {
+      "key": "conversion",
+      "label": "Conversion",
+      "interest": "visitors",
+      "tracker": {
+        "observes": "The share of visitors who buy.",
+        "stream": "sales",
+        "event_types": []
+      },
+      "processor": {
+        "script": "core_trackers.conversion",
+        "reads": [
+          "tracked_visits",
+          "sales"
+        ],
+        "summary": "script"
+      },
+      "canvas": {
+        "family": "metric_history"
+      },
+      "tile": {
+        "family": "metric",
+        "unit": "%"
+      },
+      "requires": [
+        "camera",
+        "person_tracking",
+        "sales"
+      ]
+    }
+  ],
+  "needs": {
+    "camera": "Needs a camera",
+    "person_tracking": "Needs person tracking",
+    "queue_zone": "Needs queue zone",
+    "shelf_zone": "Needs shelf zones",
+    "sales": "Needs till data",
+    "catalog_prices": "Needs catalog prices"
+  },
+  "vocabulary": {
+    "bend_down": {
+      "label": "Bend down",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "browse_display": {
+      "label": "Browse display",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "carry": {
+      "label": "Carry item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "cash_handover": {
+      "label": "Hand over cash",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "conceal_item": {
+      "label": "Conceal item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "dirty_table_occupied": {
+      "label": "Occupied dirty table",
+      "group": "service_maintenance",
+      "scope": "scene"
+    },
+    "display_empty": {
+      "label": "Empty display",
+      "group": "service_maintenance",
+      "scope": "scene"
+    },
+    "display_item_added": {
+      "label": "Item added to display",
+      "group": "service_maintenance",
+      "scope": "scene"
+    },
+    "display_item_removed": {
+      "label": "Item removed from display",
+      "group": "service_maintenance",
+      "scope": "scene"
+    },
+    "drop_item": {
+      "label": "Drop item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "enter_view": {
+      "label": "Enter view",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "entered_queue": {
+      "label": "Join queue",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "examine_item": {
+      "label": "Examine item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "examine_object": {
+      "label": "Examine item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "exit_with_item": {
+      "label": "Leave with item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "hand_over": {
+      "label": "Hand over item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "handed_cash": {
+      "label": "Hand over cash",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "inspect_item": {
+      "label": "Inspect product",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "inspect_product": {
+      "label": "Inspect product",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "leave_view": {
+      "label": "Leave view",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "left_checkout": {
+      "label": "Leave checkout",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "left_queue": {
+      "label": "Leave queue",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "look_at_display": {
+      "label": "Look at display",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "observe_area": {
+      "label": "Look at area",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "out_of_stock": {
+      "label": "Empty display",
+      "group": "service_maintenance",
+      "scope": "scene"
+    },
+    "pick_up": {
+      "label": "Pick up item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "picked_up_item": {
+      "label": "Pick up item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "pickup": {
+      "label": "Pick up item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "place_elsewhere": {
+      "label": "Place item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "place_in_basket": {
+      "label": "Place in basket",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "presented_card": {
+      "label": "Present card",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "product_misplaced": {
+      "label": "Misplaced product",
+      "group": "service_maintenance",
+      "scope": "scene"
+    },
+    "put_back": {
+      "label": "Put back item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "put_back_item": {
+      "label": "Put back item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "put_down": {
+      "label": "Put down item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "queue_exit": {
+      "label": "Leave queue",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "reach_toward": {
+      "label": "Reach toward item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "reached_checkout": {
+      "label": "Reach checkout",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "remove_packaging": {
+      "label": "Remove packaging",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "restocked": {
+      "label": "Display restocked",
+      "group": "service_maintenance",
+      "scope": "scene"
+    },
+    "rotate_item": {
+      "label": "Turn item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "sit_down": {
+      "label": "Sit down",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "stand_up": {
+      "label": "Stand up",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "stock_out": {
+      "label": "Empty display",
+      "group": "service_maintenance",
+      "scope": "scene"
+    },
+    "table_cleaned": {
+      "label": "Table cleaned",
+      "group": "service_maintenance",
+      "scope": "scene"
+    },
+    "table_dirty": {
+      "label": "Dirty table",
+      "group": "service_maintenance",
+      "scope": "scene"
+    },
+    "touch": {
+      "label": "Touch item",
+      "group": "shopper_journey",
+      "scope": "person"
+    },
+    "touch_product": {
+      "label": "Touch item",
+      "group": "shopper_journey",
+      "scope": "person"
+    }
+  }
+}

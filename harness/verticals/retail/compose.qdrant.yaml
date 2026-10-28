@@ -1,0 +1,27 @@
+name: rocoto-video-qdrant
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.19.1@sha256:12364fe851b9f17356fc88189fc06d1b521262e04659ec7345975b00c9246a10
+    container_name: rocoto-video-qdrant
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8769:6333"
+    volumes:
+      - rocoto-video-qdrant-storage:/qdrant/storage
+    environment:
+      QDRANT__TELEMETRY_DISABLED: "true"
+      QDRANT__SERVICE__ENABLE_CORS: "false"
+      QDRANT__SERVICE__MAX_REQUEST_SIZE_MB: "16"
+      QDRANT__STORAGE__PERFORMANCE__MAX_SEARCH_THREADS: "2"
+    mem_limit: 1g
+    cpus: 2
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "2"
+volumes:
+  rocoto-video-qdrant-storage:
+    name: rocoto-video-qdrant-storage
