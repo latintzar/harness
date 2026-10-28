@@ -351,10 +351,11 @@
     const spoken = (message) => message.role === 'user' && (String(message.text || message.content || '').trim() || message.attachments?.length || workspaceExtension.hasMessageContent?.(message));
     for (const part of harness.sections) {
       if (part.type === 'fixed') {
-        if (!session?.can_query) continue;
+        if (!session?.can_query && !observing()) continue;
         const contents = section(part.key);
         for (const fixed of harness.fixed_chats) {
           const chat = shown.find((item) => item.kind === 'organization_chat' && item.organization_purpose === fixed.purpose && item.dataset === currentCollection()) || null;
+          if (observing() && !chat) continue;
           row(contents, { key: `organization:${fixed.purpose}`, symbol: harnessIcon(fixed.icon, 'chat'), title: fixed.title, chat, open: () => chat ? chooseChat(chat) : openOrganizationChat(fixed.purpose) }).dataset.fixed = 'true';
         }
       } else if (part.type === 'agent_class') {
@@ -865,12 +866,12 @@
   async function loadObservers() { const generation=sessionGeneration;teamLoading=true;teamError='';if(['team','messaging'].includes(currentView))renderWorkspaceSettings();try{const response=await fetch('/api/observers');if(!response.ok)throw new Error();const data=await response.json();if(generation!==sessionGeneration)return;observers=Array.isArray(data.principals)?data.principals:[];renderObserver();}catch{if(generation===sessionGeneration)teamError='The team directory is reconnecting. Try again.';}finally{if(generation===sessionGeneration){teamLoading=false;if(['team','messaging'].includes(currentView))renderWorkspaceSettings();}} }
   function renderObserver() {
     renderFounder();
-    const select = $('observer-select'); $('observer-control').hidden = session?.role !== 'owner'; select.replaceChildren(); const self = node('option', '', 'Your workspace'); self.value = ''; select.append(self);
+    const select = $('observer-select'); $('observer-control').hidden = session?.role !== 'owner' || session?.host_read_only === true; $('end-observation').hidden = session?.host_read_only === true; select.replaceChildren(); const self = node('option', '', 'Your workspace'); self.value = ''; select.append(self);
     for (const person of observers) for (const environment of person.environments || []) { if (person.id === session?.principal?.id) continue; const option = node('option', '', `${person.display_name} · ${environment.name}`); option.value = JSON.stringify([environment.id, person.id]); select.append(option); }
     select.value = observing() ? JSON.stringify([session.viewing_as.environment.id, session.viewing_as.principal.id]) : ''; $('viewing-banner').hidden = !observing(); $('viewing-label').textContent = observing() ? `Viewing ${session.viewing_as.principal.display_name} · ${session.viewing_as.environment.name} · Read only` : '';
   }
   async function changeObserver() { const value = $('observer-select').value; if (!value) { await endObservation(); return; } const [environment_id, principal_id] = JSON.parse(value); try { await request('/api/observer', { environment_id, principal_id }); currentView = 'chat'; history.replaceState({}, '', '/'); await loadSession(); render(); } catch (error) { notice(error.message); renderObserver(); } }
-  async function endObservation() { try { const response = await fetch('/api/observer', { method: 'DELETE', headers: { 'X-Rocoto-Page': '1' } }); if (!response.ok) throw new Error('Return to your workspace to continue.'); currentView = 'chat'; history.replaceState({}, '', '/'); await loadSession(); render(); } catch (error) { notice(error.message); } }
+  async function endObservation() { if(session?.host_read_only)return;try { const response = await fetch('/api/observer', { method: 'DELETE', headers: { 'X-Rocoto-Page': '1' } }); if (!response.ok) throw new Error('Return to your workspace to continue.'); currentView = 'chat'; history.replaceState({}, '', '/'); await loadSession(); render(); } catch (error) { notice(error.message); } }
   function setProfileMenu(open) { $('profile-menu').hidden = !open; $('account-button').setAttribute('aria-expanded', String(open)); if (open) { setRailChats(false); $('profile-menu-name').textContent = session?.principal?.display_name || session?.operator?.name || session?.environment?.name || 'Account'; } }
   function showArchives() { currentView = 'archives'; setProfileMenu(false); setSidebar(false); history.replaceState({}, '', '/?settings=archives'); render(); }
   function renderArchives() { const list = $('archives-list'); list.replaceChildren(); const archived = visibleChats().filter((chat) => chat.archived); if (!archived.length) list.append(workspaceEmpty('archive','Archived chats','Archived conversations appear here.')); archived.forEach((chat) => { const item = node('article'); item.append(node('span', '', chat.title), agentButton('Restore', () => updateChatPreferences(chat, { archived: false }))); list.append(item); }); }
@@ -1850,7 +1851,8 @@
     memberDialog=controller;const data=await loadMessaging(member.id);if(current()&&memberDialog===controller&&data)controller.update(messagingViewData(data));
   }
   async function openOrganizationChat(purpose,collection=currentCollection()||'company'){
-    if(observing()||!session?.can_query)return;const generation=sessionGeneration;
+    if(observing()){await loadServerChats();const chat=visibleChats().find(item=>item.kind==='organization_chat'&&item.organization_purpose===purpose&&item.dataset===collection);if(chat)chooseChat(chat);return;}
+    if(!session?.can_query)return;const generation=sessionGeneration;
     try{const response=await request('/api/organization/chats',{purpose,collection}),data=await response.json();if(generation!==sessionGeneration)return;const chat=mergeRemoteChat(data.chat||data);if(!chat)throw Error('Open this conversation from its company workspace.');chooseChat(chat);save();return chat;}catch(error){if(generation===sessionGeneration)notice(error.message);}
   }
   function renderProfileSettings(){

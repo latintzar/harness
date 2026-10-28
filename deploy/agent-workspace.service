@@ -1,0 +1,29 @@
+[Unit]
+Description=Atelier Agent workspace
+After=network.target
+
+[Service]
+Type=simple
+User=atelier-agent-workspace
+Group=atelier-agent-workspace
+WorkingDirectory=/opt/atelier/agent-workspace/current
+Environment=PATH=/usr/bin:/bin
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/atelier/agent-workspace/current/.venv/bin/python tools/dev.py --guest --state /var/lib/atelier-agent-workspace --port 18788 --base-path /apps/agent-workspace/ --public-origin https://preview.atelierneyra.com
+StateDirectory=atelier-agent-workspace
+StateDirectoryMode=0700
+UMask=0077
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/atelier-agent-workspace
+IPAddressDeny=0.0.0.0/0
+IPAddressDeny=::/0
+IPAddressAllow=127.0.0.0/8
+IPAddressAllow=::1
+
+[Install]
+WantedBy=multi-user.target

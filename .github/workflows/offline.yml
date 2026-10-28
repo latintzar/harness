@@ -34,4 +34,5 @@ jobs:
             harness/tests/test_bare_deployment.py harness/tests/test_public_release.py \
             harness/tests/test_managed_codex.py harness/tests/test_managed_spend.py \
             harness/tests/test_managed_sessions.py harness/tests/test_managed_turn.py \
-            harness/tests/test_managed_files.py
+            harness/tests/test_managed_files.py \
+            harness/tests/test_local_workspace.py harness/tests/test_web_mount.py

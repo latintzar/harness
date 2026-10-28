@@ -79,11 +79,13 @@
     "backend/realtime/store.py",
     "backend/realtime/subjects.py",
     "backend/schema_migrations.py",
+    "deploy/agent-workspace.service",
     "deploy/development/contract.py",
     "docs/ARCHITECTURE.md",
     "docs/COST-SAFETY.md",
     "docs/ENGINEERING.md",
     "docs/HISTORICAL-RECORDS.md",
+    "docs/LOCAL-WORKSPACE.md",
     "docs/OPENAI-SETUP.md",
     "docs/decisions/0013-managed-agent-core.md",
     "harness/.env.example",
@@ -212,6 +214,7 @@
     "harness/mechanics/title_stream.py",
     "harness/mechanics/transfer_budget.py",
     "harness/mechanics/wake_tools.py",
+    "harness/mechanics/web_mount.py",
     "harness/mechanics/workspace_capabilities.py",
     "harness/mechanics/workspace_identity.py",
     "harness/requirements.txt",
@@ -391,6 +394,7 @@
     "harness/tests/test_link_intake.py",
     "harness/tests/test_link_routes.py",
     "harness/tests/test_local_mcp_scope.py",
+    "harness/tests/test_local_workspace.py",
     "harness/tests/test_location_context.py",
     "harness/tests/test_location_coordinates.py",
     "harness/tests/test_location_intelligence.py",
@@ -579,6 +583,7 @@
     "harness/tests/test_visit_basket_view.py",
     "harness/tests/test_watch_screening.py",
     "harness/tests/test_weather_view.py",
+    "harness/tests/test_web_mount.py",
     "harness/tests/test_workflow_routes.py",
     "harness/tests/test_workspace_artwork.py",
     "harness/tests/test_workspace_authority.py",
@@ -941,6 +946,9 @@
     "pytest.ini",
     "requirements-dev.txt",
     "tools/README.md",
-    "tools/authorize_local_budget.py"
+    "tools/authorize_local_budget.py",
+    "tools/dev.py",
+    "tools/native_visitor.py",
+    "tools/offline.py"
   ]
 }

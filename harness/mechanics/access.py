@@ -1,5 +1,6 @@
 """One-use environment codes and 24-hour private browser sessions."""
 import argparse
+import os
 import hashlib
 import json
 import re
@@ -9,7 +10,9 @@ import time
 import uuid
 from pathlib import Path
 
-COOKIE = 'rocoto_session'
+COOKIE = os.environ.get('ROCOTO_SESSION_COOKIE', 'rocoto_session')
+if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,63}', COOKIE):
+    raise ValueError('Use a short application session cookie name.')
 LEGACY_COOKIE = 'rocoto_video_session'
 DAY = 24 * 60 * 60
 

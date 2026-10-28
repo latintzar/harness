@@ -109,5 +109,30 @@
       "status": "passed",
       "note": "Vendored rich-content, D3 and MediaPipe manifest files plus generated-art and Monet provenance match actual retained bytes. Clarified the intentionally bundled MediaPipe browser model in DEPENDENCIES.md."
     }
+  },
+  "native_local_workspace": {
+    "date_utc": "2026-10-28",
+    "implementation": "Original server/browser/access/file stores with an optional source-file starter and native observer visitor mode",
+    "lean_suite_passed": 135,
+    "failed": 0,
+    "environment": "Existing isolated Python3.12 CPU proof environment reused; pytest-asyncio1.4.1 installed. Public CI performs a clean requirements-dev install.",
+    "provider_model_gpu_calls": 0,
+    "starter": {
+      "organization_conversations": 1,
+      "conversation_messages": 0,
+      "source_files": 6
+    },
+    "permissions": "Server-enforced read-only visitor; native observer switch, login and mutations rejected; normal recipient-owned runtime remains separately commissioned.",
+    "shared_mount": "Server-side path/cookie projection; native HTTP handlers retained.",
+    "new_files": [
+      "docs/LOCAL-WORKSPACE.md",
+      "deploy/agent-workspace.service",
+      "tools/dev.py",
+      "tools/native_visitor.py",
+      "tools/offline.py",
+      "harness/mechanics/web_mount.py",
+      "harness/tests/test_local_workspace.py",
+      "harness/tests/test_web_mount.py"
+    ]
   }
 }

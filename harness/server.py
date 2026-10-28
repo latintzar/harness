@@ -1581,7 +1581,8 @@ def create_app(state=DEFAULT_STATE, index=None, *, messaging_provider_factory=No
         return Response(css, media_type="text/css")
 
     def session_details(session):
-        result = {**(session or {"authenticated": False, "environments": []}), "operator": operator}
+        result = {**(session or {"authenticated": False, "environments": []}), "operator": operator,
+                  "host_read_only": os.environ.get('ROCOTO_READ_ONLY', '').lower() == 'true'}
         fields=getattr(workspace('demo')['vertical'],'session_fields',lambda:{})()
         result['environments']=[{**environment,**(fields if environment['id']=='demo' else {})}
             for environment in result['environments']]
@@ -1608,7 +1609,7 @@ def create_app(state=DEFAULT_STATE, index=None, *, messaging_provider_factory=No
 
     def set_session(response, token, request):
         response.delete_cookie(LEGACY_COOKIE,path="/")
-        response.set_cookie(COOKIE,token,max_age=DAY,httponly=True,samesite="strict",secure=request.url.scheme=="https",path="/")
+        response.set_cookie(COOKIE,token,max_age=DAY,httponly=True,samesite="strict",secure=public_origin.startswith("https://") or request.url.scheme=="https",path="/")
 
     @app.post("/api/session")
     async def login(body: LoginRequest, request: Request, response: Response):

@@ -42,6 +42,7 @@ Keep private state outside the checkout. The `ROCOTO_` environment names and nam
 | Start here | Result |
 |---|---|
 | [Run the bare workspace](#run-the-bare-workspace) | Open the local page and sign in as its owner. |
+| [Native local workspace](docs/LOCAL-WORKSPACE.md) | Inspect the actual interface and included source files with local, provider-off state. |
 | [OpenAI setup](docs/OPENAI-SETUP.md) | Connect your own project, allowance and public MCP origin. |
 | [Architecture](docs/ARCHITECTURE.md) | Follow a request through the provider, tools and approvals. |
 | [Engineering](docs/ENGINEERING.md) | Understand the design choices and run the offline checks. |
