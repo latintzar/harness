@@ -1,6 +1,10 @@
 # Agent workspace
 
-A reusable framework for persistent agent workspaces: conversations, scoped tools, files, connected systems, jobs, recipes, approvals and spend accounting.
+Agent workspace is a framework for business agents, with conversations, scoped tools, files, connected systems, jobs, recipes, approvals and spend accounting.
+
+[Website](https://atelierneyra.com/harness) · [Documentation](https://docs.atelierneyra.com/agent-workspace/overview/)
+
+![Agent workspace connections](https://atelierneyra.com/software/assets/agent-workspace/connections-desktop.png)
 
 Build a business role as a **vertical** over the existing workspace backend and browser interface. The minimal **bare** vertical includes an Organization conversation, one general Agent class, a setup recipe and a bounded workspace-reader role. OpenAI's managed Agents API runs the agent loop and hosted execution; this repository owns the workspace framework and its vertical SDK.
 
@@ -11,6 +15,8 @@ Originally developed as the **Vitrina Harness**. This source beta includes the e
 Python 3.12:
 
 ```bash
+git clone https://github.com/latintzar/agent-workspace.git
+cd agent-workspace
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt
 export ROCOTO_VERTICAL=bare
@@ -89,3 +95,5 @@ ROCOTO_VERTICAL=bare .venv/bin/python -m pytest -q \
 ## Source and licence
 
 Peter Neyra's original code is [MIT licensed](LICENSE). Vendored libraries, fonts, model assets and integration marks retain their own notices in [THIRD_PARTY.md](THIRD_PARTY.md). Authored UI artwork has retained provenance. The original source and historical operating case remain privately preserved; `provenance/source-export.json` identifies copied files and deliberate omissions.
+
+[made by atelier neyra](https://atelierneyra.com)
