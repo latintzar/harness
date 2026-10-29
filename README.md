@@ -2,13 +2,27 @@
 
 Harness is a Codex-based, vertical-adaptable agent harness with generative UI. A vertical supplies its domain, tools and interfaces; agents work through conversations, scoped files, jobs, recipes, approvals and spend accounting.
 
-[Website](https://atelierneyra.com/harness) · [Open app](https://preview.atelierneyra.com/?project=agent-workspace) · [Documentation](https://docs.atelierneyra.com/agent-workspace/overview/)
+[Website](https://atelierneyra.com/harness) · [Open app](https://preview.atelierneyra.com/apps/agent-workspace/) · [Documentation](https://docs.atelierneyra.com/agent-workspace/overview/)
 
 ![Harness display SDK fixture showing an agent-owned orders chart](docs/assets/readme-hero.png)
 
 Build a business role as a **vertical** over the existing workspace backend and browser interface. The minimal **bare** vertical includes an Organization conversation, one general Agent class, a setup recipe and a bounded workspace-reader role. OpenAI's managed Agents API runs the agent loop and hosted execution; this repository owns the workspace framework and its vertical SDK.
 
 Originally developed as the **Vitrina Harness**. This source beta includes the existing implementation, portable setup and retained third-party notices.
+
+## How it works
+
+A business agent needs a place to work: persistent context, scoped tools, credentials, approvals and interfaces for its results. Rebuilding that framework for every vertical makes the domain work harder to maintain.
+
+| Feature | What it does |
+| --- | --- |
+| Vertical SDK | Declare roles, tools, recipes, data classes and optional displays for a business. |
+| Generative UI | Use the display SDK to render domain-specific views from an agent’s work. |
+| Persistent work | Keep conversations, scoped files and jobs with the workspace. |
+| Supervision | Connect approvals, identity and spend accounting to agent actions. |
+| Runtime adapters | The current source includes managed OpenAI execution; the project retains its Codex-based lineage and architecture. |
+
+The source includes the original harness and SDK. The hosted bare workspace is a read-only visitor example with an authored display fixture; connected agent execution uses the operator’s own provider setup. Build a vertical with one role, one useful tool and one display, then commission its managed runtime. [Product guide](docs/PROJECT.md).
 
 ## Run the bare workspace
 
