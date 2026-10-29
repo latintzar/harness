@@ -25,4 +25,4 @@ Define a vertical → Give a role tools and recipes → Run supervised agent wor
 
 The source includes the original harness and SDK. The hosted bare workspace is a read-only visitor example with an authored display fixture; connected agent execution uses the operator’s own provider setup. Build a vertical with one role, one useful tool and one display, then commission its managed runtime.
 
-Source: [harness/sdk/README.md](../harness/sdk/README.md), [docs/architecture.md](../docs/architecture.md), [docs/setup.md](../docs/setup.md).
+Source: [harness/sdk/README.md](../harness/sdk/README.md).
