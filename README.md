@@ -2,7 +2,7 @@
 
 Harness is a Codex-based, vertical-adaptable agent harness with generative UI. A vertical supplies its domain, tools and interfaces; agents work through conversations, scoped files, jobs, recipes, approvals and spend accounting.
 
-[Website](https://atelierneyra.com/harness) · [Documentation](https://docs.atelierneyra.com/agent-workspace/overview/)
+[Website](https://atelierneyra.com/harness) · [Open app](https://preview.atelierneyra.com/?project=agent-workspace) · [Documentation](https://docs.atelierneyra.com/agent-workspace/overview/)
 
 ![Harness display SDK fixture showing an agent-owned orders chart](docs/assets/readme-hero.png)
 
