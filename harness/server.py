@@ -744,7 +744,7 @@ def create_app(state=DEFAULT_STATE, index=None, *, messaging_provider_factory=No
             result = await call_next(request)
         result.headers["X-Content-Type-Options"] = "nosniff"
         result.headers["Referrer-Policy"] = "no-referrer"
-        result.headers.setdefault("Content-Security-Policy", "default-src 'self'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'self'")
+        result.headers.setdefault("Content-Security-Policy", "default-src 'self'; img-src 'self' data: https://raw.githubusercontent.com https://atelierneyra.com; media-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'self'")
         return result
 
     def connection_identity(request, *, writable=False):
