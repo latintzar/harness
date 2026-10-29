@@ -8,7 +8,7 @@
     "DEPENDENCIES.md": "b717d95db61e3a93bf142f8036cb1994ccc801112ea5e5fbdce1cc99a222937e",
     "LICENSE": "fbbd31cd652b5a98eea06d275bf845949a67301b85d7b03a823d1747aa35182f",
     "OWNERSHIP.md": "797db1f11b5dc95ab97bc4a718a59d9b29a7acb79d20593238be579c68b5ddac",
-    "README.md": "61f497c2a446d3e0f93a68040d4a749872d1179fcb6a95ff9f9318cc8a417d67",
+    "README.md": "c6799819bb833c66b88815b7551e1cfbe10a193bd7b57bdc7268b6151007b6da",
     "THIRD_PARTY.md": "65a4144dacb61a31c331ea35760b2a948a0e63e8b32c09a22d22e63493dc5b14",
     "app/public/brand/rocoto-mark.svg": "5853eac27b281e7cba519cb82ae0e3005bab843cdf48345c49d1171a2f65c5e7",
     "app/public/connection-brands/axis.svg": "4a694c1331a73f664a7bd54c0ec069a751a016a281ddd5ff4c62b24bb107d265",
@@ -940,7 +940,7 @@
     "harness/web/workspace-tabs.js": "ee56ffc5fd419d88e7eeb868169961369ea9ebc28a5e7c71e606e95c2731472d",
     "provenance/local-startup.json": "5010806d0643e3ea292ffa3c9eeeeaa72fc2652eec094b0d904b913da876ffa7",
     "provenance/release-checks.json": "1008b57055809df686be1ceb0befbf6e3897cf6672fb8999f962e5a6a82e7d23",
-    "provenance/release-files.json": "fc10ba9dc694df8587860e445426e6076f599814f7279919ffaea5c8d7c4ef0a",
+    "provenance/release-files.json": "beb85e139a2134eaf3e1c9af612629f842f4332214660fbddd3500c680ffdc16",
     "provenance/secret-scan-summary.json": "654eb8c99946bb820313e5205d595d7733518be52b545861a112d8821a7055e7",
     "provenance/source-export.json": "6f3179b5be45f19d72dcdd5a61b7539de238121a538b17ae612b0a922298d01c",
     "pytest.ini": "bda7a909340b6a797bc194a64092d27dfda893f358597e668567d0e903e23f6e",
@@ -949,6 +949,7 @@
     "tools/authorize_local_budget.py": "dd51dec4f2607b025a3f825556a281d2f798ecac0da47a7b822e71fb0e190511",
     "tools/dev.py": "2158d3f988fb86934c73841c304c68fa276be757899d7b4b842698f439515120",
     "tools/native_visitor.py": "346e0399f83b182c1d91d47fa2ab181c3603004aa1c340718216fc67764943d1",
-    "tools/offline.py": "423ee8d4a8e4d89573b80752c9ab7751edf9dee5c2741035e0a67ba3f5f282eb"
+    "tools/offline.py": "423ee8d4a8e4d89573b80752c9ab7751edf9dee5c2741035e0a67ba3f5f282eb",
+    "docs/assets/readme-hero.png": "c58a1a0ec881d971f1af54c308d6d99065f4d6021b0925b75db43cab9eafe94b"
   }
 }

@@ -87,6 +87,7 @@
     "docs/HISTORICAL-RECORDS.md",
     "docs/LOCAL-WORKSPACE.md",
     "docs/OPENAI-SETUP.md",
+    "docs/assets/readme-hero.png",
     "docs/decisions/0013-managed-agent-core.md",
     "harness/.env.example",
     "harness/README.md",

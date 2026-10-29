@@ -4,7 +4,7 @@ Harness is a Codex-based, vertical-adaptable agent harness with generative UI. A
 
 [Website](https://atelierneyra.com/harness) · [Documentation](https://docs.atelierneyra.com/agent-workspace/overview/)
 
-![Agent workspace connections](https://atelierneyra.com/software/assets/agent-workspace/connections-desktop.png)
+![Harness display SDK fixture showing an agent-owned orders chart](docs/assets/readme-hero.png)
 
 Build a business role as a **vertical** over the existing workspace backend and browser interface. The minimal **bare** vertical includes an Organization conversation, one general Agent class, a setup recipe and a bounded workspace-reader role. OpenAI's managed Agents API runs the agent loop and hosted execution; this repository owns the workspace framework and its vertical SDK.
 
