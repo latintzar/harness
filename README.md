@@ -1,6 +1,6 @@
-# Agent workspace
+# Harness
 
-Agent workspace is a framework for business agents, with conversations, scoped tools, files, connected systems, jobs, recipes, approvals and spend accounting.
+Harness is a Codex-based, vertical-adaptable agent harness with generative UI. A vertical supplies its domain, tools and interfaces; agents work through conversations, scoped files, jobs, recipes, approvals and spend accounting.
 
 [Website](https://atelierneyra.com/harness) · [Documentation](https://docs.atelierneyra.com/agent-workspace/overview/)
 
@@ -15,8 +15,8 @@ Originally developed as the **Vitrina Harness**. This source beta includes the e
 Python 3.12:
 
 ```bash
-git clone https://github.com/latintzar/agent-workspace.git
-cd agent-workspace
+git clone https://github.com/latintzar/harness.git
+cd harness
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt
 export ROCOTO_VERTICAL=bare
