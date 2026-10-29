@@ -42,8 +42,8 @@
     <link rel="stylesheet" href="/static/harness/wake-controls.css" />
     <!-- vertical-assets -->
     <script src="/static/harness/app.js" defer></script>
-  </head>
-  <body class="session-pending">
+  <link rel="stylesheet" href="./static/harness/atelier-inset.css"><script defer src="./static/harness/atelier-nav.js" data-project="agent-workspace"></script></head>
+  <body class="session-pending"><div id="atelier-native-app">
     <svg class="icon-definitions" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
       <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol><symbol id="i-send" viewBox="0 0 24 24"><path d="M12 20V4m-6 6 6-6 6 6"/></symbol><symbol id="i-at" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></symbol><symbol id="i-skill" viewBox="0 0 24 24"><path d="m13 3-8 10h6l-1 8 9-12h-7Z"/></symbol><symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 3v18h17M8 17v-6M13 17V6M18 17v-9"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol><symbol id="i-list" viewBox="0 0 24 24"><path d="M9 5h12M9 12h12M9 19h12M3 5h1M3 12h1M3 19h1"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 9a8 8 0 1 0-1 9M20 3v6h-6"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol><symbol id="i-logout" viewBox="0 0 24 24"><path d="M10 3H3v18h7M7 12h14m-5-5 5 5-5 5"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
       <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
@@ -210,5 +210,5 @@
   <dialog id="mcp-dialog" class="custom-connector-dialog" aria-labelledby="mcp-dialog-title"></dialog>
 <dialog id="founder-demo-popover" class="scope-picker-dialog" aria-labelledby="founder-demo-title"><header><div><h2 id="founder-demo-title">Founder</h2><p>Demo companies</p></div><button id="founder-demo-close" class="icon-button" type="button" aria-label="Close Founder"><svg class="icon"><use href="#i-close"/></svg></button></header><label class="sr-only" for="founder-demo-search">Search demo companies</label><input id="founder-demo-search" type="search" placeholder="Search demo companies" autocomplete="off" /><div id="founder-demo-options" class="workspace-options"></div><p id="founder-demo-message" role="status" hidden></p></dialog>
 <dialog id="collection-picker-dialog" class="scope-picker-dialog" aria-labelledby="collection-picker-title"><header><h2 id="collection-picker-title">Footage collection</h2><button id="collection-picker-close" class="icon-button" type="button" aria-label="Close collections"><svg class="icon"><use href="#i-close"/></svg></button></header><label class="sr-only" for="collection-picker-search">Search collections</label><input id="collection-picker-search" type="search" placeholder="Search collections" autocomplete="off" /><div id="collection-picker-options" class="workspace-options"></div></dialog>
-</body>
+</div></body>
 </html>
