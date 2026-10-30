@@ -22,7 +22,7 @@ A business agent needs a place to work: persistent context, scoped tools, creden
 | Supervision | Connect approvals, identity and spend accounting to agent actions. |
 | Runtime adapters | The current source includes managed OpenAI execution; the project retains its Codex-based lineage and architecture. |
 
-The source includes the original harness and SDK. The hosted bare workspace is a read-only visitor example with an authored display fixture; connected agent execution uses the operator’s own provider setup. Build a vertical with one role, one useful tool and one display, then commission its managed runtime. [Product guide](docs/PROJECT.md).
+The source includes the original harness and SDK. The hosted bare workspace is a read-only visitor example with an authored display fixture; connected agent execution uses the operator’s own provider setup. Its guest entry opens an authored example conversation about the display SDK. Build a vertical with one role, one useful tool and one display, then commission its managed runtime. [Product guide](docs/PROJECT.md).
 
 ## Run the bare workspace
 

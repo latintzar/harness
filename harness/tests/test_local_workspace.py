@@ -38,7 +38,7 @@ def test_public_native_workspace_starter_and_read_only_observer(tmp_path):
    session=response.json();assert session['authenticated'] and session['read_only'] and session['host_read_only'] and not session['can_query']
    assert session['viewing_as']['principal']['id']=='owner'
    cookie=response.headers['set-cookie'];assert 'agent_workspace_session=' in cookie and 'HttpOnly' in cookie and 'SameSite=Strict' in cookie and 'Path=/apps/agent-workspace/' in cookie
-   receipt=json.loads((state/'starter.json').read_text());rows=client.get('api/chats').json()['chats'];assert len(rows)==1 and rows[0]['id']==receipt['organization_chat'] and rows[0]['messages']==[]
+   receipt=json.loads((state/'starter.json').read_text());rows=client.get('api/chats').json()['chats'];assert len(rows)==1 and rows[0]['id']==receipt['organization_chat'] and len(rows[0]['messages'])==4 and rows[0]['messages'][0]['role']=='user'
    files=client.get('api/files',params={'chat_id':rows[0]['id'],'dataset':'company'}).json()['files'];assert len(files)==receipt['source_files']==6
    definition=next(row for row in files if row['name']=='bare-vertical.json');content=client.get(f"api/files/{definition['id']}/content");assert content.status_code==200 and 'Agent workspace' in content.text
    assert client.get('api/workspace/capabilities',params={'dataset':'company'}).json()['permissions']['read_only']
@@ -51,6 +51,21 @@ def test_public_native_workspace_starter_and_read_only_observer(tmp_path):
  finally:
   process.terminate();process.wait(timeout=20);log.close()
  assert json.loads((state/'network.json').read_text())['blocked_external_attempts']==0
+ # Restarting a guest keeps the authored thread exactly once.
+ with (tmp_path/'restart.log').open('w+') as restart_log:
+  process=subprocess.Popen([sys.executable,'-B',str(ROOT/'tools/dev.py'),'--guest','--state',str(state),'--port',str(port),'--base-path','/apps/agent-workspace/'],cwd=ROOT,stdout=restart_log,stderr=restart_log)
+  try:
+   with httpx.Client(base_url=f'http://127.0.0.1:{port}/apps/agent-workspace/',trust_env=False,timeout=5) as client:
+    for _ in range(100):
+     if process.poll() is not None:restart_log.seek(0);pytest.fail(restart_log.read())
+     try:
+      response=client.get('api/chats')
+      if response.status_code==200:break
+     except httpx.ConnectError:pass
+     time.sleep(.1)
+    else:pytest.fail('Restart did not become ready.')
+    rows=response.json()['chats'];assert len(rows)==1 and len(rows[0]['messages'])==4
+  finally:process.terminate();process.wait(timeout=20)
 
 def test_local_starter_refuses_nonempty_unmarked_state(tmp_path):
  state=tmp_path/'private';state.mkdir();(state/'retained-record').write_text('preserved')

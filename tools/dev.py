@@ -15,7 +15,7 @@ def environment(state,guest,origin):
  if guest:env['ROCOTO_SESSION_COOKIE']='agent_workspace_session'
  if origin:env['ROCOTO_PUBLIC_ORIGIN']=origin
  return env
-async def prepare(app,state,access):
+async def prepare(app,state,access,guest=False):
  from access import COOKIE
  import httpx
  code=access.issue('demo',owner=True,principal_id='owner',display_name='Owner')
@@ -25,6 +25,14 @@ async def prepare(app,state,access):
   token=response.cookies.get(COOKIE)
   if token:access.logout(token)
  selected=app.state.workspaces['demo'];record=selected['organization_chats'].ensure(selected['agent'],'company','organization');files=selected['files'];owner=selected['organization_chats'].owner
+ if guest and not record.get('messages'):
+  record['messages']=[
+   {'role':'user','content':'How can I give the dispatch team a view of orders ready to go?'},
+   {'role':'assistant','content':'Define a display for ready orders. The display SDK can show a count, a chart and the individual orders behind it.'},
+   {'role':'user','content':'Can the team follow the count as preparation progresses?'},
+   {'role':'assistant','content':'Yes. An agent can update the display with new order data as work progresses, and the team can inspect the underlying records.'},
+  ]
+  selected['agent']._save_child(record)
  saved={x['name']:x for x in files.list(owner_principal_id=owner,chat_id=record['id'],dataset='company')}
  templates=[('bare-vertical.json','Vertical definition',ROOT/'harness/verticals/bare/vertical.json'),('reader-roles.json','Reader roles',ROOT/'harness/verticals/bare/sub_agents.json')]
  for index,path in enumerate(sorted((ROOT/'harness/verticals/bare/prompts').glob('*.md')),1):templates.append((f'instructions-{index}.md',path.stem.replace('-',' ').capitalize(),path))
@@ -55,7 +63,7 @@ def main():
  from web_mount import MountedApp,base_path
  args.base_path=base_path(args.base_path)
  import server,uvicorn
- app=server.create_app(state);receipt=asyncio.run(prepare(app,state,app.state.access));(state/'starter.json').write_text(json.dumps(receipt,indent=2)+'\n')
+ app=server.create_app(state);receipt=asyncio.run(prepare(app,state,app.state.access,args.guest));(state/'starter.json').write_text(json.dumps(receipt,indent=2)+'\n')
  if args.guest:
   from native_visitor import NativeVisitor
   app=NativeVisitor(app,secure=bool(args.public_origin))
