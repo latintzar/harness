@@ -236,6 +236,10 @@ def test_subagent_is_readable_but_only_parent_can_control_it(tmp_path, monkeypat
         agent = FixtureAgent.instances['demo']
         agent.children['child'] = {'id': 'child', 'owner_principal_id': 'alice', 'parent_id': 'parent',
                                    'dataset': 'cafe', 'running': False, 'messages': []}
+        # Saved descendants require a complete, same-owner ancestry chain.
+        assert client.get('/api/chats/child').status_code == 404
+        agent.children['parent'] = {'id': 'parent', 'owner_principal_id': 'alice',
+                                    'dataset': 'cafe', 'running': False, 'messages': []}
         assert client.get('/api/chats/child').status_code == 200
         for path, body in [('/api/chat', {'chat_id': 'child', 'dataset': 'cafe', 'message': 'Continue'}),
                            ('/api/chat/child/steer', {'message': 'Change the task'}),

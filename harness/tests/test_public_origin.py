@@ -72,9 +72,13 @@ def test_local_demo_browsing_remains_available(tmp_path, monkeypatch):
         assert client.get('/thumbnails/demo-clip.jpg').content == b'fixture-image'
 
 
-def test_invalid_demo_browsing_flag_stops_startup(tmp_path, monkeypatch):
-    monkeypatch.setenv('ROCOTO_VIDEO_DEMO_BROWSING', 'maybe')
-    with pytest.raises(ValueError, match='ROCOTO_VIDEO_DEMO_BROWSING'):
+@pytest.mark.parametrize('flag', ['ROCOTO_BROWSE_SESSIONS', 'ROCOTO_VIDEO_DEMO_BROWSING'])
+def test_invalid_demo_browsing_flag_stops_startup(tmp_path, monkeypatch, flag):
+    monkeypatch.delenv('ROCOTO_BROWSE_SESSIONS', raising=False)
+    monkeypatch.delenv('ROCOTO_VIDEO_DEMO_BROWSING', raising=False)
+    monkeypatch.setenv(flag, 'maybe')
+    # Both the current setting and retained alias report the canonical setting.
+    with pytest.raises(ValueError, match='ROCOTO_BROWSE_SESSIONS'):
         create_app(tmp_path, FixtureIndex())
 
 
