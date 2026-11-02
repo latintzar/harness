@@ -1532,6 +1532,12 @@ def create_app(state=DEFAULT_STATE, index=None, *, messaging_provider_factory=No
         if asset == 'rich-diagram.html': return await diagram_component()
         if asset == 'brand/rocoto-mark.svg': return await logo()
         if asset == 'fonts/fraunces/fraunces-latin-500-700.woff2': return await wordmark_font()
+        # Keep the vendored navigation font available when the project is self-hosted.
+        if asset == 'atelier-nav-fonts/archivo-variable.woff2':
+            font = HERE / 'web' / 'atelier-nav-fonts' / 'archivo-variable.woff2'
+            if font.is_file():
+                return FileResponse(font, media_type='font/woff2')
+            raise HTTPException(404, 'Choose a shared page asset.')
         if asset.startswith('connection-brands/') and asset.count('/') == 1:
             return await connection_brand(asset.split('/', 1)[1])
         relative = Path(asset)
