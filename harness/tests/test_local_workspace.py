@@ -36,6 +36,8 @@ def test_public_native_workspace_starter_and_read_only_observer(tmp_path):
     time.sleep(.1)
    else:pytest.fail('Native workspace did not become ready.')
    session=response.json();assert session['authenticated'] and session['read_only'] and session['host_read_only'] and not session['can_query']
+   page=client.get('');assert page.status_code==200 and 'atelier-nav.js' in page.text
+   assert page.headers['content-security-policy']=="default-src 'self'; img-src 'self' data: https://raw.githubusercontent.com https://atelierneyra.com https://demo.soyrocoto.com; media-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'self'"
    assert session['viewing_as']['principal']['id']=='owner'
    cookie=response.headers['set-cookie'];assert 'agent_workspace_session=' in cookie and 'HttpOnly' in cookie and 'SameSite=Strict' in cookie and 'Path=/apps/agent-workspace/' in cookie
    receipt=json.loads((state/'starter.json').read_text());rows=client.get('api/chats').json()['chats'];assert len(rows)==1 and rows[0]['id']==receipt['organization_chat'] and len(rows[0]['messages'])==4 and rows[0]['messages'][0]['role']=='user'
