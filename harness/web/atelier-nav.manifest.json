@@ -1,0 +1,72 @@
+{
+  "schema_version": 2,
+  "version": "v2-77fe31485f60bb48",
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "atelier-asterisk.svg",
+      "bytes": 2961,
+      "sha256": "daa636cf169f72eb6930cfea20b603b1b8e472acda22dabd5f2b26f716d0940d"
+    },
+    {
+      "path": "atelier-nav-fonts/Archivo-OFL.txt",
+      "bytes": 4388,
+      "sha256": "108b4e57c9c796d3d38d0428ca7ee39de47ad93187302718d9b2d8864b9b716b"
+    },
+    {
+      "path": "atelier-nav-fonts/archivo-variable.woff2",
+      "bytes": 189364,
+      "sha256": "fda1ac3dafef08d0a38675844f31d6d7a6b1dea9eba40edb366f66b594011efb"
+    },
+    {
+      "path": "atelier-nav.LICENSE",
+      "bytes": 1035,
+      "sha256": "f661a22e8dd88dc1b4c165604182cdbbb5011cce21ab581e5e4e2c8af1bfee7c"
+    },
+    {
+      "path": "atelier-nav.LUCIDE-LICENSE",
+      "bytes": 3208,
+      "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+    },
+    {
+      "path": "atelier-nav.PROVENANCE.json",
+      "bytes": 834,
+      "sha256": "f2366c85f5398423af7c98121f4d9d51496c14add94a7441e240caa36ea7920e"
+    },
+    {
+      "path": "atelier-nav.README.md",
+      "bytes": 1964,
+      "sha256": "9c7262830dd3d450ca82e4390a210783d2c07ef3dbd86785b401b5f41794f257"
+    },
+    {
+      "path": "atelier-nav.catalog.json",
+      "bytes": 9062,
+      "sha256": "ce9e3c66388eda2ff654c252d0525e369abc2dc3adc1d34983a9d0c2ae9b27d5"
+    },
+    {
+      "path": "atelier-nav.css",
+      "bytes": 3927,
+      "sha256": "849cfa74d8633bc9c2e32b5fd4ee04e155cdc69aae8e6adfe25836391320d046"
+    },
+    {
+      "path": "atelier-nav.generate.py",
+      "bytes": 3017,
+      "sha256": "18088e2b2003128369d4b744e3f555fc72c97e670002b7381e550a790e7e799e"
+    },
+    {
+      "path": "atelier-nav.icons.json",
+      "bytes": 1292,
+      "sha256": "f5daef8f61385f9802015166d6a40d20e975782e9d4116e8546ba1a052dbed43"
+    },
+    {
+      "path": "atelier-nav.js",
+      "bytes": 17844,
+      "sha256": "92a7d57f091d327f7c38b097ca24365ab1f54f19c87170dca80c67ecb1e1301c"
+    },
+    {
+      "path": "atelier-nav.template.js",
+      "bytes": 5457,
+      "sha256": "cb4ee2d54a760d9bbfb8957af71cf4272f30360946121298563947655208d935"
+    }
+  ]
+}
