@@ -170,6 +170,16 @@
     "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/leo-vibe-maps-1200.webp"
   },
   {
+    "id": "tactile-glove",
+    "name": "Artisan Glove",
+    "summary": "A sensing-glove design for contact, vibration and video.",
+    "site": "https://atelierneyra.com/hardware/tactile-glove",
+    "repo": "https://github.com/latintzar/tactile-glove",
+    "docs": "https://docs.atelierneyra.com/tactile-glove/overview/",
+    "entry": "https://atelierneyra.com/hardware/tactile-glove/viewer/",
+    "thumbnail": "https://atelierneyra.com/hardware/tactile-glove/media/glove-concept.webp"
+  },
+  {
     "id": "messier-57",
     "name": "Messier ’57",
     "summary": "An electric drum with an acoustic feel",

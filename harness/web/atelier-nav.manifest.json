@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "version": "v2-77fe31485f60bb48",
+  "version": "v2-df7fbde41502e927",
   "self_excluded": true,
   "files": [
     {
@@ -40,13 +40,13 @@
     },
     {
       "path": "atelier-nav.catalog.json",
-      "bytes": 9062,
-      "sha256": "ce9e3c66388eda2ff654c252d0525e369abc2dc3adc1d34983a9d0c2ae9b27d5"
+      "bytes": 9556,
+      "sha256": "afda4f4e01fabf584f6e10c566438981548ead711ff2119ffe02ee6b550c4949"
     },
     {
       "path": "atelier-nav.css",
-      "bytes": 3927,
-      "sha256": "849cfa74d8633bc9c2e32b5fd4ee04e155cdc69aae8e6adfe25836391320d046"
+      "bytes": 4193,
+      "sha256": "80553ab46ef860d9908169122226767243b625ad8f9bad62a6bf397b3a791d5a"
     },
     {
       "path": "atelier-nav.generate.py",
@@ -60,8 +60,8 @@
     },
     {
       "path": "atelier-nav.js",
-      "bytes": 17844,
-      "sha256": "92a7d57f091d327f7c38b097ca24365ab1f54f19c87170dca80c67ecb1e1301c"
+      "bytes": 18284,
+      "sha256": "1116d7e23ec747ce470b18c4541ae184b39720c6c30720d0bd71f1223d379d71"
     },
     {
       "path": "atelier-nav.template.js",
