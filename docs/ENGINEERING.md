@@ -15,7 +15,7 @@ Use Python 3.12 and an isolated environment. Install `requirements-dev.txt`, sel
 
 ## Offline checks
 
-[The README command](../README.md#verify-locally) and [CI](../.github/workflows/offline.yml) run the same lean suite with local fake transports. The suite covers the SDK/layer boundary, portable bare artifact, managed protocol, sessions, turns, files, spending and explicit local allowance. CI actions are pinned to commits and receive read-only repository access.
+[The README command](developer-guide.md#verify-locally) and [CI](../.github/workflows/offline.yml) run the same lean suite with local fake transports. The suite covers the SDK/layer boundary, portable bare artifact, managed protocol, sessions, turns, files, spending and explicit local allowance. CI actions are pinned to commits and receive read-only repository access.
 
 Retail adds its own declared requirements. Original migration and cross-product suites also depend on their separate source closures. The [release record](../provenance/release-checks.json) names the two inherited broader-suite failures and records the original archive's Git-index skip. A separate fresh Git copy checks the selected files without changing the release candidate's history.
 

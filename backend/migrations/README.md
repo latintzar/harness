@@ -73,7 +73,7 @@ repair their own NULL tenant rows using DML; boot no longer backfills customer r
 
 ## Verification
 
-The original migration suite uses `tools/test-database.py`, `tests/test_schema_migrations.py` and `tests/test_rls_wall.py` in its owning backend source. Those test drivers belong to the separate backend closure. The public [lean checks](../../README.md#verify-locally) verify the reusable workspace and portable bare artifact. Commission PostgreSQL and validate its migration suite before using this optional data path.
+The original migration suite uses `tools/test-database.py`, `tests/test_schema_migrations.py` and `tests/test_rls_wall.py` in its owning backend source. Those test drivers belong to the separate backend closure. The public [lean checks](../../docs/developer-guide.md#verify-locally) verify the reusable workspace and portable bare artifact. Commission PostgreSQL and validate its migration suite before using this optional data path.
 
 The original disposable-Compose suite covers fresh/concurrent upgrades, repeated upgrades, read-only boot, adoption with existing data, schema/grant drift, transaction rollback, operator audit preservation and revision compatibility.
 

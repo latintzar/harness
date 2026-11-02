@@ -12,6 +12,8 @@ A business agent needs a place to work: persistent context, scoped tools, creden
 | Supervision | Connect approvals, identity and spend accounting to agent actions. |
 | Runtime adapters | The current source includes managed OpenAI execution; the project retains its Codex-based lineage and architecture. |
 
+[Product tour](product-tour.md) follows an Organization request through tools, a job and its display, with links to the implementing modules.
+
 ## Workflow
 
 Define a vertical → Give a role tools and recipes → Run supervised agent work → Render a domain display → Retain work and evidence

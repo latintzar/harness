@@ -1,6 +1,6 @@
-# Agent workspace engineering
+# Harness engineering
 
-Read README.md, DEPENDENCIES.md and docs/ARCHITECTURE.md. This is the reusable Vitrina software Harness. For installation work, read [.agents/skills/agent-workspace-setup/SKILL.md](.agents/skills/agent-workspace-setup/SKILL.md).
+Read README.md, docs/product-tour.md, DEPENDENCIES.md and docs/ARCHITECTURE.md. This is the reusable Vitrina software Harness. For installation work, read [.agents/skills/agent-workspace-setup/SKILL.md](.agents/skills/agent-workspace-setup/SKILL.md).
 
 Keep runtime, mechanics, SDK and verticals separate. Shared code consumes declared interfaces. Start the bare vertical with fresh private state outside the checkout; keep keys, recordings, customer data and funded authorizations in their owning private runtime.
 

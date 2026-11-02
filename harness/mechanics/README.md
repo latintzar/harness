@@ -66,7 +66,7 @@ Access sessions, public MCP keys and managed-session MCP leases are distinct gra
 
 ## Self-description
 
-`get_harness` derives its vertical, declared roles, recipes, data sources, tool lists and capability facts from the installed manifest, sealed registry and current workspace services. The generated table in [README](../../README.md#existing-framework) is the shared currentness index. A capability's source proof and a host's publication receipt remain separate facts.
+`get_harness` derives its vertical, declared roles, recipes, data sources, tool lists and capability facts from the installed manifest, sealed registry and current workspace services. The generated table in [README](../../docs/developer-guide.md#existing-framework) is the shared currentness index. A capability's source proof and a host's publication receipt remain separate facts.
 
 ## Questions and approvals
 

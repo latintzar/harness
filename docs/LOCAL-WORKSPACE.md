@@ -1,6 +1,6 @@
 # Native local workspace
 
-This optional launcher opens the same bare workspace server, browser interface, access store and file store used by `harness/run.py`. It prepares one empty Organization conversation and six files copied from this repository: the vertical definition, reader role and four instruction documents. Open **Organization → Chat details → View all files** to inspect them.
+This optional launcher opens the same bare workspace server, browser interface, access store and file store used by `harness/run.py`. It prepares one Organization conversation and six files copied from this repository: the vertical definition, reader role and four instruction documents. Open **Organization → Chat details → View all files** to inspect them.
 
 ## Start
 
@@ -26,7 +26,7 @@ Use a separate, fresh state directory containing only material intended for publ
 
 A reverse proxy forwards the complete prefix to the loopback server on port 8780. Choose another port with `--port`.
 
-The visitor receives a real AccessStore session observing the starter's owner. Existing native handlers read the conversation, source files, capabilities and connection catalogue. The native observer UI opens existing Organization conversations and presents their files. Its composer and editing actions reflect the observer's permissions. The state contains an empty conversation; agent execution begins through the recipient's commissioned runtime.
+The visitor receives a real AccessStore session observing the starter's owner. Existing native handlers read the conversation, source files, capabilities and connection catalogue. The native observer UI opens existing Organization conversations and presents their files. Its composer and editing actions reflect the observer's permissions. The visitor starter includes an authored conversation about a ready-order display. Managed agent execution uses the recipient's commissioned runtime.
 
 `MountedApp` enforces GET/HEAD access for visitors, with session logout available. Observer changes, sign-in, file edits, agent creation, model turns and connection setup are held by the server. `agent_workspace_session` has an application-scoped Path, HttpOnly and SameSite=Strict; the exact HTTPS origin enables Secure. The prefix adapter changes deployment URLs on the server while requests continue to reach native handlers.
 

@@ -1,6 +1,6 @@
 # Architecture
 
-Agent workspace is the existing Vitrina Harness, packaged as a clean developer source release. It keeps three explicit layers:
+Harness is the existing Vitrina Harness, packaged as a clean developer source release. It keeps three explicit layers:
 
 | Layer | Responsibility | Entry points |
 |---|---|---|
