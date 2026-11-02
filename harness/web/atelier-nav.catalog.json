@@ -7,7 +7,7 @@
     "repo": "https://github.com/latintzar/ai-native-erp",
     "docs": "https://docs.atelierneyra.com/ai-native-erp/overview/",
     "entry": "https://preview.atelierneyra.com/apps/erp/app.html",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/ai-native-erp-1200.webp"
+    "thumbnail": "https://demo.soyrocoto.com/open-source/sites/studio/assets/product-motion-v4/ai-native-erp-1200.webp"
   },
   {
     "id": "agent-workspace",
@@ -27,7 +27,7 @@
     "repo": "https://github.com/latintzar/manufacturer-order-desk",
     "docs": "https://docs.atelierneyra.com/manufacturer-order-desk/overview/",
     "entry": "https://preview.atelierneyra.com/apps/manufacturer-order-desk/",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/manufacturer-order-desk-1200.webp"
+    "thumbnail": "https://demo.soyrocoto.com/open-source/sites/studio/assets/product-motion-v4/manufacturer-order-desk-1200.webp"
   },
   {
     "id": "video",
@@ -57,7 +57,7 @@
     "repo": "https://github.com/latintzar/disdat",
     "docs": "https://docs.atelierneyra.com/disdat/overview/",
     "entry": "https://github.com/latintzar/disdat/releases/latest/download/disdat-extension.zip",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/disdat-1200.webp"
+    "thumbnail": "https://demo.soyrocoto.com/open-source/sites/studio/assets/product-motion-v4/disdat-1200.webp"
   },
   {
     "id": "cancha",
@@ -87,7 +87,7 @@
     "repo": "https://github.com/latintzar/farm-to-restaurant-route-planner",
     "docs": "https://docs.atelierneyra.com/route-planner/overview/",
     "entry": "https://atelierneyra.com/preview/route-planner/",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/route-planner-1200.webp"
+    "thumbnail": "https://demo.soyrocoto.com/open-source/sites/studio/assets/product-motion-v4/route-planner-1200.webp"
   },
   {
     "id": "vitrina",
@@ -97,7 +97,7 @@
     "repo": "https://github.com/latintzar/vitrina-local",
     "docs": "https://docs.atelierneyra.com/vitrina/overview/",
     "entry": "https://preview.atelierneyra.com/apps/vitrina-local/",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/vitrina-1200.webp"
+    "thumbnail": "https://demo.soyrocoto.com/open-source/sites/studio/assets/product-motion-v4/vitrina-1200.webp"
   },
   {
     "id": "social-recipes",
@@ -106,8 +106,8 @@
     "site": "https://atelierneyra.com/social-recipes",
     "repo": "https://github.com/latintzar/social-recipes-kit",
     "docs": "https://docs.atelierneyra.com/social-recipes/overview/",
-    "entry": "https://atelierneyra.com/social-recipes",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/social-recipes-1200.webp"
+    "entry": "https://github.com/latintzar/social-recipes-kit",
+    "thumbnail": "https://demo.soyrocoto.com/open-source/sites/studio/assets/product-motion-v4/social-recipes-1200.webp"
   },
   {
     "id": "hermes-caller",
@@ -127,7 +127,7 @@
     "repo": "https://github.com/latintzar/renovation-estimates",
     "docs": "https://docs.atelierneyra.com/leo-estimates/overview/",
     "entry": "https://preview.atelierneyra.com/apps/estimates/listings",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/leo-estimates-1200.webp"
+    "thumbnail": "https://demo.soyrocoto.com/open-source/sites/studio/assets/product-motion-v4/leo-estimates-1200.webp"
   },
   {
     "id": "home-matching",
@@ -137,17 +137,17 @@
     "repo": "https://github.com/latintzar/home-matching",
     "docs": "https://docs.atelierneyra.com/home-matching/overview/",
     "entry": "https://preview.atelierneyra.com/apps/home-matching/dashboard",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/home-matching-1200.webp"
+    "thumbnail": "https://demo.soyrocoto.com/open-source/sites/studio/assets/product-motion-v4/home-matching-1200.webp"
   },
   {
     "id": "retail-location-similarity",
     "name": "Retail Location Similarity",
-    "summary": "Find retail locations similar to your best-performing stores",
+    "summary": "Geospatial embeddings to find similar places",
     "site": "https://atelierneyra.com/retail-location-similarity",
     "repo": "https://github.com/latintzar/retail-location-similarity",
     "docs": "https://docs.atelierneyra.com/retail-location-similarity/overview/",
-    "entry": "https://preview.atelierneyra.com/apps/retail-location-similarity/",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/retail-location-similarity-1200.webp"
+    "entry": "https://github.com/latintzar/retail-location-similarity",
+    "thumbnail": "https://atelierneyra.com/assets/product-motion-v5/retail-location-similarity-b30d6ebfb434-1200.webp"
   },
   {
     "id": "geospatial-agent",
@@ -157,7 +157,7 @@
     "repo": "https://github.com/latintzar/geospatial-agent",
     "docs": "https://docs.atelierneyra.com/geospatial-agent/overview/",
     "entry": "https://preview.atelierneyra.com/apps/geospatial-agent/",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/geospatial-agent-1200.webp"
+    "thumbnail": "https://demo.soyrocoto.com/open-source/sites/studio/assets/product-motion-v4/geospatial-agent-1200.webp"
   },
   {
     "id": "leo-vibe-maps",
@@ -167,7 +167,7 @@
     "repo": "https://github.com/latintzar/leo-vibe-maps",
     "docs": "https://docs.atelierneyra.com/leo-vibe-maps/overview/",
     "entry": "https://preview.atelierneyra.com/apps/vibe-maps/",
-    "thumbnail": "https://atelierneyra.com/assets/product-motion-v4/leo-vibe-maps-1200.webp"
+    "thumbnail": "https://demo.soyrocoto.com/open-source/sites/studio/assets/product-motion-v4/leo-vibe-maps-1200.webp"
   },
   {
     "id": "tactile-glove",

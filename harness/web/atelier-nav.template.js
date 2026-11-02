@@ -10,18 +10,30 @@
   const current = catalog.find(item => item.id === project);
   if (!current) return;
 
-  // Atelier serves one immutable asset bundle; a copied project uses its adjacent files.
+  // Official Atelier pages use the commissioned direct asset origin. A copied
+  // project keeps its adjacent files or an explicit data-asset-base override.
+  const studioAssets = new URL('https://demo.soyrocoto.com/open-source/sites/studio/');
   const atelierHost = location.hostname === 'atelierneyra.com' || location.hostname.endsWith('.atelierneyra.com');
   const assetBase = script.dataset.assetBase
     ? new URL(script.dataset.assetBase.replace(/\/?$/, '/'), script.src)
-    : atelierHost ? new URL(`/assets/native-nav/releases/${version}/`, location.origin) : new URL('./', script.src);
+    : atelierHost ? new URL(`assets/native-nav/releases/${version}/`, studioAssets) : new URL('./', script.src);
   const asset = path => new URL(path, assetBase).href;
+  // Only image resources move; chooser destinations retain their own hosts.
+  const thumbnail = value => {
+    try {
+      const url = new URL(value, 'https://atelierneyra.com/');
+      if (url.origin === 'https://atelierneyra.com' && /\.(?:avif|gif|jpe?g|png|svg|webp)$/i.test(url.pathname)) {
+        return new URL(url.pathname.replace(/^\/+/, ''), studioAssets).href + url.search + url.hash;
+      }
+    } catch {}
+    return value;
+  };
   const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const host = document.createElement('atelier-native-nav');
   host.dataset.version = version;
   const shadow = host.attachShadow({mode:'open'});
   const cards = catalog.filter(item => item.id !== project && item.entry).map(item =>
-    `<a class="card" href="${escape(item.entry)}"><img src="${escape(item.thumbnail)}" alt="" loading="lazy" decoding="async"><span class="copy"><span class="title">${escape(item.name)}</span><span class="summary">${escape(item.summary)}</span></span></a>`
+    `<a class="card" href="${escape(item.entry)}"><img src="${escape(thumbnail(item.thumbnail))}" alt="" loading="lazy" decoding="async"><span class="copy"><span class="title">${escape(item.name)}</span><span class="summary">${escape(item.summary)}</span></span></a>`
   ).join('');
   shadow.innerHTML = `<link rel="stylesheet" href="${escape(asset('atelier-nav.css'))}">
     <header class="bar">
